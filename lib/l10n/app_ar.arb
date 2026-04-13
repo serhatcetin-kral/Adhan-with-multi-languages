@@ -63,5 +63,6 @@
   "loading": "جارٍ التحميل...",
   "locationError": "مطلوب إذن الموقع",
   "noInternet": "لا يوجد اتصال بالإنترنت",
-  "error": "حدث خطأ"
+  "error": "حدث خطأ",
+  "minutesShort": "دقيقة"
 }

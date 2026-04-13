@@ -63,5 +63,6 @@
   "loading": "Loading...",
   "locationError": "Location permission required",
   "noInternet": "No internet connection",
-  "error": "Something went wrong"
+  "error": "Something went wrong",
+  "minutesShort": "min"
 }

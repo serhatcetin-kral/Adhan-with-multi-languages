@@ -160,4 +160,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get error => 'Something went wrong';
+
+  @override
+  String get minutesShort => 'min';
 }

@@ -160,4 +160,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get error => 'حدث خطأ';
+
+  @override
+  String get minutesShort => 'دقيقة';
 }

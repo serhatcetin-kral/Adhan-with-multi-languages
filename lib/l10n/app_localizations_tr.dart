@@ -160,4 +160,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get error => 'Bir hata oluştu';
+
+  @override
+  String get minutesShort => 'dk';
 }

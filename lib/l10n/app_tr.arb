@@ -63,5 +63,6 @@
   "loading": "Yükleniyor...",
   "locationError": "Konum izni gerekli",
   "noInternet": "İnternet bağlantısı yok",
-  "error": "Bir hata oluştu"
+  "error": "Bir hata oluştu",
+  "minutesShort": "dk"
 }

@@ -204,6 +204,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
 
   Widget buildOffsetTile(String title, int value, Function(int) onChanged) {
+    final loc = AppLocalizations.of(context)!;
+
     return ListTile(
       title: Text(title),
       trailing: Row(
@@ -212,18 +214,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
           IconButton(
             icon: const Icon(Icons.remove),
             onPressed: () {
-              if (value > -30) {
-                onChanged(value - 1);
-              }
+              if (value > -30) onChanged(value - 1);
             },
           ),
-          Text("$value min"),
+          Text("$value ${loc.minutesShort}"),
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () {
-              if (value < 30) {
-                onChanged(value + 1);
-              }
+              if (value < 30) onChanged(value + 1);
             },
           ),
         ],
