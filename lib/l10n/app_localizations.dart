@@ -316,7 +316,7 @@ abstract class AppLocalizations {
   /// No description provided for @compassQibla.
   ///
   /// In en, this message translates to:
-  /// **'Compass Qibla Finder'**
+  /// **'Compass Qibla'**
   String get compassQibla;
 
   /// No description provided for @googleQibla.
@@ -408,6 +408,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'min'**
   String get minutesShort;
+
+  /// No description provided for @calibratingCompass.
+  ///
+  /// In en, this message translates to:
+  /// **'Calibrating compass...'**
+  String get calibratingCompass;
+
+  /// No description provided for @heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Heading'**
+  String get heading;
+
+  /// No description provided for @qiblaDirection.
+  ///
+  /// In en, this message translates to:
+  /// **'Qibla Direction'**
+  String get qiblaDirection;
+
+  /// No description provided for @facingQibla.
+  ///
+  /// In en, this message translates to:
+  /// **'You are facing Qibla'**
+  String get facingQibla;
+
+  /// No description provided for @turnToQibla.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn to Qibla'**
+  String get turnToQibla;
+
+  /// No description provided for @calibrationText.
+  ///
+  /// In en, this message translates to:
+  /// **'Move your phone in a figure 8 motion to calibrate the compass.\nKeep away from metal objects.'**
+  String get calibrationText;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

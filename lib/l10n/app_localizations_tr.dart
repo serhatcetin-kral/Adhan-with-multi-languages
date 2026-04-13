@@ -117,7 +117,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get selectQiblaMethod => 'Kıble Yöntemi Seç';
 
   @override
-  String get compassQibla => 'Pusula ile Kıble';
+  String get compassQibla => 'Kıble Pusulası';
 
   @override
   String get googleQibla => 'Google Kıble';
@@ -163,4 +163,22 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get minutesShort => 'dk';
+
+  @override
+  String get calibratingCompass => 'Pusula kalibre ediliyor...';
+
+  @override
+  String get heading => 'Yön';
+
+  @override
+  String get qiblaDirection => 'Kıble Yönü';
+
+  @override
+  String get facingQibla => 'Kıbleye dönüksünüz';
+
+  @override
+  String get turnToQibla => 'Kıbleye dönün';
+
+  @override
+  String get calibrationText => 'Pusulayı kalibre etmek için telefonu 8 şeklinde hareket ettirin.\nMetal nesnelerden uzak tutun.';
 }

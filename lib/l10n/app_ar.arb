@@ -64,5 +64,13 @@
   "locationError": "مطلوب إذن الموقع",
   "noInternet": "لا يوجد اتصال بالإنترنت",
   "error": "حدث خطأ",
-  "minutesShort": "دقيقة"
+  "minutesShort": "دقيقة",
+  "compassQibla": "بوصلة القبلة",
+  "calibratingCompass": "جاري معايرة البوصلة...",
+  "heading": "الاتجاه",
+  "qiblaDirection": "اتجاه القبلة",
+  "facingQibla": "أنت تواجه القبلة",
+  "turnToQibla": "اتجه نحو القبلة",
+  "calibrationText": "حرّك الهاتف بشكل رقم 8 لمعايرة البوصلة.\nابتعد عن المعادن.",
+  "qibla": "القبلة"
 }

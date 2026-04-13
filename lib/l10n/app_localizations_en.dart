@@ -117,7 +117,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get selectQiblaMethod => 'Select Qibla Method';
 
   @override
-  String get compassQibla => 'Compass Qibla Finder';
+  String get compassQibla => 'Compass Qibla';
 
   @override
   String get googleQibla => 'Google Qibla Finder';
@@ -163,4 +163,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get minutesShort => 'min';
+
+  @override
+  String get calibratingCompass => 'Calibrating compass...';
+
+  @override
+  String get heading => 'Heading';
+
+  @override
+  String get qiblaDirection => 'Qibla Direction';
+
+  @override
+  String get facingQibla => 'You are facing Qibla';
+
+  @override
+  String get turnToQibla => 'Turn to Qibla';
+
+  @override
+  String get calibrationText => 'Move your phone in a figure 8 motion to calibrate the compass.\nKeep away from metal objects.';
 }

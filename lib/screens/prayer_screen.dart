@@ -15,6 +15,7 @@ class PrayerScreen extends StatefulWidget {
 }
 
 class _PrayerScreenState extends State<PrayerScreen> {
+
   Map<String, TimeOfDay> prayerTimes = {};
   String nextPrayer = "";
   Duration remainingTime = Duration.zero;
@@ -27,8 +28,6 @@ class _PrayerScreenState extends State<PrayerScreen> {
     loadPrayerTimes();
     startTimer();
   }
-
-  // ================== LOAD DATA ==================
 
   Future<void> loadPrayerTimes() async {
     try {
@@ -46,7 +45,7 @@ class _PrayerScreenState extends State<PrayerScreen> {
       int maghribOffset = prefs.getInt('maghribOffset') ?? 0;
       int ishaOffset = prefs.getInt('ishaOffset') ?? 0;
 
-      Position pos = await LocationService.getLocation();
+      Position pos = await LocationService.getUserLocation();
 
       final result = await PrayerApiService.getPrayerTimes(
         latitude: pos.latitude,
@@ -68,28 +67,19 @@ class _PrayerScreenState extends State<PrayerScreen> {
 
       calculateNextPrayer();
     } catch (e) {
-      print("❌ Error loading prayer times: $e");
+      print("Error: $e");
     }
   }
 
-  // ================== HELPERS ==================
-
   int getMethodNumber(String method) {
     switch (method) {
-      case 'MWL':
-        return 3;
-      case 'ISNA':
-        return 2;
-      case 'Egypt':
-        return 5;
-      case 'Makkah':
-        return 4;
-      case 'Karachi':
-        return 1;
-      case 'Turkey':
-        return 13;
-      default:
-        return 3;
+      case 'MWL': return 3;
+      case 'ISNA': return 2;
+      case 'Egypt': return 5;
+      case 'Makkah': return 4;
+      case 'Karachi': return 1;
+      case 'Turkey': return 13;
+      default: return 3;
     }
   }
 
@@ -149,57 +139,24 @@ class _PrayerScreenState extends State<PrayerScreen> {
   }
 
   String formatTime(TimeOfDay time) {
-    final hour = time.hour.toString().padLeft(2, '0');
-    final minute = time.minute.toString().padLeft(2, '0');
-    return "$hour:$minute";
+    return "${time.hour.toString().padLeft(2,'0')}:${time.minute.toString().padLeft(2,'0')}";
   }
-
-  String formatDuration(Duration d) {
-    final hours = d.inHours;
-    final minutes = d.inMinutes % 60;
-    final seconds = d.inSeconds % 60;
-
-    return "$hours:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}";
-  }
-
-  @override
-  void dispose() {
-    timer?.cancel();
-    super.dispose();
-  }
-
-  // ================== UI ==================
 
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context)!;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(loc.prayerTimes),
-      ),
+      appBar: AppBar(title: Text(loc.prayerTimes)),
       body: prayerTimes.isEmpty
           ? Center(child: Text(loc.loading))
           : Column(
         children: [
           const SizedBox(height: 20),
-
-          Text(loc.nextPrayer, style: const TextStyle(fontSize: 18)),
-
-          Text(
-            getPrayerName(loc, nextPrayer),
-            style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-          ),
-
+          Text(loc.nextPrayer),
+          Text(getPrayerName(loc, nextPrayer)),
           const SizedBox(height: 10),
-
-          Text(
-            formatDuration(remainingTime),
-            style: const TextStyle(fontSize: 24, color: Colors.green),
-          ),
-
-          const Divider(),
-
+          Text("$remainingTime"),
           Expanded(
             child: ListView(
               children: [
@@ -211,7 +168,7 @@ class _PrayerScreenState extends State<PrayerScreen> {
                 buildPrayerTile(loc, "isha"),
               ],
             ),
-          ),
+          )
         ],
       ),
     );
@@ -222,39 +179,20 @@ class _PrayerScreenState extends State<PrayerScreen> {
     if (time == null) return const SizedBox();
 
     return ListTile(
-      tileColor: key == nextPrayer ? Colors.green.withOpacity(0.1) : null,
-      title: Text(
-        getPrayerName(loc, key),
-        style: TextStyle(
-          color: key == nextPrayer ? Colors.green : null,
-          fontWeight: key == nextPrayer ? FontWeight.bold : FontWeight.normal,
-        ),
-      ),
-      trailing: Text(
-        formatTime(time),
-        style: TextStyle(
-          color: key == nextPrayer ? Colors.green : null,
-        ),
-      ),
+      title: Text(getPrayerName(loc, key)),
+      trailing: Text(formatTime(time)),
     );
   }
 
   String getPrayerName(AppLocalizations loc, String key) {
     switch (key) {
-      case "fajr":
-        return loc.fajr;
-      case "sunrise":
-        return loc.sunrise;
-      case "dhuhr":
-        return loc.dhuhr;
-      case "asr":
-        return loc.asr;
-      case "maghrib":
-        return loc.maghrib;
-      case "isha":
-        return loc.isha;
-      default:
-        return "";
+      case "fajr": return loc.fajr;
+      case "sunrise": return loc.sunrise;
+      case "dhuhr": return loc.dhuhr;
+      case "asr": return loc.asr;
+      case "maghrib": return loc.maghrib;
+      case "isha": return loc.isha;
+      default: return "";
     }
   }
 }

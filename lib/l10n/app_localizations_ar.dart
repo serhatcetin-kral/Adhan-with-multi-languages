@@ -117,7 +117,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get selectQiblaMethod => 'اختر طريقة القبلة';
 
   @override
-  String get compassQibla => 'البوصلة';
+  String get compassQibla => 'بوصلة القبلة';
 
   @override
   String get googleQibla => 'قبلة جوجل';
@@ -163,4 +163,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get minutesShort => 'دقيقة';
+
+  @override
+  String get calibratingCompass => 'جاري معايرة البوصلة...';
+
+  @override
+  String get heading => 'الاتجاه';
+
+  @override
+  String get qiblaDirection => 'اتجاه القبلة';
+
+  @override
+  String get facingQibla => 'أنت تواجه القبلة';
+
+  @override
+  String get turnToQibla => 'اتجه نحو القبلة';
+
+  @override
+  String get calibrationText => 'حرّك الهاتف بشكل رقم 8 لمعايرة البوصلة.\nابتعد عن المعادن.';
 }

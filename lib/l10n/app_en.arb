@@ -64,5 +64,13 @@
   "locationError": "Location permission required",
   "noInternet": "No internet connection",
   "error": "Something went wrong",
-  "minutesShort": "min"
+  "minutesShort": "min",
+  "compassQibla": "Compass Qibla",
+  "calibratingCompass": "Calibrating compass...",
+  "heading": "Heading",
+  "qiblaDirection": "Qibla Direction",
+  "facingQibla": "You are facing Qibla",
+  "turnToQibla": "Turn to Qibla",
+  "calibrationText": "Move your phone in a figure 8 motion to calibrate the compass.\nKeep away from metal objects.",
+  "qibla": "Qibla"
 }
