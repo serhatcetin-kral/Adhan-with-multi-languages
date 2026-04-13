@@ -1,0 +1,60 @@
+name: adhan_app
+description: Adhan Prayer Time App
+
+publish_to: 'none'
+
+version: 1.0.3
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # 🌍 Localization
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2
+
+  # 📍 Location
+  geolocator: ^9.0.2
+
+  # 🌐 HTTP (Aladhan API)
+  http: ^1.1.0
+
+  # 💾 Local storage
+  shared_preferences: ^2.2.0
+
+  # 🔔 Notifications (IMPORTANT: stable version)
+  flutter_local_notifications: ^17.2.4
+  timezone: ^0.9.4
+
+  # 🧭 Compass (Qibla)
+  flutter_compass: ^0.8.1
+
+  # 📅 Calendar
+  table_calendar: ^3.1.2
+  hijri: ^3.0.0
+
+  # 🔗 Sharing / Links
+  url_launcher: ^6.2.5
+  share_plus: ^7.2.1
+
+  # 🎨 Icons
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  # 🔥 THIS IS VERY IMPORTANT
+  generate: true
+
+  assets:
+    - assets/

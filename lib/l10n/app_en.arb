@@ -1,0 +1,67 @@
+{
+  "appTitle": "Adhan App",
+
+  "selectLanguage": "Select Language",
+  "continueButton": "Continue",
+
+  "prayerTimes": "Prayer Times",
+  "nextPrayer": "Next Prayer",
+  "remainingTime": "Remaining Time",
+
+  "fajr": "Fajr",
+  "sunrise": "Sunrise",
+  "dhuhr": "Dhuhr",
+  "asr": "Asr",
+  "maghrib": "Maghrib",
+  "isha": "Isha",
+
+  "settings": "Settings",
+  "save": "Save Settings",
+
+  "language": "Language",
+  "calculationMethod": "Calculation Method",
+  "madhhab": "Madhhab",
+
+  "offsetSettings": "Prayer Time Offsets",
+  "fajrOffset": "Fajr Offset",
+  "dhuhrOffset": "Dhuhr Offset",
+  "asrOffset": "Asr Offset",
+  "maghribOffset": "Maghrib Offset",
+  "ishaOffset": "Isha Offset",
+
+  "notifications": "Notifications",
+  "enableNotifications": "Enable Notifications",
+
+  "methodMWL": "Muslim World League",
+  "methodISNA": "ISNA",
+  "methodEgypt": "Egyptian",
+  "methodMakkah": "Umm Al-Qura (Makkah)",
+  "methodKarachi": "Karachi",
+  "methodTurkey": "Diyanet (Turkey)",
+
+  "hanafi": "Hanafi",
+  "shafi": "Shafi",
+
+  "qibla": "Qibla",
+  "qiblaFinder": "Qibla Finder",
+  "selectQiblaMethod": "Select Qibla Method",
+  "compassQibla": "Compass Qibla Finder",
+  "googleQibla": "Google Qibla Finder",
+
+  "calibrating": "Calibrating compass...",
+  "pointPhone": "Point your phone towards the Qibla",
+
+  "more": "More",
+  "dua": "Duas",
+  "zikr": "Zikr",
+  "calendar": "Hijri Calendar",
+  "about": "About",
+
+  "shareApp": "Share App",
+  "rateApp": "Rate App",
+
+  "loading": "Loading...",
+  "locationError": "Location permission required",
+  "noInternet": "No internet connection",
+  "error": "Something went wrong"
+}

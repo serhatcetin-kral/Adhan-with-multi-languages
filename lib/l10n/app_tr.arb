@@ -1,0 +1,67 @@
+{
+  "appTitle": "Ezan Uygulaması",
+
+  "selectLanguage": "Dil Seç",
+  "continueButton": "Devam Et",
+
+  "prayerTimes": "Namaz Vakitleri",
+  "nextPrayer": "Sonraki Namaz",
+  "remainingTime": "Kalan Süre",
+
+  "fajr": "İmsak",
+  "sunrise": "Güneş",
+  "dhuhr": "Öğle",
+  "asr": "İkindi",
+  "maghrib": "Akşam",
+  "isha": "Yatsı",
+
+  "settings": "Ayarlar",
+  "save": "Ayarları Kaydet",
+
+  "language": "Dil",
+  "calculationMethod": "Hesaplama Yöntemi",
+  "madhhab": "Mezhep",
+
+  "offsetSettings": "Vakit Ayarları",
+  "fajrOffset": "İmsak Offset",
+  "dhuhrOffset": "Öğle Offset",
+  "asrOffset": "İkindi Offset",
+  "maghribOffset": "Akşam Offset",
+  "ishaOffset": "Yatsı Offset",
+
+  "notifications": "Bildirimler",
+  "enableNotifications": "Bildirimleri Aç",
+
+  "methodMWL": "Dünya İslam Birliği",
+  "methodISNA": "ISNA",
+  "methodEgypt": "Mısır",
+  "methodMakkah": "Umm Al-Qura (Mekke)",
+  "methodKarachi": "Karachi",
+  "methodTurkey": "Diyanet",
+
+  "hanafi": "Hanefi",
+  "shafi": "Şafii",
+
+  "qibla": "Kıble",
+  "qiblaFinder": "Kıble Bulucu",
+  "selectQiblaMethod": "Kıble Yöntemi Seç",
+  "compassQibla": "Pusula ile Kıble",
+  "googleQibla": "Google Kıble",
+
+  "calibrating": "Pusula kalibre ediliyor...",
+  "pointPhone": "Telefonunuzu kıbleye doğru tutun",
+
+  "more": "Diğer",
+  "dua": "Dualar",
+  "zikr": "Zikir",
+  "calendar": "Hicri Takvim",
+  "about": "Hakkında",
+
+  "shareApp": "Uygulamayı Paylaş",
+  "rateApp": "Uygulamayı Değerlendir",
+
+  "loading": "Yükleniyor...",
+  "locationError": "Konum izni gerekli",
+  "noInternet": "İnternet bağlantısı yok",
+  "error": "Bir hata oluştu"
+}

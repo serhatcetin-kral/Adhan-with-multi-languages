@@ -1,0 +1,67 @@
+{
+  "appTitle": "تطبيق الأذان",
+
+  "selectLanguage": "اختر اللغة",
+  "continueButton": "متابعة",
+
+  "prayerTimes": "مواقيت الصلاة",
+  "nextPrayer": "الصلاة القادمة",
+  "remainingTime": "الوقت المتبقي",
+
+  "fajr": "الفجر",
+  "sunrise": "الشروق",
+  "dhuhr": "الظهر",
+  "asr": "العصر",
+  "maghrib": "المغرب",
+  "isha": "العشاء",
+
+  "settings": "الإعدادات",
+  "save": "حفظ الإعدادات",
+
+  "language": "اللغة",
+  "calculationMethod": "طريقة الحساب",
+  "madhhab": "المذهب",
+
+  "offsetSettings": "تعديلات الأوقات",
+  "fajrOffset": "تعديل الفجر",
+  "dhuhrOffset": "تعديل الظهر",
+  "asrOffset": "تعديل العصر",
+  "maghribOffset": "تعديل المغرب",
+  "ishaOffset": "تعديل العشاء",
+
+  "notifications": "الإشعارات",
+  "enableNotifications": "تفعيل الإشعارات",
+
+  "methodMWL": "رابطة العالم الإسلامي",
+  "methodISNA": "أمريكا الشمالية",
+  "methodEgypt": "الهيئة المصرية",
+  "methodMakkah": "أم القرى (مكة)",
+  "methodKarachi": "كراتشي",
+  "methodTurkey": "ديانت تركيا",
+
+  "hanafi": "حنفي",
+  "shafi": "شافعي",
+
+  "qibla": "القبلة",
+  "qiblaFinder": "محدد القبلة",
+  "selectQiblaMethod": "اختر طريقة القبلة",
+  "compassQibla": "البوصلة",
+  "googleQibla": "قبلة جوجل",
+
+  "calibrating": "جاري معايرة البوصلة...",
+  "pointPhone": "وجّه هاتفك نحو القبلة",
+
+  "more": "المزيد",
+  "dua": "الأدعية",
+  "zikr": "الذكر",
+  "calendar": "التقويم الهجري",
+  "about": "حول",
+
+  "shareApp": "مشاركة التطبيق",
+  "rateApp": "تقييم التطبيق",
+
+  "loading": "جارٍ التحميل...",
+  "locationError": "مطلوب إذن الموقع",
+  "noInternet": "لا يوجد اتصال بالإنترنت",
+  "error": "حدث خطأ"
+}
