@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'prayer_screen.dart';
-// import 'qibla_screen.dart';
+//import 'qibla_screen.dart';
  import 'settings_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -37,10 +37,10 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.access_time),
             label: "Prayer",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.explore),
-            label: "Qibla",
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.explore),
+          //   label: "Qibla",
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: "Settings",

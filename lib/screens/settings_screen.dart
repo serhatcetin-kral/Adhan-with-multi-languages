@@ -166,6 +166,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
 
             const Divider(),
+            ListTile(title: Text(loc.offsetSettings)),
+
+            buildOffsetTile(loc.fajrOffset, fajrOffset, (val) {
+              setState(() => fajrOffset = val);
+            }),
+
+            buildOffsetTile(loc.dhuhrOffset, dhuhrOffset, (val) {
+              setState(() => dhuhrOffset = val);
+            }),
+
+            buildOffsetTile(loc.asrOffset, asrOffset, (val) {
+              setState(() => asrOffset = val);
+            }),
+
+            buildOffsetTile(loc.maghribOffset, maghribOffset, (val) {
+              setState(() => maghribOffset = val);
+            }),
+
+            buildOffsetTile(loc.ishaOffset, ishaOffset, (val) {
+              setState(() => ishaOffset = val);
+            }),
 
             // SAVE BUTTON
             Padding(
@@ -177,6 +198,35 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+
+  Widget buildOffsetTile(String title, int value, Function(int) onChanged) {
+    return ListTile(
+      title: Text(title),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.remove),
+            onPressed: () {
+              if (value > -30) {
+                onChanged(value - 1);
+              }
+            },
+          ),
+          Text("$value min"),
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () {
+              if (value < 30) {
+                onChanged(value + 1);
+              }
+            },
+          ),
+        ],
       ),
     );
   }
