@@ -120,7 +120,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get compassQibla => 'Kıble Pusulası';
 
   @override
-  String get googleQibla => 'Google Kıble';
+  String get googleQibla => 'Google Kıble Bulucu';
 
   @override
   String get calibrating => 'Pusula kalibre ediliyor...';
@@ -181,4 +181,16 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get calibrationText => 'Pusulayı kalibre etmek için telefonu 8 şeklinde hareket ettirin.\nMetal nesnelerden uzak tutun.';
+
+  @override
+  String get welcome => 'Hoş Geldiniz';
+
+  @override
+  String get support => 'Destek';
+
+  @override
+  String get latLabel => 'Enlem';
+
+  @override
+  String get lngLabel => 'Boylam';
 }

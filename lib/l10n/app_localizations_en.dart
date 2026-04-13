@@ -181,4 +181,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get calibrationText => 'Move your phone in a figure 8 motion to calibrate the compass.\nKeep away from metal objects.';
+
+  @override
+  String get welcome => 'Welcome';
+
+  @override
+  String get support => 'Support';
+
+  @override
+  String get latLabel => 'Latitude';
+
+  @override
+  String get lngLabel => 'Longitude';
 }

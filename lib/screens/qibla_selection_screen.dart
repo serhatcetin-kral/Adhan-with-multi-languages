@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../l10n/app_localizations.dart';
 import 'qibla_screen.dart';
 
 class QiblaSelectionScreen extends StatelessWidget {
@@ -20,9 +21,11 @@ class QiblaSelectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Qibla Finder"),
+        title: Text(loc.qiblaFinder),
         centerTitle: true,
       ),
 
@@ -33,10 +36,10 @@ class QiblaSelectionScreen extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // 🔹 Welcome text
-            const Text(
-              "Welcome",
-              style: TextStyle(
+            // 🌍 WELCOME
+            Text(
+              loc.welcome,
+              style: const TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),
@@ -48,7 +51,7 @@ class QiblaSelectionScreen extends StatelessWidget {
             buildCard(
               icon: Icons.explore,
               iconColor: Colors.teal,
-              text: "Compass Qibla",
+              text: loc.compassQibla,
               onTap: () {
                 Navigator.push(
                   context,
@@ -65,7 +68,7 @@ class QiblaSelectionScreen extends StatelessWidget {
             buildCard(
               icon: Icons.public,
               iconColor: Colors.blue,
-              text: "Google Qibla Finder",
+              text: loc.googleQibla,
               onTap: () => openGoogleQibla(context),
             ),
           ],
@@ -100,7 +103,7 @@ class QiblaSelectionScreen extends StatelessWidget {
         child: Column(
           children: [
 
-            // 🔵 ICON CIRCLE
+            // ICON CIRCLE
             Container(
               width: 60,
               height: 60,
@@ -117,7 +120,7 @@ class QiblaSelectionScreen extends StatelessWidget {
 
             const SizedBox(height: 15),
 
-            // 🔤 TEXT
+            // TEXT
             Text(
               text,
               style: const TextStyle(

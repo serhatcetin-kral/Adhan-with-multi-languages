@@ -444,6 +444,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Move your phone in a figure 8 motion to calibrate the compass.\nKeep away from metal objects.'**
   String get calibrationText;
+
+  /// No description provided for @welcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome'**
+  String get welcome;
+
+  /// No description provided for @support.
+  ///
+  /// In en, this message translates to:
+  /// **'Support'**
+  String get support;
+
+  /// No description provided for @latLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Latitude'**
+  String get latLabel;
+
+  /// No description provided for @lngLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Longitude'**
+  String get lngLabel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

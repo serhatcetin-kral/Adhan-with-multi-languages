@@ -120,7 +120,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get compassQibla => 'بوصلة القبلة';
 
   @override
-  String get googleQibla => 'قبلة جوجل';
+  String get googleQibla => 'محدد القبلة من جوجل';
 
   @override
   String get calibrating => 'جاري معايرة البوصلة...';
@@ -181,4 +181,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get calibrationText => 'حرّك الهاتف بشكل رقم 8 لمعايرة البوصلة.\nابتعد عن المعادن.';
+
+  @override
+  String get welcome => 'مرحبًا';
+
+  @override
+  String get support => 'الدعم';
+
+  @override
+  String get latLabel => 'خط العرض';
+
+  @override
+  String get lngLabel => 'خط الطول';
 }

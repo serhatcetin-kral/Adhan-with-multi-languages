@@ -1,10 +1,14 @@
-import 'dart:math' as math;
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:vibration/vibration.dart';
 
 import '../services/location_service.dart';
 import '../services/qibla_service.dart';
+import '../widget/app_drawwer.dart';
+import '../widget/compass_widget.dart';
+
 import '../l10n/app_localizations.dart';
 
 class QiblaScreen extends StatefulWidget {
@@ -15,211 +19,187 @@ class QiblaScreen extends StatefulWidget {
 }
 
 class _QiblaScreenState extends State<QiblaScreen> {
-  double? qiblaBearing;
-  bool isLoading = true;
-  bool hasVibrated = false;
+  double _heading = 0.0;
+  double _qiblaDirection = 0.0;
+  Position? _position;
+
+  bool _loading = true;
+  String _statusKey = 'loading';
+
+  StreamSubscription<CompassEvent>? _compassSubscription;
+  bool _hasVibrated = false;
 
   @override
   void initState() {
     super.initState();
-    loadQibla();
+    _initQibla();
   }
 
-  Future<void> loadQibla() async {
-    try {
-      final pos = await LocationService.getUserLocation();
+  Future<void> _initQibla() async {
+    _compassSubscription?.cancel();
 
-      final bearing = QiblaService.bearingToKaaba(
-        userLat: pos.latitude,
-        userLng: pos.longitude,
+    setState(() {
+      _loading = true;
+      _statusKey = 'loading';
+    });
+
+    try {
+      final position = await LocationService.getUserLocation();
+
+      final qibla = QiblaService.bearingToKaaba(
+        userLat: position.latitude,
+        userLng: position.longitude,
       );
 
-      setState(() {
-        qiblaBearing = bearing;
-        isLoading = false;
+      _position = position;
+      _qiblaDirection = qibla;
+
+      final compassStream = FlutterCompass.events;
+
+      if (compassStream == null) {
+        setState(() {
+          _loading = false;
+          _statusKey = 'compassUnavailable';
+        });
+        return;
+      }
+
+      _compassSubscription = compassStream.listen((event) async {
+        if (!mounted) return;
+
+        if (event.heading == null) {
+          setState(() {
+            _loading = false;
+            _statusKey = 'compassUnavailable';
+          });
+          return;
+        }
+
+        final newHeading = (event.heading! + 360) % 360;
+
+        setState(() {
+          _heading = newHeading;
+          _loading = false;
+          _statusKey = 'ready';
+        });
+
+        final diff = QiblaService.shortestAngleDifference(
+          _qiblaDirection,
+          _heading,
+        );
+
+        final aligned = diff.abs() <= 8;
+
+        if (aligned && !_hasVibrated) {
+          if (await Vibration.hasVibrator() ?? false) {
+            Vibration.vibrate(duration: 200);
+          }
+          _hasVibrated = true;
+        }
+
+        if (!aligned) {
+          _hasVibrated = false;
+        }
       });
-    } catch (e) {
+    } catch (_) {
       setState(() {
-        isLoading = false;
+        _loading = false;
+        _statusKey = 'error';
       });
     }
   }
 
-  bool isAligned(double diff) => diff.abs() <= 8;
-
-  Future<void> handleVibration(bool aligned) async {
-    if (aligned && !hasVibrated) {
-      if (await Vibration.hasVibrator() ?? false) {
-        Vibration.vibrate(duration: 200);
-      }
-      hasVibrated = true;
-    } else if (!aligned) {
-      hasVibrated = false;
-    }
+  @override
+  void dispose() {
+    _compassSubscription?.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context)!;
 
+    final diff = QiblaService.shortestAngleDifference(
+      _qiblaDirection,
+      _heading,
+    );
+
+    final aligned = diff.abs() <= 8;
+
     return Scaffold(
+      backgroundColor: Colors.grey.shade200, // 🔥 important for UI
+      // drawer: const AppDrawer(),
       appBar: AppBar(
         title: Text(loc.compassQibla),
         centerTitle: true,
+        automaticallyImplyLeading: true, // shows back arrow
       ),
-      body: isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : StreamBuilder<CompassEvent>(
-        stream: FlutterCompass.events,
-        builder: (context, snapshot) {
-          if (!snapshot.hasData ||
-              snapshot.data?.heading == null ||
-              qiblaBearing == null) {
-            return Center(child: Text(loc.calibratingCompass));
-          }
+      body: Center(
+        child: _loading
+            ? const CircularProgressIndicator()
+            : Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
 
-          final heading = snapshot.data!.heading!;
-          final diff = QiblaService.shortestAngleDifference(
-            qiblaBearing!,
-            heading,
-          );
-
-          final aligned = isAligned(diff);
-          handleVibration(aligned);
-
-          return buildCompass(loc, heading, diff, aligned);
-        },
-      ),
-    );
-  }
-
-  // ================= UI =================
-
-  Widget buildCompass(
-      AppLocalizations loc, double heading, double diff, bool aligned) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-
-        // 🧭 COMPASS
-        Stack(
-          alignment: Alignment.center,
-          children: [
-
-            // OUTER RING
-            Container(
-              width: 270,
-              height: 270,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.teal, width: 4),
+              // 🧭 COMPASS (your upgraded widget)
+              CompassWidget(
+                heading: _heading,
+                qiblaDirection: _qiblaDirection,
               ),
-            ),
 
-            // INNER BACKGROUND
-            Container(
-              width: 240,
-              height: 240,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.grey.shade100,
+              const SizedBox(height: 30),
+
+              // 📐 INFO
+              Text(
+                "${loc.heading}: ${_heading.toStringAsFixed(1)}°",
+                style: const TextStyle(fontSize: 18),
               ),
-            ),
 
-            // TICKS
-            ...List.generate(60, (index) {
-              final isMain = index % 5 == 0;
+              const SizedBox(height: 6),
 
-              return Transform.rotate(
-                angle: index * 6 * math.pi / 180,
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Container(
-                    width: 2,
-                    height: isMain ? 14 : 6,
-                    color: isMain ? Colors.teal : Colors.grey,
-                  ),
-                ),
-              );
-            }),
-
-            // ARROW
-            Transform.rotate(
-              angle: diff * (math.pi / 180),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-
-                  const Icon(
-                    Icons.navigation,
-                    size: 120,
-                    color: Colors.red,
-                  ),
-
-                  const SizedBox(height: 6),
-
-                  Container(
-                    width: 14,
-                    height: 14,
-                    decoration: const BoxDecoration(
-                      color: Colors.teal,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                ],
+              Text(
+                "${loc.qiblaDirection}: ${_qiblaDirection.toStringAsFixed(1)}°",
+                style: const TextStyle(fontSize: 18),
               ),
-            ),
 
-            // DIRECTIONS
-            const Positioned(top: 18, child: Text("N")),
-            const Positioned(bottom: 18, child: Text("S")),
-            const Positioned(left: 18, child: Text("W")),
-            const Positioned(right: 18, child: Text("E")),
+              const SizedBox(height: 15),
 
-            // QIBLA BADGE
-            Positioned(
-              bottom: 55,
-              child: Container(
-                padding:
-                const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-                decoration: BoxDecoration(
-                  color: Colors.red.shade100,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text(
-                  loc.qibla,
-                  style: const TextStyle(color: Colors.red),
+              // ✅ STATUS
+              Text(
+                aligned
+                    ? loc.facingQibla
+                    : loc.turnToQibla,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: aligned ? Colors.green : Colors.black,
                 ),
               ),
-            ),
-          ],
-        ),
 
-        const SizedBox(height: 25),
+              const SizedBox(height: 15),
 
-        // INFO
-        Text("${loc.heading}: ${heading.toStringAsFixed(1)}°"),
-        Text("${loc.qiblaDirection}: ${(heading + diff).toStringAsFixed(1)}°"),
+              // 📍 LOCATION
+              if (_position != null)
+                Text(
+                  "${loc.latLabel}: ${_position!.latitude.toStringAsFixed(4)}\n"
+                      "${loc.lngLabel}: ${_position!.longitude.toStringAsFixed(4)}",
+                  textAlign: TextAlign.center,
+                ),
 
-        const SizedBox(height: 10),
+              const SizedBox(height: 20),
 
-        // STATUS
-        Text(
-          aligned ? loc.facingQibla : loc.turnToQibla,
-          style: TextStyle(
-            color: aligned ? Colors.green : Colors.black,
-            fontWeight: FontWeight.bold,
+              // 🧠 CALIBRATION
+              Text(
+                loc.calibrationText,
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: Colors.grey),
+              ),
+            ],
           ),
         ),
-
-        const SizedBox(height: 10),
-
-        Text(
-          loc.calibrationText,
-          textAlign: TextAlign.center,
-          style: const TextStyle(color: Colors.grey),
-        ),
-      ],
+      ),
     );
   }
 }

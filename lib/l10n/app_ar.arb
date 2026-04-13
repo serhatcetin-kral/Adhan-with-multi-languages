@@ -72,5 +72,11 @@
   "facingQibla": "أنت تواجه القبلة",
   "turnToQibla": "اتجه نحو القبلة",
   "calibrationText": "حرّك الهاتف بشكل رقم 8 لمعايرة البوصلة.\nابتعد عن المعادن.",
-  "qibla": "القبلة"
+  "qibla": "القبلة",
+  "qiblaFinder": "محدد القبلة",
+  "welcome": "مرحبًا",
+  "googleQibla": "محدد القبلة من جوجل",
+  "support": "الدعم",
+  "latLabel": "خط العرض",
+  "lngLabel": "خط الطول"
 }

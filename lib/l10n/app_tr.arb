@@ -72,5 +72,11 @@
   "facingQibla": "Kıbleye dönüksünüz",
   "turnToQibla": "Kıbleye dönün",
   "calibrationText": "Pusulayı kalibre etmek için telefonu 8 şeklinde hareket ettirin.\nMetal nesnelerden uzak tutun.",
-  "qibla": "Kıble"
+  "qibla": "Kıble",
+  "qiblaFinder": "Kıble Bulucu",
+  "welcome": "Hoş Geldiniz",
+  "googleQibla": "Google Kıble Bulucu",
+  "support": "Destek",
+  "latLabel": "Enlem",
+  "lngLabel": "Boylam"
 }
