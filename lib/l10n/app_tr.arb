@@ -78,5 +78,6 @@
   "googleQibla": "Google Kıble Bulucu",
   "support": "Destek",
   "latLabel": "Enlem",
-  "lngLabel": "Boylam"
+  "lngLabel": "Boylam",
+  "refresh": "Yenile"
 }

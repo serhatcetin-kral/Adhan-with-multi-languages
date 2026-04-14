@@ -78,5 +78,6 @@
   "googleQibla": "محدد القبلة من جوجل",
   "support": "الدعم",
   "latLabel": "خط العرض",
-  "lngLabel": "خط الطول"
+  "lngLabel": "خط الطول",
+  "refresh": "تحديث"
 }

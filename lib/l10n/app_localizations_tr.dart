@@ -193,4 +193,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get lngLabel => 'Boylam';
+
+  @override
+  String get refresh => 'Yenile';
 }

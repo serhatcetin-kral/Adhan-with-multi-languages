@@ -81,5 +81,6 @@
   "googleQibla": "Google Qibla Finder",
   "support": "Support",
   "latLabel": "Latitude",
-  "lngLabel": "Longitude"
+  "lngLabel": "Longitude",
+  "refresh": "Refresh"
 }

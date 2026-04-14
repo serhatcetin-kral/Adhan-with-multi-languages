@@ -193,4 +193,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get lngLabel => 'خط الطول';
+
+  @override
+  String get refresh => 'تحديث';
 }

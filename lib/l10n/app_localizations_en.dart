@@ -193,4 +193,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lngLabel => 'Longitude';
+
+  @override
+  String get refresh => 'Refresh';
 }

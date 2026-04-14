@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'dart:convert';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:geolocator/geolocator.dart';
-
+import 'package:app_settings/app_settings.dart';
+import '../services/connectivity_service.dart';
 import '../l10n/app_localizations.dart';
 import '../services/prayer_api_service.dart';
 import '../services/location_service.dart';
@@ -20,6 +23,9 @@ class _PrayerScreenState extends State<PrayerScreen> {
   String nextPrayer = "";
   Duration remainingTime = Duration.zero;
 
+  bool isOffline = false;
+  bool firstLoadFailed = false;
+
   Timer? timer;
 
   @override
@@ -29,62 +35,94 @@ class _PrayerScreenState extends State<PrayerScreen> {
     startTimer();
   }
 
+  // ================= FORMAT =================
+
+  String formatDuration(Duration d) {
+    final hours = d.inHours;
+    final minutes = d.inMinutes % 60;
+    final seconds = d.inSeconds % 60;
+
+    return "${hours.toString().padLeft(2, '0')}:"
+        "${minutes.toString().padLeft(2, '0')}:"
+        "${seconds.toString().padLeft(2, '0')}";
+  }
+
+  String formatTime(TimeOfDay time) {
+    return "${time.hour.toString().padLeft(2,'0')}:"
+        "${time.minute.toString().padLeft(2,'0')}";
+  }
+
+  // ================= LOAD DATA =================
+
   Future<void> loadPrayerTimes() async {
     try {
       final prefs = await SharedPreferences.getInstance();
+      final connectivity = await Connectivity().checkConnectivity();
 
-      String methodStr = prefs.getString('method') ?? 'MWL';
-      String madhhabStr = prefs.getString('madhhab') ?? 'hanafi';
+      bool hasInternet = connectivity != ConnectivityResult.none;
 
-      int method = getMethodNumber(methodStr);
-      int madhhab = getMadhhabNumber(madhhabStr);
+      // ❌ NO INTERNET
+      if (!hasInternet) {
+        final cached = prefs.getString('cached_prayers');
 
-      int fajrOffset = prefs.getInt('fajrOffset') ?? 0;
-      int dhuhrOffset = prefs.getInt('dhuhrOffset') ?? 0;
-      int asrOffset = prefs.getInt('asrOffset') ?? 0;
-      int maghribOffset = prefs.getInt('maghribOffset') ?? 0;
-      int ishaOffset = prefs.getInt('ishaOffset') ?? 0;
+        if (cached != null) {
+          isOffline = true;
 
+          final data = jsonDecode(cached);
+
+          setState(() {
+            prayerTimes = {
+              "fajr": parseTime(data["fajr"]),
+              "sunrise": parseTime(data["sunrise"]),
+              "dhuhr": parseTime(data["dhuhr"]),
+              "asr": parseTime(data["asr"]),
+              "maghrib": parseTime(data["maghrib"]),
+              "isha": parseTime(data["isha"]),
+            };
+          });
+
+          calculateNextPrayer();
+          return;
+        } else {
+          firstLoadFailed = true;
+          setState(() {});
+          return;
+        }
+      }
+
+      // 📶 INTERNET AVAILABLE
       Position pos = await LocationService.getUserLocation();
 
       final result = await PrayerApiService.getPrayerTimes(
         latitude: pos.latitude,
         longitude: pos.longitude,
-        method: method,
-        madhhab: madhhab,
+        method: 3,
+        madhhab: 1,
       );
+
+      // 💾 SAVE CACHE
+      await prefs.setString('cached_prayers', jsonEncode(result));
+
+      isOffline = false;
+      firstLoadFailed = false;
 
       setState(() {
         prayerTimes = {
-          "fajr": applyOffset(parseTime(result["fajr"]!), fajrOffset),
-          "sunrise": parseTime(result["sunrise"]!),
-          "dhuhr": applyOffset(parseTime(result["dhuhr"]!), dhuhrOffset),
-          "asr": applyOffset(parseTime(result["asr"]!), asrOffset),
-          "maghrib": applyOffset(parseTime(result["maghrib"]!), maghribOffset),
-          "isha": applyOffset(parseTime(result["isha"]!), ishaOffset),
+          "fajr": parseTime(result["fajr"] ?? "00:00"),
+          "sunrise": parseTime(result["sunrise"] ?? "00:00"),
+          "dhuhr": parseTime(result["dhuhr"] ?? "00:00"),
+          "asr": parseTime(result["asr"] ?? "00:00"),
+          "maghrib": parseTime(result["maghrib"] ?? "00:00"),
+          "isha": parseTime(result["isha"] ?? "00:00"),
         };
       });
 
       calculateNextPrayer();
+
     } catch (e) {
-      print("Error: $e");
+      firstLoadFailed = true;
+      setState(() {});
     }
-  }
-
-  int getMethodNumber(String method) {
-    switch (method) {
-      case 'MWL': return 3;
-      case 'ISNA': return 2;
-      case 'Egypt': return 5;
-      case 'Makkah': return 4;
-      case 'Karachi': return 1;
-      case 'Turkey': return 13;
-      default: return 3;
-    }
-  }
-
-  int getMadhhabNumber(String madhhab) {
-    return madhhab == 'hanafi' ? 1 : 0;
   }
 
   TimeOfDay parseTime(String time) {
@@ -95,17 +133,7 @@ class _PrayerScreenState extends State<PrayerScreen> {
     );
   }
 
-  TimeOfDay applyOffset(TimeOfDay time, int offset) {
-    int totalMinutes = time.hour * 60 + time.minute + offset;
-
-    totalMinutes = totalMinutes % (24 * 60);
-    if (totalMinutes < 0) totalMinutes += 24 * 60;
-
-    return TimeOfDay(
-      hour: totalMinutes ~/ 60,
-      minute: totalMinutes % 60,
-    );
-  }
+  // ================= TIMER =================
 
   void startTimer() {
     timer = Timer.periodic(const Duration(seconds: 1), (_) {
@@ -114,33 +142,60 @@ class _PrayerScreenState extends State<PrayerScreen> {
   }
 
   void calculateNextPrayer() {
-    final now = TimeOfDay.now();
-    final nowMinutes = now.hour * 60 + now.minute;
+    final now = DateTime.now();
+    final today = DateTime.now();
 
-    String foundPrayer = "";
-    int minDiff = 1440;
+    final prayerList = [
+      {"name": "fajr", "time": prayerTimes["fajr"]},
+      {"name": "sunrise", "time": prayerTimes["sunrise"]},
+      {"name": "dhuhr", "time": prayerTimes["dhuhr"]},
+      {"name": "asr", "time": prayerTimes["asr"]},
+      {"name": "maghrib", "time": prayerTimes["maghrib"]},
+      {"name": "isha", "time": prayerTimes["isha"]},
+    ];
 
-    prayerTimes.forEach((name, time) {
-      int prayerMinutes = time.hour * 60 + time.minute;
+    DateTime? nextTime;
+    String nextName = "";
 
-      int diff = prayerMinutes - nowMinutes;
-      if (diff < 0) diff += 1440;
+    for (var prayer in prayerList) {
+      final time = prayer["time"] as TimeOfDay?;
+      if (time == null) continue;
 
-      if (diff < minDiff) {
-        minDiff = diff;
-        foundPrayer = name;
+      final prayerDateTime = DateTime(
+        today.year,
+        today.month,
+        today.day,
+        time.hour,
+        time.minute,
+      );
+
+      if (prayerDateTime.isAfter(now)) {
+        nextTime = prayerDateTime;
+        nextName = prayer["name"] as String;
+        break;
       }
-    });
+    }
+
+    // next day fajr
+    if (nextTime == null) {
+      final fajr = prayerTimes["fajr"]!;
+      nextTime = DateTime(
+        today.year,
+        today.month,
+        today.day + 1,
+        fajr.hour,
+        fajr.minute,
+      );
+      nextName = "fajr";
+    }
 
     setState(() {
-      nextPrayer = foundPrayer;
-      remainingTime = Duration(minutes: minDiff);
+      nextPrayer = nextName;
+      remainingTime = nextTime!.difference(now);
     });
   }
 
-  String formatTime(TimeOfDay time) {
-    return "${time.hour.toString().padLeft(2,'0')}:${time.minute.toString().padLeft(2,'0')}";
-  }
+  // ================= UI =================
 
   @override
   Widget build(BuildContext context) {
@@ -148,15 +203,48 @@ class _PrayerScreenState extends State<PrayerScreen> {
 
     return Scaffold(
       appBar: AppBar(title: Text(loc.prayerTimes)),
-      body: prayerTimes.isEmpty
+
+      body: firstLoadFailed
+          ? buildFirstLoadError(context)
+          : prayerTimes.isEmpty
           ? Center(child: Text(loc.loading))
           : Column(
         children: [
+
+          // 🟠 OFFLINE BANNER
+          if (isOffline) buildOfflineBanner(),
+
           const SizedBox(height: 20),
-          Text(loc.nextPrayer),
-          Text(getPrayerName(loc, nextPrayer)),
+
+          // 🕌 NEXT PRAYER
+          Text(
+            loc.nextPrayer,
+            style: const TextStyle(fontSize: 18),
+          ),
+
+          Text(
+            getPrayerName(loc, nextPrayer),
+            style: const TextStyle(
+              fontSize: 26,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+
           const SizedBox(height: 10),
-          Text("$remainingTime"),
+
+          // ⏱ COUNTDOWN
+          Text(
+            formatDuration(remainingTime),
+            style: const TextStyle(
+              fontSize: 36,
+              fontWeight: FontWeight.bold,
+              color: Colors.green,
+            ),
+          ),
+
+          const Divider(),
+
+          // 📜 PRAYER LIST
           Expanded(
             child: ListView(
               children: [
@@ -178,9 +266,80 @@ class _PrayerScreenState extends State<PrayerScreen> {
     final time = prayerTimes[key];
     if (time == null) return const SizedBox();
 
-    return ListTile(
-      title: Text(getPrayerName(loc, key)),
-      trailing: Text(formatTime(time)),
+    final isNext = key == nextPrayer;
+
+    return Container(
+      color: isNext ? Colors.green.withOpacity(0.1) : null,
+      child: ListTile(
+        title: Text(
+          getPrayerName(loc, key),
+          style: TextStyle(
+            fontWeight: isNext ? FontWeight.bold : FontWeight.normal,
+          ),
+        ),
+        trailing: Text(formatTime(time)),
+      ),
+    );
+  }
+
+  Widget buildOfflineBanner() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(10),
+      color: Colors.orange,
+      child: const Text(
+        "Offline Mode",
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.white),
+      ),
+    );
+  }
+
+  Widget buildFirstLoadError(BuildContext context) {
+    final loc = AppLocalizations.of(context)!;
+
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+
+          const Icon(Icons.signal_wifi_off, size: 80, color: Colors.grey),
+
+          const SizedBox(height: 20),
+
+          const Text(
+            "No internet or location access",
+            style: TextStyle(fontSize: 18),
+            textAlign: TextAlign.center,
+          ),
+
+          const SizedBox(height: 20),
+
+          // 🔵 OPEN SETTINGS
+          ElevatedButton(
+            onPressed: () {
+              AppSettings.openAppSettings();
+            },
+            child: Text(loc.settings),
+          ),
+
+          const SizedBox(height: 10),
+
+          // 🔄 REFRESH BUTTON
+          ElevatedButton.icon(
+            onPressed: () async {
+              setState(() {
+                firstLoadFailed = false;
+                prayerTimes.clear();
+              });
+
+              await loadPrayerTimes();
+            },
+            icon: const Icon(Icons.refresh),
+            label: const Text("Refresh"),
+          ),
+        ],
+      ),
     );
   }
 
@@ -194,5 +353,11 @@ class _PrayerScreenState extends State<PrayerScreen> {
       case "isha": return loc.isha;
       default: return "";
     }
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
   }
 }

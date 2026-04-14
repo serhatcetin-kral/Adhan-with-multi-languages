@@ -468,6 +468,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Longitude'**
   String get lngLabel;
+
+  /// No description provided for @refresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get refresh;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
