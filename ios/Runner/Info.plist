@@ -6,6 +6,8 @@
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSUserNotificationUsageDescription</key>
+    <string>This app sends prayer time notifications.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
     <string>This app needs location to calculate prayer times.</string>
 	<key>CFBundleDisplayName</key>
@@ -61,6 +63,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>processing</string>
+    </array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

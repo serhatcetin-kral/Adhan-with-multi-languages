@@ -1,3 +1,4 @@
+import 'package:adhan_app/services/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,6 +12,7 @@ void main() async {
   final prefs = await SharedPreferences.getInstance();
   String? langCode = prefs.getString('language');
 
+  await NotificationService.init();
   runApp(MyApp(initialLocale: langCode));
 }
 

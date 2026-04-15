@@ -14,6 +14,7 @@ dependencies:
   app_settings: ^5.1.1
   vibration: ^3.1.5
   connectivity_plus: ^6.0.3
+
   # 🌍 Localization
   flutter_localizations:
     sdk: flutter
@@ -31,6 +32,7 @@ dependencies:
   # 🔔 Notifications (IMPORTANT: stable version)
   flutter_local_notifications: ^17.2.4
   timezone: ^0.9.4
+  flutter_timezone: ^1.0.7
 
   # 🧭 Compass (Qibla)
   flutter_compass: ^0.8.1
@@ -60,3 +62,5 @@ flutter:
 
   assets:
     - assets/
+    - assets/nav/
+    - assets/more/

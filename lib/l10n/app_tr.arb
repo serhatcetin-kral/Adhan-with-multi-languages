@@ -79,5 +79,12 @@
   "support": "Destek",
   "latLabel": "Enlem",
   "lngLabel": "Boylam",
-  "refresh": "Yenile"
+  "refresh": "Yenile",
+  "more": "Diğer",
+  "dua": "Dualar",
+  "zikr": "Zikir",
+  "calendar": "Hicri Takvim",
+  "about": "Hakkında",
+  "rateApp": "Uygulamayı Değerlendir",
+  "shareApp": "Uygulamayı Paylaş"
 }
