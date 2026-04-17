@@ -2,6 +2,7 @@ import 'package:adhan_app/screens/qibla_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../l10n/app_localizations.dart';
+
 import 'more_screen.dart';
 import 'prayer_screen.dart';
 import 'settings_screen.dart';
@@ -24,6 +25,7 @@ class _MainScreenState extends State<MainScreen> {
     // const QiblaScreen(),
     const MoreScreen(),
     const SettingsScreen(),
+
   ];
 
   @override

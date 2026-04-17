@@ -1,29 +1,38 @@
-import 'package:adhan_app/services/notification_service.dart';
+import 'package:adhan_app/screens/dua_screen.dart';
+import 'package:adhan_app/screens/zikr_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'l10n/app_localizations.dart';
+import 'services/notification_service.dart';
+
+// 🔽 SCREENS
 import 'screens/splash_screen.dart';
+import 'screens/mosque_map_screen.dart';
+import 'screens/support_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final prefs = await SharedPreferences.getInstance();
-  String? langCode = prefs.getString('language');
-
+  // 🔔 INIT NOTIFICATIONS
   await NotificationService.init();
-  runApp(MyApp(initialLocale: langCode));
+
+  // 🔒 LOCK PORTRAIT
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  final String? initialLocale;
+  const MyApp({super.key});
 
-  const MyApp({super.key, this.initialLocale});
-
+  // 🌍 CHANGE LANGUAGE FROM ANYWHERE
   static void setLocale(BuildContext context, Locale locale) {
-    _MyAppState? state =
-    context.findAncestorStateOfType<_MyAppState>();
+    final state = context.findAncestorStateOfType<_MyAppState>();
     state?.setLocale(locale);
   }
 
@@ -37,12 +46,26 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    if (widget.initialLocale != null) {
-      _locale = Locale(widget.initialLocale!);
+    loadSavedLocale();
+  }
+
+  // 🔥 LOAD SAVED LANGUAGE
+  Future<void> loadSavedLocale() async {
+    final prefs = await SharedPreferences.getInstance();
+    final langCode = prefs.getString('language_code');
+
+    if (langCode != null) {
+      setState(() {
+        _locale = Locale(langCode);
+      });
     }
   }
 
-  void setLocale(Locale locale) {
+  // 🔥 CHANGE LANGUAGE
+  void setLocale(Locale locale) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('language_code', locale.languageCode);
+
     setState(() {
       _locale = locale;
     });
@@ -53,6 +76,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
+      // 🌍 CURRENT LANGUAGE
       locale: _locale,
 
       supportedLocales: const [
@@ -68,6 +92,22 @@ class _MyAppState extends State<MyApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
 
+      // 🎨 THEME
+      theme: ThemeData(
+        primarySwatch: Colors.teal,
+        scaffoldBackgroundColor: Colors.white,
+      ),
+
+      // 🔀 ROUTES (IMPORTANT)
+      routes: {
+        '/home': (_) => const SplashScreen(),
+        // '/mosque': (_) => const MosqueMapScreen(),
+        '/support': (_) => const SupportScreen(),
+        '/dua': (context) => const DuaScreen(),
+        '/zikr': (context) => const ZikrScreen(),
+      },
+
+      // 🚀 START SCREEN
       home: const SplashScreen(),
     );
   }

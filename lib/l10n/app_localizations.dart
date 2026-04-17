@@ -316,7 +316,7 @@ abstract class AppLocalizations {
   /// No description provided for @compassQibla.
   ///
   /// In en, this message translates to:
-  /// **'Compass Qibla'**
+  /// **'Compass Qibla Finder'**
   String get compassQibla;
 
   /// No description provided for @googleQibla.
@@ -451,12 +451,6 @@ abstract class AppLocalizations {
   /// **'Welcome'**
   String get welcome;
 
-  /// No description provided for @support.
-  ///
-  /// In en, this message translates to:
-  /// **'Support'**
-  String get support;
-
   /// No description provided for @latLabel.
   ///
   /// In en, this message translates to:
@@ -474,6 +468,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Refresh'**
   String get refresh;
+
+  /// No description provided for @support.
+  ///
+  /// In en, this message translates to:
+  /// **'Support'**
+  String get support;
+
+  /// No description provided for @supportMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'If this app helps you pray on time, you can support its development ❤️'**
+  String get supportMessage;
+
+  /// No description provided for @supportNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Payments are securely handled by the App Store.'**
+  String get supportNote;
+
+  /// No description provided for @shareAppText.
+  ///
+  /// In en, this message translates to:
+  /// **'Check out my prayer app 🕌\n\nDownload here:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391'**
+  String get shareAppText;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

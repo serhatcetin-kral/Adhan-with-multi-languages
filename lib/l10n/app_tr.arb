@@ -65,26 +65,25 @@
   "noInternet": "İnternet bağlantısı yok",
   "error": "Bir hata oluştu",
   "minutesShort": "dk",
-  "compassQibla": "Kıble Pusulası",
+
   "calibratingCompass": "Pusula kalibre ediliyor...",
   "heading": "Yön",
   "qiblaDirection": "Kıble Yönü",
   "facingQibla": "Kıbleye dönüksünüz",
   "turnToQibla": "Kıbleye dönün",
   "calibrationText": "Pusulayı kalibre etmek için telefonu 8 şeklinde hareket ettirin.\nMetal nesnelerden uzak tutun.",
-  "qibla": "Kıble",
-  "qiblaFinder": "Kıble Bulucu",
+
   "welcome": "Hoş Geldiniz",
-  "googleQibla": "Google Kıble Bulucu",
+
   "support": "Destek",
   "latLabel": "Enlem",
   "lngLabel": "Boylam",
   "refresh": "Yenile",
-  "more": "Diğer",
-  "dua": "Dualar",
-  "zikr": "Zikir",
-  "calendar": "Hicri Takvim",
-  "about": "Hakkında",
-  "rateApp": "Uygulamayı Değerlendir",
-  "shareApp": "Uygulamayı Paylaş"
+
+
+  "supportMessage": "Bu uygulama namazınızı vaktinde kılmanıza yardımcı oluyorsa destek olabilirsiniz ❤️",
+  "supportNote": "Ödemeler App Store tarafından güvenli şekilde yapılır.",
+
+  "shareAppText": "Namaz uygulamama göz at 🕌\n\nBuradan indir:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391"
+
 }

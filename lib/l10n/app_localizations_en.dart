@@ -117,7 +117,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get selectQiblaMethod => 'Select Qibla Method';
 
   @override
-  String get compassQibla => 'Compass Qibla';
+  String get compassQibla => 'Compass Qibla Finder';
 
   @override
   String get googleQibla => 'Google Qibla Finder';
@@ -186,9 +186,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get welcome => 'Welcome';
 
   @override
-  String get support => 'Support';
-
-  @override
   String get latLabel => 'Latitude';
 
   @override
@@ -196,4 +193,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get refresh => 'Refresh';
+
+  @override
+  String get support => 'Support';
+
+  @override
+  String get supportMessage => 'If this app helps you pray on time, you can support its development ❤️';
+
+  @override
+  String get supportNote => 'Payments are securely handled by the App Store.';
+
+  @override
+  String get shareAppText => 'Check out my prayer app 🕌\n\nDownload here:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391';
 }

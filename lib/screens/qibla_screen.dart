@@ -4,7 +4,7 @@ import 'package:flutter_compass/flutter_compass.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:vibration/vibration.dart';
 
-import '../services/location_service.dart';
+import '../services/app_location_service.dart';
 import '../services/qibla_service.dart';
 import '../widget/app_drawwer.dart';
 import '../widget/compass_widget.dart';
@@ -47,8 +47,8 @@ class _QiblaScreenState extends State<QiblaScreen> {
       final position = await LocationService.getUserLocation();
 
       final qibla = QiblaService.bearingToKaaba(
-        userLat: position.latitude,
-        userLng: position.longitude,
+        userLat: position!.latitude,
+        userLng: position!.longitude,
       );
 
       _position = position;

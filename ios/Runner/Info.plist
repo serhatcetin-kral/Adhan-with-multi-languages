@@ -8,6 +8,8 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>NSUserNotificationUsageDescription</key>
     <string>This app sends prayer time notifications.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>We need your location to find nearby mosques</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
     <string>This app needs location to calculate prayer times.</string>
 	<key>CFBundleDisplayName</key>

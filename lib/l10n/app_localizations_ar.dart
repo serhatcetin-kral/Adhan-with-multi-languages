@@ -117,10 +117,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get selectQiblaMethod => 'اختر طريقة القبلة';
 
   @override
-  String get compassQibla => 'بوصلة القبلة';
+  String get compassQibla => 'البوصلة';
 
   @override
-  String get googleQibla => 'محدد القبلة من جوجل';
+  String get googleQibla => 'قبلة جوجل';
 
   @override
   String get calibrating => 'جاري معايرة البوصلة...';
@@ -186,9 +186,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get welcome => 'مرحبًا';
 
   @override
-  String get support => 'الدعم';
-
-  @override
   String get latLabel => 'خط العرض';
 
   @override
@@ -196,4 +193,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get refresh => 'تحديث';
+
+  @override
+  String get support => 'الدعم';
+
+  @override
+  String get supportMessage => 'إذا كان هذا التطبيق يساعدك على الصلاة في وقتها يمكنك دعمه ❤️';
+
+  @override
+  String get supportNote => 'يتم الدفع بشكل آمن عبر متجر التطبيقات.';
+
+  @override
+  String get shareAppText => 'تحقق من تطبيق الصلاة الخاص بي 🕌\n\nحمّله من هنا:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391';
 }

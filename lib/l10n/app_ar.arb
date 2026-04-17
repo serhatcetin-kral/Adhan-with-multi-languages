@@ -65,26 +65,25 @@
   "noInternet": "لا يوجد اتصال بالإنترنت",
   "error": "حدث خطأ",
   "minutesShort": "دقيقة",
-  "compassQibla": "بوصلة القبلة",
+
   "calibratingCompass": "جاري معايرة البوصلة...",
   "heading": "الاتجاه",
   "qiblaDirection": "اتجاه القبلة",
   "facingQibla": "أنت تواجه القبلة",
   "turnToQibla": "اتجه نحو القبلة",
   "calibrationText": "حرّك الهاتف بشكل رقم 8 لمعايرة البوصلة.\nابتعد عن المعادن.",
-  "qibla": "القبلة",
-  "qiblaFinder": "محدد القبلة",
+
   "welcome": "مرحبًا",
-  "googleQibla": "محدد القبلة من جوجل",
+
   "support": "الدعم",
   "latLabel": "خط العرض",
   "lngLabel": "خط الطول",
   "refresh": "تحديث",
-  "more": "المزيد",
-  "dua": "الأدعية",
-  "zikr": "الذكر",
-  "calendar": "التقويم الهجري",
-  "about": "حول",
-  "rateApp": "تقييم التطبيق",
-  "shareApp": "مشاركة التطبيق"
+
+
+  "supportMessage": "إذا كان هذا التطبيق يساعدك على الصلاة في وقتها يمكنك دعمه ❤️",
+  "supportNote": "يتم الدفع بشكل آمن عبر متجر التطبيقات.",
+
+  "shareAppText": "تحقق من تطبيق الصلاة الخاص بي 🕌\n\nحمّله من هنا:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391"
+
 }

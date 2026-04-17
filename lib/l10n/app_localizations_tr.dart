@@ -117,10 +117,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get selectQiblaMethod => 'Kıble Yöntemi Seç';
 
   @override
-  String get compassQibla => 'Kıble Pusulası';
+  String get compassQibla => 'Pusula ile Kıble';
 
   @override
-  String get googleQibla => 'Google Kıble Bulucu';
+  String get googleQibla => 'Google Kıble';
 
   @override
   String get calibrating => 'Pusula kalibre ediliyor...';
@@ -186,9 +186,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get welcome => 'Hoş Geldiniz';
 
   @override
-  String get support => 'Destek';
-
-  @override
   String get latLabel => 'Enlem';
 
   @override
@@ -196,4 +193,16 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get refresh => 'Yenile';
+
+  @override
+  String get support => 'Destek';
+
+  @override
+  String get supportMessage => 'Bu uygulama namazınızı vaktinde kılmanıza yardımcı oluyorsa destek olabilirsiniz ❤️';
+
+  @override
+  String get supportNote => 'Ödemeler App Store tarafından güvenli şekilde yapılır.';
+
+  @override
+  String get shareAppText => 'Namaz uygulamama göz at 🕌\n\nBuradan indir:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391';
 }

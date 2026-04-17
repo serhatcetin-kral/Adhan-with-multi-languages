@@ -9,7 +9,7 @@ import 'package:app_settings/app_settings.dart';
 import '../l10n/app_localizations.dart';
 import '../services/notification_service.dart';
 import '../services/prayer_api_service.dart';
-import '../services/location_service.dart';
+import '../services/app_location_service.dart';
 
 class PrayerScreen extends StatefulWidget {
   const PrayerScreen({super.key});
@@ -157,10 +157,10 @@ class _PrayerScreenState extends State<PrayerScreen> {
         }
       }
 
-      final Position pos = await LocationService.getUserLocation();
+      final Position? pos = await LocationService.getUserLocation();
 
       final result = await PrayerApiService.getPrayerTimes(
-        latitude: pos.latitude,
+        latitude: pos!.latitude,
         longitude: pos.longitude,
         method: method,
         madhhab: madhhab,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
+import 'package:share_plus/share_plus.dart';
 
 class MoreScreen extends StatelessWidget {
   const MoreScreen({super.key});
@@ -16,8 +17,8 @@ class MoreScreen extends StatelessWidget {
         elevation: 0,
       ),
 
-      // 🌈 PREMIUM BACKGROUND
       extendBodyBehindAppBar: true,
+
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -41,40 +42,72 @@ class MoreScreen extends StatelessWidget {
 
               children: [
 
-                MoreItem(
-                  image: 'assets/more/dua.png',
-                  title: loc.dua,
-                  route: '/dua',
+                // 🕌 DUA
+                _buildItem(
+                  context,
+                  'assets/more/dua.png',
+                  loc.dua,
+                      () => Navigator.pushNamed(context, '/dua'),
                 ),
 
-                MoreItem(
-                  image: 'assets/more/zikr.png',
-                  title: loc.zikr,
-                  route: '/zikr',
+                // 📿 ZIKR
+                _buildItem(
+                  context,
+                  'assets/more/zikr.png',
+                  loc.zikr,
+                      () => Navigator.pushNamed(context, '/zikr'),
                 ),
 
-                MoreItem(
-                  image: 'assets/more/calendar.png',
-                  title: loc.calendar,
-                  route: '/calendar',
+                // 📅 CALENDAR
+                _buildItem(
+                  context,
+                  'assets/more/calendar.png',
+                  loc.calendar,
+                      () => Navigator.pushNamed(context, '/calendar'),
                 ),
 
-                MoreItem(
-                  image: 'assets/more/about.png',
-                  title: loc.about,
-                  route: '/about',
+                // ℹ️ ABOUT
+                _buildItem(
+                  context,
+                  'assets/more/about.png',
+                  loc.about,
+                      () => Navigator.pushNamed(context, '/about'),
                 ),
 
-                MoreItem(
-                  image: 'assets/more/share.png',
-                  title: loc.shareApp,
-                  route: '/share',
+                // 🔗 SHARE
+                _buildItem(
+                  context,
+                  'assets/more/share.png',
+                  loc.shareApp,
+                      () {
+                    Share.share(
+                      loc.shareAppText, // 🌍 localized message
+                    );
+                  },
                 ),
 
-                MoreItem(
-                  image: 'assets/more/rate.png',
-                  title: loc.rateApp,
-                  route: '/rate',
+                // ⭐ RATE
+                _buildItem(
+                  context,
+                  'assets/more/rate.png',
+                  loc.rateApp,
+                      () => Navigator.pushNamed(context, '/rate'),
+                ),
+
+                // 💖 SUPPORT
+                _buildItem(
+                  context,
+                  'assets/more/support.png',
+                  loc.support,
+                      () => Navigator.pushNamed(context, '/support'),
+                ),
+
+                // 🕌 MOSQUE
+                _buildItem(
+                  context,
+                  'assets/more/mosque.png',
+                  "Mosques",
+                      () => Navigator.pushNamed(context, '/mosque'),
                 ),
               ],
             ),
@@ -83,121 +116,52 @@ class MoreScreen extends StatelessWidget {
       ),
     );
   }
-}
-class MoreItem extends StatefulWidget {
-  final String image;
-  final String title;
-  final String route;
 
-  const MoreItem({
-    super.key,
-    required this.image,
-    required this.title,
-    required this.route,
-  });
+  // 🔥 REUSABLE ITEM (ALL SAME STYLE)
+  Widget _buildItem(
+      BuildContext context,
+      String image,
+      String title,
+      VoidCallback onTap,
+      ) {
+    return GestureDetector(
+      onTap: onTap,
 
-  @override
-  State<MoreItem> createState() => _MoreItemState();
-}
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
 
-class _MoreItemState extends State<MoreItem>
-    with SingleTickerProviderStateMixin {
-
-  double scale = 1.0;
-  late AnimationController _controller;
-  late Animation<double> floatAnim;
-
-  @override
-  void initState() {
-    super.initState();
-
-    // 🔥 FLOATING ANIMATION
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2),
-    )..repeat(reverse: true);
-
-    floatAnim = Tween<double>(begin: -5, end: 5).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  void onTapDown(_) => setState(() => scale = 0.9);
-  void onTapUp(_) {
-    setState(() => scale = 1.0);
-    Navigator.pushNamed(context, widget.route);
-  }
-
-  void onTapCancel() => setState(() => scale = 1.0);
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-
-      child: InkWell(
-        onTap: () => Navigator.pushNamed(context, widget.route),
-        onTapDown: onTapDown,
-        onTapUp: onTapUp,
-        onTapCancel: onTapCancel,
-        borderRadius: BorderRadius.circular(20),
-
-        child: AnimatedScale(
-          scale: scale,
-          duration: const Duration(milliseconds: 150),
-
-          child: AnimatedBuilder(
-            animation: floatAnim,
-
-            builder: (context, child) {
-              return Transform.translate(
-                offset: Offset(0, floatAnim.value),
-
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-
-                    // 🔥 ICON WITH GLOW EFFECT
-                    Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.teal.withOpacity(0.25),
-                            blurRadius: 20,
-                            spreadRadius: 2,
-                          )
-                        ],
-                      ),
-                      child: Image.asset(
-                        widget.image,
-                        width: 95,
-                        height: 95,
-                      ),
-                    ),
-
-                    const SizedBox(height: 12),
-
-                    Text(
-                      widget.title,
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              );
-            },
+          // ICON + GLOW
+          Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.teal.withOpacity(0.25),
+                  blurRadius: 20,
+                  spreadRadius: 2,
+                )
+              ],
+            ),
+            child: Image.asset(
+              image,
+              width: 95,
+              height: 95,
+            ),
           ),
-        ),
+
+          const SizedBox(height: 12),
+
+          // TEXT
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }

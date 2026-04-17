@@ -76,10 +76,16 @@
   "welcome": "Welcome",
 
 
-  "support": "Support",
+
   "latLabel": "Latitude",
   "lngLabel": "Longitude",
-  "refresh": "Refresh"
+  "refresh": "Refresh",
+
+  "support": "Support",
+  "supportMessage": "If this app helps you pray on time, you can support its development ❤️",
+  "supportNote": "Payments are securely handled by the App Store.",
+
+  "shareAppText": "Check out my prayer app 🕌\n\nDownload here:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391"
 
 
 }
