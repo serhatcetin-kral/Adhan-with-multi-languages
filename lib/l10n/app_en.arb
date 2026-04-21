@@ -85,7 +85,42 @@
   "supportMessage": "If this app helps you pray on time, you can support its development ❤️",
   "supportNote": "Payments are securely handled by the App Store.",
 
-  "shareAppText": "Check out my prayer app 🕌\n\nDownload here:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391"
+  "shareAppText": "Check out my prayer app 🕌\n\nDownload here:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391",
+  "calendarTitle": "Islamic Calendar",
+  "todayInIslam": "Today in Islam",
+  "holyNights": "Holy Nights",
+  "upcomingEvents": "Upcoming Islamic Events",
+  "holyMonths": "Holy Months",
+  "close": "Close",
+
+  "ramadanMessage": "Ramadan is the month of fasting and mercy.",
+  "muharramMessage": "Muharram is a sacred month.",
+  "defaultIslamMessage": "Every day is a chance to remember Allah.",
+
+
+  "thisMonthEvents": "This Month's Events",
+
+  "todayLabel": "Today",
+  "daysShort": "d",
+  "noEventsThisMonth": "No Islamic events in this Hijri month.",
+
+  "rajabMessage": "Rajab is a sacred month for reflection and worship.",
+  "shabanMessage": "Sha'ban is the month of preparation before Ramadan.",
+
+  "shawwalMessage": "Shawwal begins with Eid al-Fitr and includes six Sunnah fasts.",
+  "dhulHijjahMessage": "Dhul-Hijjah is the month of Hajj, Arafah, and Eid al-Adha.",
+
+
+
+
+  "importantIslamicDays": "Important Islamic Days",
+  "laylatAlQadr": "Laylat al-Qadr",
+  "eidAlFitr": "Eid al-Fitr",
+  "eidAlAdha": "Eid al-Adha",
+  "startOfRamadan": "Start of Ramadan"
+
+
+
 
 
 }

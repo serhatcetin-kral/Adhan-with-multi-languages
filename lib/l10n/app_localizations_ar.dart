@@ -205,4 +205,70 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get shareAppText => 'تحقق من تطبيق الصلاة الخاص بي 🕌\n\nحمّله من هنا:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391';
+
+  @override
+  String get calendarTitle => 'التقويم الهجري';
+
+  @override
+  String get todayInIslam => 'اليوم في الإسلام';
+
+  @override
+  String get holyNights => 'الليالي المباركة';
+
+  @override
+  String get upcomingEvents => 'الأحداث الإسلامية القادمة';
+
+  @override
+  String get holyMonths => 'الأشهر المباركة';
+
+  @override
+  String get close => 'إغلاق';
+
+  @override
+  String get ramadanMessage => 'رمضان شهر الصيام والرحمة والقرآن.';
+
+  @override
+  String get muharramMessage => 'محرم من الأشهر الحرم في الإسلام.';
+
+  @override
+  String get defaultIslamMessage => 'كل يوم فرصة لذكر الله وزيادة العبادة.';
+
+  @override
+  String get thisMonthEvents => 'أحداث هذا الشهر';
+
+  @override
+  String get todayLabel => 'اليوم';
+
+  @override
+  String get daysShort => 'ي';
+
+  @override
+  String get noEventsThisMonth => 'لا توجد مناسبات إسلامية في هذا الشهر الهجري.';
+
+  @override
+  String get rajabMessage => 'رجب شهر مبارك للتفكر والعبادة.';
+
+  @override
+  String get shabanMessage => 'شعبان شهر الاستعداد لرمضان.';
+
+  @override
+  String get shawwalMessage => 'يبدأ شوال بعيد الفطر ويشمل صيام الست.';
+
+  @override
+  String get dhulHijjahMessage => 'ذو الحجة شهر الحج وعرفة وعيد الأضحى.';
+
+  @override
+  String get importantIslamicDays => 'Önemli İslami Günler';
+
+  @override
+  String get laylatAlQadr => 'Kadir Gecesi';
+
+  @override
+  String get eidAlFitr => 'Ramazan Bayramı';
+
+  @override
+  String get eidAlAdha => 'Kurban Bayramı';
+
+  @override
+  String get startOfRamadan => 'Ramazan Başlangıcı';
 }

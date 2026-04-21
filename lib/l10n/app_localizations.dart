@@ -492,6 +492,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Check out my prayer app 🕌\n\nDownload here:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391'**
   String get shareAppText;
+
+  /// No description provided for @calendarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Islamic Calendar'**
+  String get calendarTitle;
+
+  /// No description provided for @todayInIslam.
+  ///
+  /// In en, this message translates to:
+  /// **'Today in Islam'**
+  String get todayInIslam;
+
+  /// No description provided for @holyNights.
+  ///
+  /// In en, this message translates to:
+  /// **'Holy Nights'**
+  String get holyNights;
+
+  /// No description provided for @upcomingEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming Islamic Events'**
+  String get upcomingEvents;
+
+  /// No description provided for @holyMonths.
+  ///
+  /// In en, this message translates to:
+  /// **'Holy Months'**
+  String get holyMonths;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @ramadanMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan is the month of fasting and mercy.'**
+  String get ramadanMessage;
+
+  /// No description provided for @muharramMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Muharram is a sacred month.'**
+  String get muharramMessage;
+
+  /// No description provided for @defaultIslamMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Every day is a chance to remember Allah.'**
+  String get defaultIslamMessage;
+
+  /// No description provided for @thisMonthEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'This Month\'s Events'**
+  String get thisMonthEvents;
+
+  /// No description provided for @todayLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get todayLabel;
+
+  /// No description provided for @daysShort.
+  ///
+  /// In en, this message translates to:
+  /// **'d'**
+  String get daysShort;
+
+  /// No description provided for @noEventsThisMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'No Islamic events in this Hijri month.'**
+  String get noEventsThisMonth;
+
+  /// No description provided for @rajabMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Rajab is a sacred month for reflection and worship.'**
+  String get rajabMessage;
+
+  /// No description provided for @shabanMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Sha\'ban is the month of preparation before Ramadan.'**
+  String get shabanMessage;
+
+  /// No description provided for @shawwalMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Shawwal begins with Eid al-Fitr and includes six Sunnah fasts.'**
+  String get shawwalMessage;
+
+  /// No description provided for @dhulHijjahMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhul-Hijjah is the month of Hajj, Arafah, and Eid al-Adha.'**
+  String get dhulHijjahMessage;
+
+  /// No description provided for @importantIslamicDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Important Islamic Days'**
+  String get importantIslamicDays;
+
+  /// No description provided for @laylatAlQadr.
+  ///
+  /// In en, this message translates to:
+  /// **'Laylat al-Qadr'**
+  String get laylatAlQadr;
+
+  /// No description provided for @eidAlFitr.
+  ///
+  /// In en, this message translates to:
+  /// **'Eid al-Fitr'**
+  String get eidAlFitr;
+
+  /// No description provided for @eidAlAdha.
+  ///
+  /// In en, this message translates to:
+  /// **'Eid al-Adha'**
+  String get eidAlAdha;
+
+  /// No description provided for @startOfRamadan.
+  ///
+  /// In en, this message translates to:
+  /// **'Start of Ramadan'**
+  String get startOfRamadan;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

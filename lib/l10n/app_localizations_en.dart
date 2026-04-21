@@ -205,4 +205,70 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get shareAppText => 'Check out my prayer app 🕌\n\nDownload here:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391';
+
+  @override
+  String get calendarTitle => 'Islamic Calendar';
+
+  @override
+  String get todayInIslam => 'Today in Islam';
+
+  @override
+  String get holyNights => 'Holy Nights';
+
+  @override
+  String get upcomingEvents => 'Upcoming Islamic Events';
+
+  @override
+  String get holyMonths => 'Holy Months';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get ramadanMessage => 'Ramadan is the month of fasting and mercy.';
+
+  @override
+  String get muharramMessage => 'Muharram is a sacred month.';
+
+  @override
+  String get defaultIslamMessage => 'Every day is a chance to remember Allah.';
+
+  @override
+  String get thisMonthEvents => 'This Month\'s Events';
+
+  @override
+  String get todayLabel => 'Today';
+
+  @override
+  String get daysShort => 'd';
+
+  @override
+  String get noEventsThisMonth => 'No Islamic events in this Hijri month.';
+
+  @override
+  String get rajabMessage => 'Rajab is a sacred month for reflection and worship.';
+
+  @override
+  String get shabanMessage => 'Sha\'ban is the month of preparation before Ramadan.';
+
+  @override
+  String get shawwalMessage => 'Shawwal begins with Eid al-Fitr and includes six Sunnah fasts.';
+
+  @override
+  String get dhulHijjahMessage => 'Dhul-Hijjah is the month of Hajj, Arafah, and Eid al-Adha.';
+
+  @override
+  String get importantIslamicDays => 'Important Islamic Days';
+
+  @override
+  String get laylatAlQadr => 'Laylat al-Qadr';
+
+  @override
+  String get eidAlFitr => 'Eid al-Fitr';
+
+  @override
+  String get eidAlAdha => 'Eid al-Adha';
+
+  @override
+  String get startOfRamadan => 'Start of Ramadan';
 }

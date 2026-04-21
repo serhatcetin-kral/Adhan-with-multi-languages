@@ -84,6 +84,30 @@
   "supportMessage": "Bu uygulama namazınızı vaktinde kılmanıza yardımcı oluyorsa destek olabilirsiniz ❤️",
   "supportNote": "Ödemeler App Store tarafından güvenli şekilde yapılır.",
 
-  "shareAppText": "Namaz uygulamama göz at 🕌\n\nBuradan indir:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391"
+  "shareAppText": "Namaz uygulamama göz at 🕌\n\nBuradan indir:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391",
+  "calendarTitle": "Hicri Takvim",
+  "todayInIslam": "Bugün İslam’da",
+  "holyNights": "Kutsal Geceler",
+  "upcomingEvents": "Yaklaşan İslami Günler",
+  "holyMonths": "Mübarek Aylar",
+  "close": "Kapat",
 
+
+  "thisMonthEvents": "Bu Ayın Olayları",
+
+  "todayLabel": "Bugün",
+  "daysShort": "g",
+  "noEventsThisMonth": "Bu hicri ayda İslami gün bulunmuyor.",
+  "muharramMessage": "Muharrem, İslam’daki haram aylardan biridir.",
+  "rajabMessage": "Recep, tefekkür ve ibadet için mübarek bir aydır.",
+  "shabanMessage": "Şaban, Ramazan öncesi hazırlık ayıdır.",
+  "ramadanMessage": "Ramazan, oruç, rahmet ve Kur’an ayıdır.",
+  "shawwalMessage": "Şevval, Ramazan Bayramı ile başlar ve altı sünnet orucunu içerir.",
+  "dhulHijjahMessage": "Zilhicce, hac, arefe ve kurban bayramı ayıdır.",
+  "defaultIslamMessage": "Her gün Allah’ı anmak ve ibadeti artırmak için bir fırsattır.",
+  "importantIslamicDays": "Önemli İslami Günler",
+  "laylatAlQadr": "Kadir Gecesi",
+  "eidAlFitr": "Ramazan Bayramı",
+  "eidAlAdha": "Kurban Bayramı",
+  "startOfRamadan": "Ramazan Başlangıcı"
 }

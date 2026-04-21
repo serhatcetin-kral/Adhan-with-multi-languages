@@ -84,6 +84,33 @@
   "supportMessage": "إذا كان هذا التطبيق يساعدك على الصلاة في وقتها يمكنك دعمه ❤️",
   "supportNote": "يتم الدفع بشكل آمن عبر متجر التطبيقات.",
 
-  "shareAppText": "تحقق من تطبيق الصلاة الخاص بي 🕌\n\nحمّله من هنا:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391"
+  "shareAppText": "تحقق من تطبيق الصلاة الخاص بي 🕌\n\nحمّله من هنا:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391",
+
+  "calendarTitle": "التقويم الهجري",
+  "todayInIslam": "اليوم في الإسلام",
+  "holyNights": "الليالي المباركة",
+  "upcomingEvents": "الأحداث الإسلامية القادمة",
+  "holyMonths": "الأشهر المباركة",
+  "close": "إغلاق",
+
+
+  "thisMonthEvents": "أحداث هذا الشهر",
+
+  "todayLabel": "اليوم",
+  "daysShort": "ي",
+  "noEventsThisMonth": "لا توجد مناسبات إسلامية في هذا الشهر الهجري.",
+  "muharramMessage": "محرم من الأشهر الحرم في الإسلام.",
+  "rajabMessage": "رجب شهر مبارك للتفكر والعبادة.",
+  "shabanMessage": "شعبان شهر الاستعداد لرمضان.",
+  "ramadanMessage": "رمضان شهر الصيام والرحمة والقرآن.",
+  "shawwalMessage": "يبدأ شوال بعيد الفطر ويشمل صيام الست.",
+  "dhulHijjahMessage": "ذو الحجة شهر الحج وعرفة وعيد الأضحى.",
+  "defaultIslamMessage": "كل يوم فرصة لذكر الله وزيادة العبادة.",
+  "importantIslamicDays": "Önemli İslami Günler",
+  "laylatAlQadr": "Kadir Gecesi",
+  "eidAlFitr": "Ramazan Bayramı",
+  "eidAlAdha": "Kurban Bayramı",
+  "startOfRamadan": "Ramazan Başlangıcı"
+
 
 }

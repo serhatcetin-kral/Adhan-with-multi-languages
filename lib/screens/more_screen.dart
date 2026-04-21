@@ -1,9 +1,40 @@
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'dart:io';
 
 class MoreScreen extends StatelessWidget {
   const MoreScreen({super.key});
+
+  void shareApp(BuildContext context) {
+    final loc = AppLocalizations.of(context)!;
+    final box = context.findRenderObject();
+
+    if (box is RenderBox) {
+      Share.share(
+        loc.shareAppText,
+        sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
+      );
+    } else {
+      Share.share(loc.shareAppText);
+    }
+  }
+  Future<void> rateApp() async {
+    final iosUrl = Uri.parse(
+      "https://apps.apple.com/us/app/sala-prayer-times/id6759267391",
+    );
+
+    final androidUrl = Uri.parse(
+      "https://play.google.com/store/apps/details?id=com.your.package",
+    );
+
+    final url = Platform.isIOS ? iosUrl : androidUrl;
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,9 +111,7 @@ class MoreScreen extends StatelessWidget {
                   'assets/more/share.png',
                   loc.shareApp,
                       () {
-                    Share.share(
-                      loc.shareAppText, // 🌍 localized message
-                    );
+                    shareApp(context);
                   },
                 ),
 
@@ -91,7 +120,9 @@ class MoreScreen extends StatelessWidget {
                   context,
                   'assets/more/rate.png',
                   loc.rateApp,
-                      () => Navigator.pushNamed(context, '/rate'),
+                      () {
+                    rateApp();
+                  },
                 ),
 
                 // 💖 SUPPORT

@@ -205,4 +205,70 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get shareAppText => 'Namaz uygulamama göz at 🕌\n\nBuradan indir:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391';
+
+  @override
+  String get calendarTitle => 'Hicri Takvim';
+
+  @override
+  String get todayInIslam => 'Bugün İslam’da';
+
+  @override
+  String get holyNights => 'Kutsal Geceler';
+
+  @override
+  String get upcomingEvents => 'Yaklaşan İslami Günler';
+
+  @override
+  String get holyMonths => 'Mübarek Aylar';
+
+  @override
+  String get close => 'Kapat';
+
+  @override
+  String get ramadanMessage => 'Ramazan, oruç, rahmet ve Kur’an ayıdır.';
+
+  @override
+  String get muharramMessage => 'Muharrem, İslam’daki haram aylardan biridir.';
+
+  @override
+  String get defaultIslamMessage => 'Her gün Allah’ı anmak ve ibadeti artırmak için bir fırsattır.';
+
+  @override
+  String get thisMonthEvents => 'Bu Ayın Olayları';
+
+  @override
+  String get todayLabel => 'Bugün';
+
+  @override
+  String get daysShort => 'g';
+
+  @override
+  String get noEventsThisMonth => 'Bu hicri ayda İslami gün bulunmuyor.';
+
+  @override
+  String get rajabMessage => 'Recep, tefekkür ve ibadet için mübarek bir aydır.';
+
+  @override
+  String get shabanMessage => 'Şaban, Ramazan öncesi hazırlık ayıdır.';
+
+  @override
+  String get shawwalMessage => 'Şevval, Ramazan Bayramı ile başlar ve altı sünnet orucunu içerir.';
+
+  @override
+  String get dhulHijjahMessage => 'Zilhicce, hac, arefe ve kurban bayramı ayıdır.';
+
+  @override
+  String get importantIslamicDays => 'Önemli İslami Günler';
+
+  @override
+  String get laylatAlQadr => 'Kadir Gecesi';
+
+  @override
+  String get eidAlFitr => 'Ramazan Bayramı';
+
+  @override
+  String get eidAlAdha => 'Kurban Bayramı';
+
+  @override
+  String get startOfRamadan => 'Ramazan Başlangıcı';
 }
