@@ -165,106 +165,107 @@ class _ZikrScreenState extends State<ZikrScreen> {
         ),
 
         body: SafeArea(
-          child: Column(
-            children: [
+          // 1. Add SingleChildScrollView to handle keyboard appearance
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(height: 10),
 
-              const SizedBox(height: 10),
-
-              // 🎯 TARGET + PROGRESS
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(18),
-                  ),
-                  child: Column(
-                    children: [
-                      Text(
-                        _target == 0
-                            ? t['setTarget']!
-                            : "${t['target']}: $_target",
-                      ),
-                      const SizedBox(height: 10),
-                      _buildProgressBar(),
-                    ],
-                  ),
-                ),
-              ),
-
-               // const Spacer(),
-               const SizedBox(height: 100),
-              // 🔘 BIGGER & LOWER CIRCLE
-              GestureDetector(
-                onTap: _onTap,
-                child: Container(
-                  width: 260,
-                  height: 260,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: const LinearGradient(
-                      colors: [Colors.teal, Colors.green],
+                // 🎯 TARGET + PROGRESS
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(18),
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.teal.withOpacity(0.3),
-                        blurRadius: 25,
-                      )
-                    ],
-                  ),
-                  child: Center(
-                    child: Text(
-                      "$_count",
-                      style: const TextStyle(
-                        fontSize: 56,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    child: Column(
+                      children: [
+                        Text(
+                          _target == 0
+                              ? t['setTarget']!
+                              : "${t['target']}: $_target",
+                        ),
+                        const SizedBox(height: 10),
+                        _buildProgressBar(),
+                      ],
                     ),
                   ),
                 ),
-              ),
 
-              const SizedBox(height: 60),
+                // 2. Reduced fixed heights slightly for better fit
+                const SizedBox(height: 60),
 
-              // 🔁 BUTTONS
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        _count = 0;
-                        _isCompleted = false;
-                      });
-                      _saveData();
-                    },
-                    child: Text(t['reset']!),
-                  ),
-
-                  ElevatedButton(
-                    onPressed: _showTargetDialog,
-                    child: Text(t['setTarget']!),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 30),
-
-              // ✅ COMPLETED
-              if (_isCompleted)
-                Text(
-                  t['done']!,
-                  style: const TextStyle(
-                    color: Colors.orange,
-                    fontWeight: FontWeight.bold,
+                // 🔘 BIGGER & LOWER CIRCLE
+                GestureDetector(
+                  onTap: _onTap,
+                  child: Container(
+                    width: 260,
+                    height: 260,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: const LinearGradient(
+                        colors: [Colors.teal, Colors.green],
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.teal.withOpacity(0.3),
+                          blurRadius: 25,
+                        )
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
+                        "$_count",
+                        style: const TextStyle(
+                          fontSize: 56,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
 
-              const SizedBox(height: 10),
-            ],
+                const SizedBox(height: 40),
+
+                // 🔁 BUTTONS
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          _count = 0;
+                          _isCompleted = false;
+                        });
+                        _saveData();
+                      },
+                      child: Text(t['reset']!),
+                    ),
+                    ElevatedButton(
+                      onPressed: _showTargetDialog,
+                      child: Text(t['setTarget']!),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 30),
+
+                // ✅ COMPLETED
+                if (_isCompleted)
+                  Text(
+                    t['done']!,
+                    style: const TextStyle(
+                      color: Colors.orange,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),

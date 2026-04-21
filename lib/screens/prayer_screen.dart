@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:hijri/hijri_calendar.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -10,6 +13,7 @@ import '../l10n/app_localizations.dart';
 import '../services/notification_service.dart';
 import '../services/prayer_api_service.dart';
 import '../services/app_location_service.dart';
+
 
 class PrayerScreen extends StatefulWidget {
   const PrayerScreen({super.key});
@@ -27,12 +31,106 @@ class _PrayerScreenState extends State<PrayerScreen> {
   bool firstLoadFailed = false;
 
   Timer? timer;
+  String? _cityName;
+
+
 
   @override
   void initState() {
     super.initState();
     loadPrayerTimes();
     startTimer();
+    _loadCity();
+  }
+
+  Future<void> _loadCity() async {
+    final position = await LocationService.getCurrentLocation();
+
+    final placemarks = await placemarkFromCoordinates(
+      position.latitude,
+      position.longitude,
+    );
+
+    final place = placemarks.first;
+
+    setState(() {
+      _cityName =
+      "${place.locality ?? ''}, ${place.subAdministrativeArea ?? ''}";
+    });
+  }
+  Widget _buildHeader() {
+    final now = DateTime.now();
+
+    final hijri = HijriCalendar.fromDate(now);
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Color(0xFF2E7D32), Color(0xFF4CAF50)],
+          ),
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.green.withOpacity(0.2),
+              blurRadius: 12,
+            )
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+
+            // 📍 LOCATION
+            Row(
+              children: [
+                const Icon(Icons.location_on, color: Colors.white),
+                const SizedBox(width: 6),
+                Expanded(
+                  child: Text(
+                    _cityName ?? "Loading...",
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 10),
+
+            // 📅 GREGORIAN DATE
+            Row(
+              children: [
+                const Icon(Icons.calendar_today, color: Colors.white70, size: 18),
+                const SizedBox(width: 6),
+                Text(
+                  DateFormat.yMMMMEEEEd().format(now),
+                  style: const TextStyle(color: Colors.white70),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 6),
+
+            // 🌙 HIJRI DATE
+            Row(
+              children: [
+                const Icon(Icons.brightness_2, color: Colors.white70, size: 18),
+                const SizedBox(width: 6),
+                Text(
+                  "${hijri.hDay} ${hijri.longMonthName} ${hijri.hYear}",
+                  style: const TextStyle(color: Colors.white70),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Future<void> scheduleAllPrayers() async {
@@ -281,35 +379,50 @@ class _PrayerScreenState extends State<PrayerScreen> {
 
     return Scaffold(
       appBar: AppBar(title: Text(loc.prayerTimes)),
+
       body: firstLoadFailed
           ? buildFirstLoadError(context)
           : prayerTimes.isEmpty
           ? Center(child: Text(loc.loading))
           : Column(
         children: [
+
           if (isOffline) buildOfflineBanner(),
-          const SizedBox(height: 20),
+
+          // ✅ HEADER ADDED
+          _buildHeader(),
+
+          const SizedBox(height: 10),
+
+          // 🔥 NEXT PRAYER
           Text(
             loc.nextPrayer,
-            style: const TextStyle(fontSize: 18),
+            style: const TextStyle(fontSize: 16),
           ),
+
           Text(
             getPrayerName(loc, nextPrayer),
             style: const TextStyle(
-              fontSize: 26,
+              fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 10),
+
+          const SizedBox(height: 6),
+
           Text(
             formatDuration(remainingTime),
             style: const TextStyle(
-              fontSize: 36,
+              fontSize: 34,
               fontWeight: FontWeight.bold,
               color: Colors.green,
             ),
           ),
+
+          const SizedBox(height: 10),
           const Divider(),
+
+          // 🔥 PRAYER LIST
           Expanded(
             child: ListView(
               children: [
@@ -321,10 +434,29 @@ class _PrayerScreenState extends State<PrayerScreen> {
                 buildPrayerTile(loc, "isha"),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
+  }
+
+  IconData getPrayerIcon(String key) {
+    switch (key) {
+      case "fajr":
+        return Icons.nightlight_round;
+      case "sunrise":
+        return Icons.wb_sunny_outlined;
+      case "dhuhr":
+        return Icons.wb_sunny;
+      case "asr":
+        return Icons.wb_twilight;
+      case "maghrib":
+        return Icons.brightness_3;
+      case "isha":
+        return Icons.nightlight;
+      default:
+        return Icons.access_time;
+    }
   }
 
   Widget buildPrayerTile(AppLocalizations loc, String key) {
@@ -334,15 +466,30 @@ class _PrayerScreenState extends State<PrayerScreen> {
     final isNext = key == nextPrayer;
 
     return Container(
-      color: isNext ? Colors.green.withOpacity(0.1) : null,
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      decoration: BoxDecoration(
+        color: isNext ? Colors.green.withOpacity(0.12) : Colors.white,
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: ListTile(
+        leading: Icon(
+          getPrayerIcon(key),
+          color: isNext ? Colors.green : Colors.grey,
+        ),
+
         title: Text(
           getPrayerName(loc, key),
           style: TextStyle(
             fontWeight: isNext ? FontWeight.bold : FontWeight.normal,
           ),
         ),
-        trailing: Text(formatTime(time)),
+
+        trailing: Text(
+          formatTime(time),
+          style: TextStyle(
+            fontWeight: isNext ? FontWeight.bold : FontWeight.normal,
+          ),
+        ),
       ),
     );
   }
