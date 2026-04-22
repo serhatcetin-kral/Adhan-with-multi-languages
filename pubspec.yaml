@@ -69,3 +69,5 @@ flutter:
     - assets/
     - assets/nav/
     - assets/more/
+    - assets/quran/surah.json
+    - assets/quran/surah/

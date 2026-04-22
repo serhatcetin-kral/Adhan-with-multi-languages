@@ -140,6 +140,12 @@ class MoreScreen extends StatelessWidget {
                   "Mosques",
                       () => Navigator.pushNamed(context, '/mosque'),
                 ),
+                _buildItem(
+                  context,
+                  'assets/more/mosque.png',
+                  "Quran",
+                      () => Navigator.pushNamed(context, '/quran-test'),
+                ),
               ],
             ),
           ),

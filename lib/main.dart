@@ -1,5 +1,6 @@
 import 'package:adhan_app/screens/dua_screen.dart';
 import 'package:adhan_app/screens/hijri_calendar.dart';
+import 'package:adhan_app/screens/quran_test.dart';
 import 'package:adhan_app/screens/zikr_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,13 +14,14 @@ import 'services/notification_service.dart';
 import 'screens/splash_screen.dart';
 import 'screens/mosque_map_screen.dart';
 import 'screens/support_screen.dart';
-
+import 'package:intl/date_symbol_data_local.dart';
+import 'screens/quran_test.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // 🔔 INIT NOTIFICATIONS
   await NotificationService.init();
-
+  await initializeDateFormatting();
   // 🔒 LOCK PORTRAIT
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -107,10 +109,12 @@ class _MyAppState extends State<MyApp> {
         '/dua': (context) => const DuaScreen(),
         '/zikr': (context) => const ZikrScreen(),
         '/calendar': (context) => const CalendarScreen(),
+        '/quran-test': (_) => const QuranTestScreen(),
       },
 
       // 🚀 START SCREEN
-      home: const SplashScreen(),
+       home: const SplashScreen(),
+      // home: const QuranTestScreen(),
     );
   }
 }

@@ -33,35 +33,123 @@ class _PrayerScreenState extends State<PrayerScreen> {
   Timer? timer;
   String? _cityName;
 
+  String getHijriMonth(int month, String lang) {
+    const months = {
+      'en': [
+        "Muharram","Safar","Rabi al-Awwal","Rabi al-Thani",
+        "Jumada al-Awwal","Jumada al-Thani",
+        "Rajab","Sha'ban","Ramadan","Shawwal",
+        "Dhul-Qi'dah","Dhul-Hijjah"
+      ],
+      'tr': [
+        "Muharrem","Safer","Rebiülevvel","Rebiülahir",
+        "Cemaziyelevvel","Cemaziyelahir",
+        "Recep","Şaban","Ramazan","Şevval",
+        "Zilkade","Zilhicce"
+      ],
+      'ar': [
+        "محرم","صفر","ربيع الأول","ربيع الثاني",
+        "جمادى الأولى","جمادى الآخرة",
+        "رجب","شعبان","رمضان","شوال",
+        "ذو القعدة","ذو الحجة"
+      ],
+      'fr': [
+        "Mousharram", "Safar", "Rabi' al-awwal", "Rabi' ath-thani",
+        "Joumada al-oula", "Joumada ath-thania",
+        "Rajab", "Cha'bane", "Ramadan", "Chawwal",
+        "Dhou al-qi'da", "Dhou al-hijja"
+      ],
+      'de': [
+        "Muharram", "Safar", "Rabi' al-awwal", "Rabi' ath-thani",
+        "Dschumada l-ula", "Dschumada th-thaniya",
+        "Radschab", "Scha'ban", "Ramadan", "Schawwal",
+        "Dhu l-qa'da", "Dhu l-hiddscha"
+      ],
+      'zh': [
+        "穆哈兰姆月", "色法尔月", "雷比欧阿沃尔月", "雷比欧阿色尼月",
+        "朱马达·欧拉月", "朱马达·阿色尼月",
+        "赖哲卜月", "舍尔班月", "赖买丹月", "闪瓦鲁月",
+        "都尔喀德月", "都尔黑哲月"
+      ]
+    };
 
+    return months[lang]?[month - 1] ?? months['en']![month - 1];
+  }
 
   @override
   void initState() {
     super.initState();
     loadPrayerTimes();
     startTimer();
-    _loadCity();
+
   }
+  Future<void> _loadCityFromPosition(Position position) async {
+    try {
+      final placemarks = await placemarkFromCoordinates(
+        position.latitude,
+        position.longitude,
+      );
 
+      if (placemarks.isEmpty) {
+        setState(() {
+          _cityName = "Unknown location";
+        });
+        return;
+      }
+
+      final place = placemarks.first;
+
+      setState(() {
+        _cityName =
+        "${place.locality ?? 'Unknown'}, ${place.subAdministrativeArea ?? ''}";
+      });
+
+    } catch (e) {
+      setState(() {
+        _cityName = "Location error";
+      });
+    }
+  }
   Future<void> _loadCity() async {
-    final position = await LocationService.getCurrentLocation();
+    try {
+      final position = await LocationService.getUserLocation();
 
-    final placemarks = await placemarkFromCoordinates(
-      position.latitude,
-      position.longitude,
-    );
+      if (position == null) {
+        setState(() {
+          _cityName = "Location off";
+        });
+        return;
+      }
 
-    final place = placemarks.first;
+      final placemarks = await placemarkFromCoordinates(
+        position.latitude,
+        position.longitude,
+      );
 
-    setState(() {
-      _cityName =
-      "${place.locality ?? ''}, ${place.subAdministrativeArea ?? ''}";
-    });
+      if (placemarks.isEmpty) {
+        setState(() {
+          _cityName = "Unknown location";
+        });
+        return;
+      }
+
+      final place = placemarks.first;
+
+      setState(() {
+        _cityName =
+        "${place.locality ?? 'Unknown'}, ${place.subAdministrativeArea ?? ''}";
+      });
+
+    } catch (e) {
+      setState(() {
+        _cityName = "Location error";
+      });
+    }
   }
   Widget _buildHeader() {
     final now = DateTime.now();
-
     final hijri = HijriCalendar.fromDate(now);
+    final lang = Localizations.localeOf(context).languageCode;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -72,12 +160,6 @@ class _PrayerScreenState extends State<PrayerScreen> {
             colors: [Color(0xFF2E7D32), Color(0xFF4CAF50)],
           ),
           borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.green.withOpacity(0.2),
-              blurRadius: 12,
-            )
-          ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,7 +172,9 @@ class _PrayerScreenState extends State<PrayerScreen> {
                 const SizedBox(width: 6),
                 Expanded(
                   child: Text(
-                    _cityName ?? "Loading...",
+                    _cityName?.isNotEmpty == true
+                        ? _cityName!
+                        : "Fetching location...",
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -102,13 +186,14 @@ class _PrayerScreenState extends State<PrayerScreen> {
 
             const SizedBox(height: 10),
 
-            // 📅 GREGORIAN DATE
+            // 📅 GREGORIAN DATE (MULTI LANGUAGE)
             Row(
               children: [
-                const Icon(Icons.calendar_today, color: Colors.white70, size: 18),
+                const Icon(Icons.calendar_today,
+                    color: Colors.white70, size: 18),
                 const SizedBox(width: 6),
                 Text(
-                  DateFormat.yMMMMEEEEd().format(now),
+                  DateFormat.yMMMMEEEEd(lang).format(now),
                   style: const TextStyle(color: Colors.white70),
                 ),
               ],
@@ -116,13 +201,14 @@ class _PrayerScreenState extends State<PrayerScreen> {
 
             const SizedBox(height: 6),
 
-            // 🌙 HIJRI DATE
+            // 🌙 HIJRI DATE (MULTI LANGUAGE)
             Row(
               children: [
-                const Icon(Icons.brightness_2, color: Colors.white70, size: 18),
+                const Icon(Icons.brightness_2,
+                    color: Colors.white70, size: 18),
                 const SizedBox(width: 6),
                 Text(
-                  "${hijri.hDay} ${hijri.longMonthName} ${hijri.hYear}",
+                  "${hijri.hDay} ${getHijriMonth(hijri.hMonth, lang)} ${hijri.hYear}",
                   style: const TextStyle(color: Colors.white70),
                 ),
               ],
@@ -256,6 +342,15 @@ class _PrayerScreenState extends State<PrayerScreen> {
       }
 
       final Position? pos = await LocationService.getUserLocation();
+
+      if (pos == null) {
+        firstLoadFailed = true;
+        setState(() {});
+        return;
+      }
+
+// ✅ LOAD CITY HERE (AFTER LOCATION IS READY)
+      await _loadCityFromPosition(pos);
 
       final result = await PrayerApiService.getPrayerTimes(
         latitude: pos!.latitude,
