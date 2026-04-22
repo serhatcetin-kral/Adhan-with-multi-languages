@@ -106,11 +106,12 @@
   "shawwalMessage": "يبدأ شوال بعيد الفطر ويشمل صيام الست.",
   "dhulHijjahMessage": "ذو الحجة شهر الحج وعرفة وعيد الأضحى.",
   "defaultIslamMessage": "كل يوم فرصة لذكر الله وزيادة العبادة.",
-  "importantIslamicDays": "Önemli İslami Günler",
-  "laylatAlQadr": "Kadir Gecesi",
-  "eidAlFitr": "Ramazan Bayramı",
-  "eidAlAdha": "Kurban Bayramı",
-  "startOfRamadan": "Ramazan Başlangıcı"
+  "importantIslamicDays": "الأيام الإسلامية المهمة",
+  "laylatAlQadr": "ليلة القدر",
+  "eidAlFitr": "عيد الفطر",
+  "eidAlAdha": "عيد الأضحى",
+  "startOfRamadan": "بداية رمضان",
+  "quran": "القرآن"
 
 
 }

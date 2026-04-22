@@ -53,7 +53,17 @@ class _QuranReaderScreenState extends State<QuranReaderScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        backgroundColor: Colors.green,
+        title: Column(
+          children: [
+            Text(widget.title),
+            Text(
+              widget.titleAr,
+              style: const TextStyle(fontSize: 14),
+            ),
+          ],
+        ),
+        centerTitle: true,
       ),
 
       body: ayahs.isEmpty
@@ -62,40 +72,53 @@ class _QuranReaderScreenState extends State<QuranReaderScreen> {
         itemCount: ayahs.length,
           itemBuilder: (context, index) {
             final entry = ayahs[index];
-
-            final verseKey = entry.key;     // "verse_1"
-            final verseText = entry.value;  // actual Arabic text
+            final verseText = entry.value;
 
             return Container(
               margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              padding: const EdgeInsets.all(14),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(18),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 6,
+                  ),
+                ],
               ),
+
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
 
-                  // 🔢 AYAH NUMBER
+                  // 🔢 Ayah number badge
                   Row(
                     children: [
-                      CircleAvatar(
-                        radius: 14,
-                        child: Text("${index + 1}"),
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.green),
+                        ),
+                        child: Text(
+                          "${index + 1}",
+                          style: const TextStyle(color: Colors.green),
+                        ),
                       ),
                     ],
                   ),
 
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 12),
 
-                  // 📖 TEXT
+                  // 📖 Arabic text
                   Text(
                     verseText,
                     textAlign: TextAlign.right,
                     style: const TextStyle(
-                      fontSize: 22,
-                      height: 1.8,
+                      fontSize: 26,
+                      height: 1.9,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],

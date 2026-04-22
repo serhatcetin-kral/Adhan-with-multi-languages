@@ -624,6 +624,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Start of Ramadan'**
   String get startOfRamadan;
+
+  /// No description provided for @quran.
+  ///
+  /// In en, this message translates to:
+  /// **'quran'**
+  String get quran;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

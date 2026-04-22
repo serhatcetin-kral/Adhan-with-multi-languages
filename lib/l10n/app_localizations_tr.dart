@@ -271,4 +271,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get startOfRamadan => 'Ramazan Başlangıcı';
+
+  @override
+  String get quran => 'Kur\'an';
 }

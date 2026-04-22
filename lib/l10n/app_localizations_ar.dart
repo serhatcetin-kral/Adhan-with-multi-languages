@@ -258,17 +258,20 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dhulHijjahMessage => 'ذو الحجة شهر الحج وعرفة وعيد الأضحى.';
 
   @override
-  String get importantIslamicDays => 'Önemli İslami Günler';
+  String get importantIslamicDays => 'الأيام الإسلامية المهمة';
 
   @override
-  String get laylatAlQadr => 'Kadir Gecesi';
+  String get laylatAlQadr => 'ليلة القدر';
 
   @override
-  String get eidAlFitr => 'Ramazan Bayramı';
+  String get eidAlFitr => 'عيد الفطر';
 
   @override
-  String get eidAlAdha => 'Kurban Bayramı';
+  String get eidAlAdha => 'عيد الأضحى';
 
   @override
-  String get startOfRamadan => 'Ramazan Başlangıcı';
+  String get startOfRamadan => 'بداية رمضان';
+
+  @override
+  String get quran => 'القرآن';
 }
