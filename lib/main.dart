@@ -1,6 +1,6 @@
 import 'package:adhan_app/screens/dua_screen.dart';
 import 'package:adhan_app/screens/hijri_calendar.dart';
-import 'package:adhan_app/screens/quran_test.dart';
+import 'package:adhan_app/screens/quran_screen.dart';
 import 'package:adhan_app/screens/zikr_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,7 +15,7 @@ import 'screens/splash_screen.dart';
 import 'screens/mosque_map_screen.dart';
 import 'screens/support_screen.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'screens/quran_test.dart';
+import 'screens/quran_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -109,7 +109,7 @@ class _MyAppState extends State<MyApp> {
         '/dua': (context) => const DuaScreen(),
         '/zikr': (context) => const ZikrScreen(),
         '/calendar': (context) => const CalendarScreen(),
-        '/quran-test': (_) => const QuranTestScreen(),
+        '/quran-test': (_) => const QuranScreen(),
       },
 
       // 🚀 START SCREEN

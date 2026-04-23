@@ -98,11 +98,17 @@ class MoreScreen extends StatelessWidget {
                 ),
 
                 // ℹ️ ABOUT
+                // _buildItem(
+                //   context,
+                //   'assets/more/about.png',
+                //   loc.about,
+                //       () => Navigator.pushNamed(context, '/about'),
+                // ),
                 _buildItem(
                   context,
-                  'assets/more/about.png',
-                  loc.about,
-                      () => Navigator.pushNamed(context, '/about'),
+                  'assets/more/quran.png',
+                  loc.quran,
+                      () => Navigator.pushNamed(context, '/quran-test'),
                 ),
 
                 // 🔗 SHARE
@@ -126,27 +132,22 @@ class MoreScreen extends StatelessWidget {
                 ),
 
                 // 💖 SUPPORT
-                _buildItem(
-                  context,
-                  'assets/more/support.png',
-                  loc.support,
-                      () => Navigator.pushNamed(context, '/support'),
-                ),
+                // _buildItem(
+                //   context,
+                //   'assets/more/support.png',
+                //   loc.support,
+                //       () => Navigator.pushNamed(context, '/support'),
+                // ),
 
                 // 🕌 MOSQUE
-                _buildItem(
-                  context,
-                  'assets/more/mosque.png',
-                  "Mosques",
-                      () => Navigator.pushNamed(context, '/mosque'),
-                ),
+                // _buildItem(
+                //   context,
+                //   'assets/more/mosque.png',
+                //   "Mosques",
+                //       () => Navigator.pushNamed(context, '/mosque'),
+                // ),
 
-                _buildItem(
-                  context,
-                  'assets/more/quran.png',
-                  loc.quran,
-                      () => Navigator.pushNamed(context, '/quran-test'),
-                ),
+
               ],
             ),
           ),

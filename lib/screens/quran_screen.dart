@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import '../services/quran_service.dart';
 import 'quran_reader_screen.dart';
 
-class QuranTestScreen extends StatefulWidget {
-  const QuranTestScreen({super.key});
+class QuranScreen extends StatefulWidget {
+  const QuranScreen({super.key});
 
   @override
-  State<QuranTestScreen> createState() => _QuranTestScreenState();
+  State<QuranScreen> createState() => _QuranTestScreenState();
 }
 
-class _QuranTestScreenState extends State<QuranTestScreen> {
+class _QuranTestScreenState extends State<QuranScreen> {
   List surahs = [];
 
   @override
@@ -38,7 +38,7 @@ class _QuranTestScreenState extends State<QuranTestScreen> {
       body: surahs.isEmpty
           ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
-        itemCount: surahs.length,
+          itemCount: surahs.length,
           itemBuilder: (context, index) {
             final s = surahs[index] ?? {};
             final lang = Localizations.localeOf(context).languageCode;
