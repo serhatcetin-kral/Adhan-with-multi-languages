@@ -118,7 +118,14 @@
   "eidAlFitr": "Eid al-Fitr",
   "eidAlAdha": "Eid al-Adha",
   "startOfRamadan": "Start of Ramadan",
-  "quran": "quran"
+  "quran": "quran",
+
+  "offset": "Time Adjustment",
+  "offsetMinutes": "Minute Adjustment",
+  "adhanSound":"adhanSound"
+
+
+
 
 
 

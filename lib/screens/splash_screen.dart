@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'language_screen.dart';
-import 'settings_screen.dart';
 import 'main_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -17,17 +16,18 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    checkFirstLaunch();
+    _checkFirstLaunch();
   }
 
-  Future<void> checkFirstLaunch() async {
+  Future<void> _checkFirstLaunch() async {
     final prefs = await SharedPreferences.getInstance();
 
     bool isFirstLaunch = prefs.getBool('first_launch') ?? true;
-    bool languageSelected = prefs.getBool('language_selected') ?? false;
-    bool settingsDone = prefs.getBool('settings_done') ?? false;
 
+    // small delay for splash feel
     await Future.delayed(const Duration(seconds: 2));
+
+    if (!mounted) return;
 
     if (isFirstLaunch) {
       Navigator.pushReplacement(
@@ -44,8 +44,18 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: CircularProgressIndicator()),
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.center,
+        child: const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.mosque, size: 80),
+            SizedBox(height: 20),
+            CircularProgressIndicator(),
+          ],
+        ),
+      ),
     );
   }
 }

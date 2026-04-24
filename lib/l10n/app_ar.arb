@@ -111,7 +111,10 @@
   "eidAlFitr": "عيد الفطر",
   "eidAlAdha": "عيد الأضحى",
   "startOfRamadan": "بداية رمضان",
-  "quran": "القرآن"
+  "quran": "القرآن",
+  "offset": "تعديل الوقت",
+  "offsetMinutes": "تعديل بالدقائق",
+  "adhanSound":"صوت الأذان"
 
 
 }

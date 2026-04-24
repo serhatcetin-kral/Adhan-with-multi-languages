@@ -630,6 +630,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'quran'**
   String get quran;
+
+  /// No description provided for @offset.
+  ///
+  /// In en, this message translates to:
+  /// **'Time Adjustment'**
+  String get offset;
+
+  /// No description provided for @offsetMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Minute Adjustment'**
+  String get offsetMinutes;
+
+  /// No description provided for @adhanSound.
+  ///
+  /// In en, this message translates to:
+  /// **'adhanSound'**
+  String get adhanSound;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

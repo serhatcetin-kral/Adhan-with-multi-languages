@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../main.dart';
 import '../l10n/app_localizations.dart';
 import 'main_screen.dart';
-
+import '../services/notification_service.dart';
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -15,8 +15,8 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
 
   String selectedLanguage = 'en';
-  String calculationMethod = 'MWL';
-  String madhhab = 'hanafi';
+  String calculationMethod = 'ISNA';
+  String madhhab = 'shafi';
 
   bool notificationsEnabled = true;
 
@@ -25,7 +25,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   int asrOffset = 0;
   int maghribOffset = 0;
   int ishaOffset = 0;
-
+  bool adhanEnabled = true;
   @override
   void initState() {
     super.initState();
@@ -37,10 +37,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     setState(() {
       selectedLanguage = prefs.getString('language') ?? 'en';
-      calculationMethod = prefs.getString('method') ?? 'MWL';
-      madhhab = prefs.getString('madhhab') ?? 'hanafi';
+      calculationMethod = prefs.getString('method') ?? 'ISNA';
+      madhhab = prefs.getString('madhhab') ?? 'shafi';
 
       notificationsEnabled = prefs.getBool('notifications') ?? true;
+      adhanEnabled = prefs.getBool('adhan') ?? true;
 
       fajrOffset = prefs.getInt('fajrOffset') ?? 0;
       dhuhrOffset = prefs.getInt('dhuhrOffset') ?? 0;
@@ -52,7 +53,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   Future<void> saveSettings() async {
     final prefs = await SharedPreferences.getInstance();
-
+    await prefs.setBool('adhan', adhanEnabled);
     await prefs.setString('language', selectedLanguage);
     await prefs.setString('method', calculationMethod);
     await prefs.setString('madhhab', madhhab);
@@ -93,115 +94,181 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final loc = AppLocalizations.of(context)!;
 
     return Scaffold(
-      appBar: AppBar(title: Text(loc.settings)),
+      appBar: AppBar(
+        title: Text(loc.settings),
+        centerTitle: true,
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
 
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
+          // 🌐 LANGUAGE
+          _buildSectionCard(
+            title: loc.language,
+            icon: Icons.language,
+            children: [
+              _buildSimpleItem("English", () => changeLanguage('en')),
+              _buildSimpleItem("Türkçe", () => changeLanguage('tr')),
+              _buildSimpleItem("العربية", () => changeLanguage('ar')),
+            ],
+          ),
 
-            // LANGUAGE
-            ListTile(title: Text(loc.language)),
-            ListTile(
-              title: const Text("English"),
-              onTap: () => changeLanguage('en'),
-            ),
-            ListTile(
-              title: const Text("Türkçe"),
-              onTap: () => changeLanguage('tr'),
-            ),
-            ListTile(
-              title: const Text("العربية"),
-              onTap: () => changeLanguage('ar'),
-            ),
+          // ⚙️ CALCULATION
+          _buildSectionCard(
+            title: loc.calculationMethod,
+            icon: Icons.calculate,
+            children: [
+              DropdownButton<String>(
+                value: calculationMethod,
+                isExpanded: true,
+                items: const [
+                  DropdownMenuItem(value: 'MWL', child: Text("MWL")),
+                  DropdownMenuItem(value: 'ISNA', child: Text("ISNA")),
+                  DropdownMenuItem(value: 'Egypt', child: Text("Egypt")),
+                  DropdownMenuItem(value: 'Makkah', child: Text("Makkah")),
+                  DropdownMenuItem(value: 'Karachi', child: Text("Karachi")),
+                  DropdownMenuItem(value: 'Turkey', child: Text("Turkey")),
+                ],
+                onChanged: (val) {
+                  setState(() {
+                    calculationMethod = val!;
+                  });
+                },
+              ),
+            ],
+          ),
 
-            const Divider(),
+          // 🕌 MADHHAB
+          _buildSectionCard(
+            title: loc.madhhab,
+            icon: Icons.menu_book,
+            children: [
+              DropdownButton<String>(
+                value: madhhab,
+                isExpanded: true,
+                items: const [
+                  DropdownMenuItem(value: 'hanafi', child: Text("Hanafi")),
+                  DropdownMenuItem(value: 'shafi', child: Text("Shafi")),
+                ],
+                onChanged: (val) {
+                  setState(() {
+                    madhhab = val!;
+                  });
+                },
+              ),
+            ],
+          ),
 
-            // CALCULATION METHOD
-            ListTile(title: Text(loc.calculationMethod)),
-            DropdownButton<String>(
-              value: calculationMethod,
-              items: const [
-                DropdownMenuItem(value: 'MWL', child: Text("MWL")),
-                DropdownMenuItem(value: 'ISNA', child: Text("ISNA")),
-                DropdownMenuItem(value: 'Egypt', child: Text("Egypt")),
-                DropdownMenuItem(value: 'Makkah', child: Text("Makkah")),
-                DropdownMenuItem(value: 'Karachi', child: Text("Karachi")),
-                DropdownMenuItem(value: 'Turkey', child: Text("Turkey")),
-              ],
-              onChanged: (val) {
-                setState(() {
-                  calculationMethod = val!;
-                });
-              },
-            ),
+          // 🔔 NOTIFICATIONS
+          _buildSectionCard(
+            title: loc.notifications,
+            icon: Icons.notifications,
+            children: [
+              SwitchListTile(
+                title: Text(loc.notifications),
+                value: notificationsEnabled,
+                onChanged: (val) async {
+                  setState(() {
+                    notificationsEnabled = val;
+                  });
 
-            const Divider(),
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('notifications', val);
 
-            // MADHHAB
-            ListTile(title: Text(loc.madhhab)),
-            DropdownButton<String>(
-              value: madhhab,
-              items: const [
-                DropdownMenuItem(value: 'hanafi', child: Text("Hanafi")),
-                DropdownMenuItem(value: 'shafi', child: Text("Shafi")),
-              ],
-              onChanged: (val) {
-                setState(() {
-                  madhhab = val!;
-                });
-              },
-            ),
+                  if (!val) {
+                    await NotificationService.cancelAll();
+                  }
+                },
+              ),
 
-            const Divider(),
+              SwitchListTile(
+                title: Text(loc.adhanSound),
+                value: adhanEnabled,
+                onChanged: (val) async {
+                  setState(() {
+                    adhanEnabled = val;
+                  });
 
-            // NOTIFICATIONS
-            SwitchListTile(
-              title: Text(loc.enableNotifications),
-              value: notificationsEnabled,
-              onChanged: (val) {
-                setState(() {
-                  notificationsEnabled = val;
-                });
-              },
-            ),
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('adhan', val);
+                },
+              ),
+            ],
+          ),
 
-            const Divider(),
-            ListTile(title: Text(loc.offsetSettings)),
+          // ⏱ OFFSET
+          _buildSectionCard(
+            title: loc.offsetSettings,
+            icon: Icons.access_time,
+            children: [
+              buildOffsetTile(loc.fajrOffset, fajrOffset, (v) => setState(() => fajrOffset = v)),
+              buildOffsetTile(loc.dhuhrOffset, dhuhrOffset, (v) => setState(() => dhuhrOffset = v)),
+              buildOffsetTile(loc.asrOffset, asrOffset, (v) => setState(() => asrOffset = v)),
+              buildOffsetTile(loc.maghribOffset, maghribOffset, (v) => setState(() => maghribOffset = v)),
+              buildOffsetTile(loc.ishaOffset, ishaOffset, (v) => setState(() => ishaOffset = v)),
+            ],
+          ),
 
-            buildOffsetTile(loc.fajrOffset, fajrOffset, (val) {
-              setState(() => fajrOffset = val);
-            }),
+          const SizedBox(height: 20),
 
-            buildOffsetTile(loc.dhuhrOffset, dhuhrOffset, (val) {
-              setState(() => dhuhrOffset = val);
-            }),
-
-            buildOffsetTile(loc.asrOffset, asrOffset, (val) {
-              setState(() => asrOffset = val);
-            }),
-
-            buildOffsetTile(loc.maghribOffset, maghribOffset, (val) {
-              setState(() => maghribOffset = val);
-            }),
-
-            buildOffsetTile(loc.ishaOffset, ishaOffset, (val) {
-              setState(() => ishaOffset = val);
-            }),
-
-            // SAVE BUTTON
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: ElevatedButton(
-                onPressed: saveSettings,
-                child: Text(loc.save),
+          // 💾 SAVE BUTTON
+          ElevatedButton(
+            onPressed: saveSettings,
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
               ),
             ),
+            child: Text(loc.save),
+          ),
+        ],
+      ),
+    );
+  }
+  Widget _buildSectionCard({
+    required String title,
+    required IconData icon,
+    required List<Widget> children,
+  }) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 16),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      elevation: 3,
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(icon, size: 20),
+                const SizedBox(width: 8),
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+            const Divider(),
+            ...children,
           ],
         ),
       ),
     );
   }
 
+  Widget _buildSimpleItem(String text, VoidCallback onTap) {
+    return ListTile(
+      title: Text(text),
+      onTap: onTap,
+    );
+  }
 
   Widget buildOffsetTile(String title, int value, Function(int) onChanged) {
     final loc = AppLocalizations.of(context)!;

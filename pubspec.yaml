@@ -21,6 +21,7 @@ dependencies:
 
 
 
+
   flutter_localizations:
     sdk: flutter
   intl: ^0.20.2

@@ -274,4 +274,13 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get quran => 'Kur\'an';
+
+  @override
+  String get offset => 'Zaman Kaydırma';
+
+  @override
+  String get offsetMinutes => 'Dakika Ayarı';
+
+  @override
+  String get adhanSound => 'ezan';
 }

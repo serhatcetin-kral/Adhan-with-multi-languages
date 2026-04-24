@@ -110,6 +110,11 @@
   "eidAlFitr": "Ramazan Bayramı",
   "eidAlAdha": "Kurban Bayramı",
   "startOfRamadan": "Ramazan Başlangıcı",
-  "quran": "Kur'an"
+  "quran": "Kur'an",
+
+  "offset": "Zaman Kaydırma",
+  "offsetMinutes": "Dakika Ayarı",
+  "adhanSound": "ezan"
+
 
 }

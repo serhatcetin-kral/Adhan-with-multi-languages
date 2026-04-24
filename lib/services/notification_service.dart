@@ -2,11 +2,13 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:flutter_timezone/flutter_timezone.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NotificationService {
   static final FlutterLocalNotificationsPlugin _plugin =
   FlutterLocalNotificationsPlugin();
 
+  // ✅ INIT
   static Future<void> init() async {
     tz.initializeTimeZones();
 
@@ -28,13 +30,13 @@ class NotificationService {
 
     await _plugin.initialize(settings);
 
-    // Android 13+ runtime permission
+    // Android permission
     await _plugin
         .resolvePlatformSpecificImplementation<
         AndroidFlutterLocalNotificationsPlugin>()
         ?.requestNotificationsPermission();
 
-    // iOS explicit permission request
+    // iOS permission
     await _plugin
         .resolvePlatformSpecificImplementation<
         IOSFlutterLocalNotificationsPlugin>()
@@ -45,30 +47,55 @@ class NotificationService {
     );
   }
 
+  // ✅ SCHEDULE PRAYER
   static Future<void> schedulePrayer({
     required int id,
     required String title,
     required String body,
     required DateTime time,
   }) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final bool notifications = prefs.getBool('notifications') ?? true;
+    final bool adhan = prefs.getBool('adhan') ?? true;
+
+    // 🔕 If notifications OFF → stop
+    if (!notifications) return;
+
     final scheduled = tz.TZDateTime.from(time, tz.local);
+
+    // ✅ Android
+    final androidDetails = AndroidNotificationDetails(
+      'adhan_channel',
+      'Adhan Notifications',
+      channelDescription: 'Prayer time notifications',
+      importance: Importance.max,
+      priority: Priority.high,
+      playSound: adhan,
+      sound: adhan
+          ? const RawResourceAndroidNotificationSound('adhan')
+          : null,
+    );
+
+    // ✅ iOS
+    final iosDetails = DarwinNotificationDetails(
+      sound: adhan ? 'adhan.caf' : null,
+      presentAlert: true,
+      presentBadge: true,
+      presentSound: adhan,
+    );
+
+    final details = NotificationDetails(
+      android: androidDetails,
+      iOS: iosDetails,
+    );
 
     await _plugin.zonedSchedule(
       id,
       title,
       body,
       scheduled,
-      const NotificationDetails(
-        android: AndroidNotificationDetails(
-          'adhan_channel',
-          'Adhan Notifications',
-          channelDescription: 'Prayer time notifications',
-          importance: Importance.max,
-          priority: Priority.high,
-          playSound: true,
-        ),
-        iOS: DarwinNotificationDetails(),
-      ),
+      details,
       uiLocalNotificationDateInterpretation:
       UILocalNotificationDateInterpretation.absoluteTime,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
@@ -76,6 +103,7 @@ class NotificationService {
     );
   }
 
+  // ✅ CANCEL ALL
   static Future<void> cancelAll() async {
     await _plugin.cancelAll();
   }
