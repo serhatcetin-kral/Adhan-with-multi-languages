@@ -5,6 +5,7 @@ import '../main.dart';
 import '../l10n/app_localizations.dart';
 import 'main_screen.dart';
 import '../services/notification_service.dart';
+
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -19,13 +20,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
   String madhhab = 'shafi';
 
   bool notificationsEnabled = true;
+  bool adhanEnabled = true;
 
   int fajrOffset = 0;
   int dhuhrOffset = 0;
   int asrOffset = 0;
   int maghribOffset = 0;
   int ishaOffset = 0;
-  bool adhanEnabled = true;
+
+  final List<String> methods = [
+    'MWL', 'ISNA', 'Egypt', 'Makkah', 'Karachi', 'Turkey'
+  ];
+
+  final List<String> madhhabs = [
+    'hanafi', 'shafi'
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -35,10 +45,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Future<void> loadSettings() async {
     final prefs = await SharedPreferences.getInstance();
 
+    final savedMethod = prefs.getString('method');
+    final savedMadhhab = prefs.getString('madhhab');
+    final savedLang = prefs.getString('language');
+
+    if (!mounted) return;
+
     setState(() {
-      selectedLanguage = prefs.getString('language') ?? 'en';
-      calculationMethod = prefs.getString('method') ?? 'ISNA';
-      madhhab = prefs.getString('madhhab') ?? 'shafi';
+      selectedLanguage = ['en', 'tr', 'ar'].contains(savedLang)
+          ? savedLang!
+          : 'en';
+
+      calculationMethod = methods.contains(savedMethod)
+          ? savedMethod!
+          : 'ISNA';
+
+      madhhab = madhhabs.contains(savedMadhhab)
+          ? savedMadhhab!
+          : 'shafi';
 
       notificationsEnabled = prefs.getBool('notifications') ?? true;
       adhanEnabled = prefs.getBool('adhan') ?? true;
@@ -53,12 +77,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   Future<void> saveSettings() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('adhan', adhanEnabled);
+
     await prefs.setString('language', selectedLanguage);
     await prefs.setString('method', calculationMethod);
     await prefs.setString('madhhab', madhhab);
 
     await prefs.setBool('notifications', notificationsEnabled);
+    await prefs.setBool('adhan', adhanEnabled);
 
     await prefs.setInt('fajrOffset', fajrOffset);
     await prefs.setInt('dhuhrOffset', dhuhrOffset);
@@ -66,7 +91,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     await prefs.setInt('maghribOffset', maghribOffset);
     await prefs.setInt('ishaOffset', ishaOffset);
 
-    // IMPORTANT: mark first launch done
     await prefs.setBool('first_launch', false);
 
     if (!mounted) return;
@@ -87,6 +111,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
     });
 
     MyApp.setLocale(context, Locale(code));
+  }
+
+  String getMethodLabel(String method) {
+    switch (method) {
+      case 'MWL':
+        return "MWL (Muslim World League)";
+      case 'ISNA':
+        return "ISNA (North America)";
+      case 'Egypt':
+        return "Egypt (Egyptian Authority)";
+      case 'Makkah':
+        return "Makkah (Umm Al-Qura)";
+      case 'Karachi':
+        return "Karachi (University of Karachi)";
+      case 'Turkey':
+        return "Turkey (Diyanet)";
+      default:
+        return method;
+    }
   }
 
   @override
@@ -113,7 +156,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ],
           ),
 
-          // ⚙️ CALCULATION
+          // ⚙️ CALCULATION METHOD
           _buildSectionCard(
             title: loc.calculationMethod,
             icon: Icons.calculate,
@@ -121,17 +164,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
               DropdownButton<String>(
                 value: calculationMethod,
                 isExpanded: true,
-                items: const [
-                  DropdownMenuItem(value: 'MWL', child: Text("MWL")),
-                  DropdownMenuItem(value: 'ISNA', child: Text("ISNA")),
-                  DropdownMenuItem(value: 'Egypt', child: Text("Egypt")),
-                  DropdownMenuItem(value: 'Makkah', child: Text("Makkah")),
-                  DropdownMenuItem(value: 'Karachi', child: Text("Karachi")),
-                  DropdownMenuItem(value: 'Turkey', child: Text("Turkey")),
-                ],
+                items: methods.map((m) {
+                  return DropdownMenuItem(
+                    value: m,
+                    child: Text(getMethodLabel(m)),
+                  );
+                }).toList(),
                 onChanged: (val) {
+                  if (val == null) return;
                   setState(() {
-                    calculationMethod = val!;
+                    calculationMethod = val;
                   });
                 },
               ),
@@ -146,13 +188,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
               DropdownButton<String>(
                 value: madhhab,
                 isExpanded: true,
-                items: const [
-                  DropdownMenuItem(value: 'hanafi', child: Text("Hanafi")),
-                  DropdownMenuItem(value: 'shafi', child: Text("Shafi")),
-                ],
+                items: madhhabs.map((m) {
+                  return DropdownMenuItem(
+                    value: m,
+                    child: Text(m == 'hanafi' ? "Hanafi" : "Shafi / Hanbali / Maliki"),
+                  );
+                }).toList(),
                 onChanged: (val) {
+                  if (val == null) return;
                   setState(() {
-                    madhhab = val!;
+                    madhhab = val;
                   });
                 },
               ),
@@ -211,21 +256,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
           const SizedBox(height: 20),
 
-          // 💾 SAVE BUTTON
           ElevatedButton(
             onPressed: saveSettings,
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 14),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
             child: Text(loc.save),
           ),
         ],
       ),
     );
   }
+
   Widget _buildSectionCard({
     required String title,
     required IconData icon,
@@ -233,10 +272,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }) {
     return Card(
       margin: const EdgeInsets.only(bottom: 16),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
-      elevation: 3,
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
@@ -244,15 +279,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
           children: [
             Row(
               children: [
-                Icon(icon, size: 20),
+                Icon(icon),
                 const SizedBox(width: 8),
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
+                Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
               ],
             ),
             const Divider(),

@@ -105,7 +105,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         '/home': (_) => const SplashScreen(),
         // '/mosque': (_) => const MosqueMapScreen(),
-        '/support': (_) => const SupportScreen(),
+        // '/support': (_) => const SupportScreen(),
         '/dua': (context) => const DuaScreen(),
         '/zikr': (context) => const ZikrScreen(),
         '/calendar': (context) => const CalendarScreen(),
