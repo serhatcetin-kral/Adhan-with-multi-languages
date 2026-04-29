@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../main.dart';
 import '../l10n/app_localizations.dart';
+import '../services/audio_service.dart';
 import 'main_screen.dart';
 import '../services/notification_service.dart';
 
@@ -262,12 +263,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           const SizedBox(height: 10),
 
-          ElevatedButton(
-            onPressed: () async {
-              await NotificationService.testNotification();
-            },
-            child: const Text("Test Adhan Notification (10 sec)"),
-          ),
+          // ElevatedButton(
+          //   onPressed: () async {
+          //     await NotificationService.testNotification();
+          //   },
+          //   child: const Text("Test Notification (10 sec)"),
+          // ),
         ],
       ),
     );

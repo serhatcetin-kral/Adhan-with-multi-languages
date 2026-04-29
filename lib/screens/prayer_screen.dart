@@ -222,11 +222,14 @@ class _PrayerScreenState extends State<PrayerScreen> {
   Future<void> scheduleAllPrayers() async {
     await NotificationService.cancelAll();
 
-    int id = 0;
+    int id = 1;
     final now = DateTime.now();
 
-    prayerTimes.forEach((name, time) {
-      final scheduleTime = DateTime(
+    for (final entry in prayerTimes.entries) {
+      final name = entry.key;
+      final time = entry.value;
+
+      DateTime scheduleTime = DateTime(
         now.year,
         now.month,
         now.day,
@@ -234,15 +237,18 @@ class _PrayerScreenState extends State<PrayerScreen> {
         time.minute,
       );
 
-      if (scheduleTime.isAfter(now)) {
-        NotificationService.schedulePrayer(
-          id: id++,
-          title: "Prayer Time",
-          body: "$name time",
-          time: scheduleTime,
-        );
+      // 🔥 FIX: if time passed → schedule for tomorrow
+      if (scheduleTime.isBefore(now)) {
+        scheduleTime = scheduleTime.add(const Duration(days: 1));
       }
-    });
+
+      await NotificationService.schedulePrayer(
+        id: id++,
+        title: "Prayer Time",
+        body: "$name time",
+        time: scheduleTime,
+      );
+    }
   }
 
   String formatDuration(Duration d) {
@@ -302,7 +308,7 @@ class _PrayerScreenState extends State<PrayerScreen> {
 
       final enabled = prefs.getBool('notifications') ?? true;
 
-      // 🔥 ALWAYS TRY CACHED FIRST
+      // ✅ LOAD CACHED FIRST
       final cached = prefs.getString('cached_prayers');
 
       if (cached != null) {
@@ -310,62 +316,56 @@ class _PrayerScreenState extends State<PrayerScreen> {
 
         setState(() {
           prayerTimes = {
-            "fajr": applyOffset(parseTime(data["fajr"]), fajrOffset),
-            "sunrise": parseTime(data["sunrise"]),
-            "dhuhr": applyOffset(parseTime(data["dhuhr"]), dhuhrOffset),
-            "asr": applyOffset(parseTime(data["asr"]), asrOffset),
-            "maghrib": applyOffset(parseTime(data["maghrib"]), maghribOffset),
-            "isha": applyOffset(parseTime(data["isha"]), ishaOffset),
+            "fajr": applyOffset(parseTime(data["fajr"] ?? "00:00"), fajrOffset),
+            "sunrise": parseTime(data["sunrise"] ?? "00:00"),
+            "dhuhr": applyOffset(parseTime(data["dhuhr"] ?? "00:00"), dhuhrOffset),
+            "asr": applyOffset(parseTime(data["asr"] ?? "00:00"), asrOffset),
+            "maghrib": applyOffset(parseTime(data["maghrib"] ?? "00:00"), maghribOffset),
+            "isha": applyOffset(parseTime(data["isha"] ?? "00:00"), ishaOffset),
           };
           isOffline = true;
         });
 
         calculateNextPrayer();
-
-        if (enabled) {
-          await scheduleAllPrayers();
-        }
-
-      } else {
-        // ❌ only fail if NO cached
-        firstLoadFailed = true;
-        setState(() {});
       }
 
-      // 🔥 THEN TRY INTERNET (update if possible)
+      // 🔥 INTERNET UPDATE
       final hasInternet = connectivity != ConnectivityResult.none;
+      if (!hasInternet) {
+        print("Offline mode");
+      } else {
+        final pos = await LocationService.getUserLocation();
 
-      if (!hasInternet) return;
+        if (pos != null) {
+          await _loadCityFromPosition(pos);
 
-      final Position? pos = await LocationService.getUserLocation();
-      if (pos == null) return;
+          final result = await PrayerApiService.getPrayerTimes(
+            latitude: pos.latitude,
+            longitude: pos.longitude,
+            method: method,
+            madhhab: madhhab,
+          );
 
-      await _loadCityFromPosition(pos);
+          await prefs.setString('cached_prayers', jsonEncode(result));
 
-      final result = await PrayerApiService.getPrayerTimes(
-        latitude: pos.latitude,
-        longitude: pos.longitude,
-        method: method,
-        madhhab: madhhab,
-      );
+          setState(() {
+            prayerTimes = {
+              "fajr": applyOffset(parseTime(result["fajr"] ?? "00:00"), fajrOffset),
+              "sunrise": parseTime(result["sunrise"] ?? "00:00"),
+              "dhuhr": applyOffset(parseTime(result["dhuhr"] ?? "00:00"), dhuhrOffset),
+              "asr": applyOffset(parseTime(result["asr"] ?? "00:00"), asrOffset),
+              "maghrib": applyOffset(parseTime(result["maghrib"] ?? "00:00"), maghribOffset),
+              "isha": applyOffset(parseTime(result["isha"] ?? "00:00"), ishaOffset),
+            };
+            isOffline = false;
+            firstLoadFailed = false;
+          });
 
-      await prefs.setString('cached_prayers', jsonEncode(result));
+          calculateNextPrayer();
+        }
+      }
 
-      setState(() {
-        prayerTimes = {
-          "fajr": applyOffset(parseTime(result["fajr"] ?? "00:00"), fajrOffset),
-          "sunrise": parseTime(result["sunrise"] ?? "00:00"),
-          "dhuhr": applyOffset(parseTime(result["dhuhr"] ?? "00:00"), dhuhrOffset),
-          "asr": applyOffset(parseTime(result["asr"] ?? "00:00"), asrOffset),
-          "maghrib": applyOffset(parseTime(result["maghrib"] ?? "00:00"), maghribOffset),
-          "isha": applyOffset(parseTime(result["isha"] ?? "00:00"), ishaOffset),
-        };
-        isOffline = false;
-        firstLoadFailed = false;
-      });
-
-      calculateNextPrayer();
-
+      // ✅ NOTIFICATIONS (ONLY ONCE)
       if (enabled) {
         await scheduleAllPrayers();
       } else {

@@ -19,7 +19,7 @@ dependencies:
   in_app_purchase: ^3.1.13
   flutter_map_tile_caching: ^9.0.0
 
-
+  just_audio: ^0.9.36
 
 
   flutter_localizations:
@@ -72,6 +72,7 @@ flutter:
     - assets/more/
     - assets/quran/surah.json
     - assets/quran/surah/
+    - assets/audio/adhan.mp3
 flutter_launcher_icons:
   android: true
   ios: true

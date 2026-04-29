@@ -1,5 +1,4 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest_all.dart' as tzdata;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -7,14 +6,10 @@ class NotificationService {
   static final FlutterLocalNotificationsPlugin _plugin =
   FlutterLocalNotificationsPlugin();
 
+  // ✅ INIT
   static Future<void> init() async {
     tzdata.initializeTimeZones();
-    final androidPlugin = _plugin
-        .resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>();
 
-    final granted = await androidPlugin?.areNotificationsEnabled();
-    print("NOTIFICATION PERMISSION: $granted");
     const android = AndroidInitializationSettings('@mipmap/ic_launcher');
 
     const ios = DarwinInitializationSettings(
@@ -30,17 +25,13 @@ class NotificationService {
 
     await _plugin.initialize(settings);
 
+    // Android permission
     await _plugin
         .resolvePlatformSpecificImplementation<
         AndroidFlutterLocalNotificationsPlugin>()
         ?.requestNotificationsPermission();
 
-
-    await _plugin
-        .resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>()
-        ?.requestExactAlarmsPermission();
-
+    // iOS permission
     await _plugin
         .resolvePlatformSpecificImplementation<
         IOSFlutterLocalNotificationsPlugin>()
@@ -51,45 +42,34 @@ class NotificationService {
     );
   }
 
+  // ✅ SCHEDULE ONE
   static Future<void> schedulePrayer({
     required int id,
     required String title,
     required String body,
     required DateTime time,
   }) async {
-    final prefs = await SharedPreferences.getInstance();
-
-    final notificationsEnabled = prefs.getBool('notifications') ?? true;
-    final adhanEnabled = prefs.getBool('adhan') ?? true;
-
-    if (!notificationsEnabled) return;
-
+    final now = tz.TZDateTime.now(tz.local);
     final scheduled = tz.TZDateTime.from(time, tz.local);
 
-    if (scheduled.isBefore(tz.TZDateTime.now(tz.local))) {
-      return;
-    }
+    if (scheduled.isBefore(now)) return;
 
-    final androidDetails = AndroidNotificationDetails(
-      'adhan_channel_v2',
-      'Adhan Notifications',
-      channelDescription: 'Prayer time notifications with Adhan sound',
+    const androidDetails = AndroidNotificationDetails(
+      'prayer_channel_v1',
+      'Prayer Notifications',
+      channelDescription: 'Daily prayer notifications',
       importance: Importance.max,
       priority: Priority.high,
-      playSound: adhanEnabled,
-      sound: adhanEnabled
-          ? const RawResourceAndroidNotificationSound('adhan')
-          : null,
+      playSound: true,
     );
 
-    final iosDetails = DarwinNotificationDetails(
-      sound: adhanEnabled ? 'adhan.caf' : null,
+    const iosDetails = DarwinNotificationDetails(
       presentAlert: true,
       presentBadge: true,
-      presentSound: adhanEnabled,
+      presentSound: true,
     );
 
-    final details = NotificationDetails(
+    const details = NotificationDetails(
       android: androidDetails,
       iOS: iosDetails,
     );
@@ -106,22 +86,26 @@ class NotificationService {
     );
   }
 
-  static Future<void> testNotification() async {
-    final testTime = DateTime.now().add(const Duration(seconds: 10));
-
-    print("Scheduling test notification...");
-    print("NOW: ${DateTime.now()}");
-    print("TARGET: $testTime");
-
-    await schedulePrayer(
-      id: 999,
-      title: "Test Adhan",
-      body: "Should come in 10 seconds",
-      time: testTime,
-    );
-  }
-
+  // ✅ CANCEL
   static Future<void> cancelAll() async {
     await _plugin.cancelAll();
   }
+
+  // ✅ TEST
+  // static Future<void> testNotification() async {
+  //   await _plugin.show(
+  //     999,
+  //     "Test Notification",
+  //     "Instant test working",
+  //     const NotificationDetails(
+  //       android: AndroidNotificationDetails(
+  //         'test_channel_simple',
+  //         'Test Channel',
+  //         importance: Importance.max,
+  //         priority: Priority.high,
+  //         playSound: true,
+  //       ),
+  //     ),
+  //   );
+  // }
 }
