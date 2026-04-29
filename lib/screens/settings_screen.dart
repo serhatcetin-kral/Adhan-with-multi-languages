@@ -3,7 +3,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../main.dart';
 import '../l10n/app_localizations.dart';
-import '../services/audio_service.dart';
 import 'main_screen.dart';
 import '../services/notification_service.dart';
 
@@ -79,7 +78,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Future<void> saveSettings() async {
     final prefs = await SharedPreferences.getInstance();
 
-    await prefs.setString('language_code', selectedLanguage);
+    await prefs.setString('language', selectedLanguage);
     await prefs.setString('method', calculationMethod);
     await prefs.setString('madhhab', madhhab);
 
@@ -261,14 +260,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             onPressed: saveSettings,
             child: Text(loc.save),
           ),
-          const SizedBox(height: 10),
-
-          // ElevatedButton(
-          //   onPressed: () async {
-          //     await NotificationService.testNotification();
-          //   },
-          //   child: const Text("Test Notification (10 sec)"),
-          // ),
         ],
       ),
     );

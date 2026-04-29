@@ -152,9 +152,9 @@ class _PrayerScreenState extends State<PrayerScreen> {
     final lang = Localizations.localeOf(context).languageCode;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       child: Container(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           gradient: const LinearGradient(
             colors: [Color(0xFF2E7D32), Color(0xFF4CAF50)],
@@ -487,18 +487,18 @@ class _PrayerScreenState extends State<PrayerScreen> {
           // ✅ HEADER ADDED
           _buildHeader(),
 
-          const SizedBox(height: 10),
+          const SizedBox(height: 6),
 
           // 🔥 NEXT PRAYER
           Text(
             loc.nextPrayer,
-            style: const TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 14),
           ),
 
           Text(
             getPrayerName(loc, nextPrayer),
             style: const TextStyle(
-              fontSize: 24,
+              fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -508,13 +508,13 @@ class _PrayerScreenState extends State<PrayerScreen> {
           Text(
             formatDuration(remainingTime),
             style: const TextStyle(
-              fontSize: 34,
+              fontSize: 28,
               fontWeight: FontWeight.bold,
               color: Colors.green,
             ),
           ),
 
-          const SizedBox(height: 10),
+          const SizedBox(height: 6),
           const Divider(),
 
           // 🔥 PRAYER LIST
@@ -561,12 +561,14 @@ class _PrayerScreenState extends State<PrayerScreen> {
     final isNext = key == nextPrayer;
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
       decoration: BoxDecoration(
         color: isNext ? Colors.green.withOpacity(0.12) : Colors.white,
         borderRadius: BorderRadius.circular(12),
       ),
       child: ListTile(
+        dense: true,
+        visualDensity: const VisualDensity(vertical: -2),
         leading: Icon(
           getPrayerIcon(key),
           color: isNext ? Colors.green : Colors.grey,
@@ -581,7 +583,7 @@ class _PrayerScreenState extends State<PrayerScreen> {
 
         trailing: Text(
           formatTime(time),
-          style: TextStyle(
+          style: TextStyle(fontSize: 14,
             fontWeight: isNext ? FontWeight.bold : FontWeight.normal,
           ),
         ),
