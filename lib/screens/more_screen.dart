@@ -8,16 +8,27 @@ class MoreScreen extends StatelessWidget {
   const MoreScreen({super.key});
 
   void shareApp(BuildContext context) {
-    final loc = AppLocalizations.of(context)!;
     final box = context.findRenderObject();
+
+    const androidLink =
+        "https://play.google.com/store/apps/details?id=com.serhatcetin.muslimqiblafinder";
+
+    const iosLink =
+        "https://apps.apple.com/us/app/sala-prayer-times/id6759267391";
+
+    const text =
+        "🕌 Muslim Salah Prayer Time App\n\n"
+        "Check out my prayer app 👇\n\n"
+        "📱 Android:\n$androidLink\n\n"
+        "🍎 iOS:\n$iosLink";
 
     if (box is RenderBox) {
       Share.share(
-        loc.shareAppText,
+        text,
         sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
       );
     } else {
-      Share.share(loc.shareAppText);
+      Share.share(text);
     }
   }
   Future<void> rateApp() async {
@@ -26,7 +37,7 @@ class MoreScreen extends StatelessWidget {
     );
 
     final androidUrl = Uri.parse(
-      "https://play.google.com/store/apps/details?id=com.your.package",
+        "https://play.google.com/store/apps/details?id=com.serhatcetin.muslimqiblafinder",
     );
 
     final url = Platform.isIOS ? iosUrl : androidUrl;
