@@ -79,7 +79,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Future<void> saveSettings() async {
     final prefs = await SharedPreferences.getInstance();
 
-    await prefs.setString('language', selectedLanguage);
+    await prefs.setString('language_code', selectedLanguage);
     await prefs.setString('method', calculationMethod);
     await prefs.setString('madhhab', madhhab);
 

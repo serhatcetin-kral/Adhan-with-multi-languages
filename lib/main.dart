@@ -1,6 +1,7 @@
 import 'package:adhan_app/screens/dua_screen.dart';
 import 'package:adhan_app/screens/hijri_calendar.dart';
 import 'package:adhan_app/screens/quran_screen.dart';
+import 'package:adhan_app/screens/settings_screen.dart';
 import 'package:adhan_app/screens/zikr_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -112,6 +113,7 @@ class _MyAppState extends State<MyApp> {
         '/zikr': (context) => const ZikrScreen(),
         '/calendar': (context) => const CalendarScreen(),
         '/quran-test': (_) => const QuranScreen(),
+        '/settings': (_) => const SettingsScreen(),
       },
 
       // 🚀 START SCREEN

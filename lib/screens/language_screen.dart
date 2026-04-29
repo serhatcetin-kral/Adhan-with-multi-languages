@@ -1,3 +1,4 @@
+import 'package:adhan_app/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../main.dart';
@@ -68,7 +69,7 @@ class _LanguageScreenState extends State<LanguageScreen>
 
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (_) => const MainScreen()),
+      MaterialPageRoute(builder: (_) => const SettingsScreen()),
     );
   }
 

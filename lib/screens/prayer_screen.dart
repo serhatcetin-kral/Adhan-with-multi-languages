@@ -222,14 +222,11 @@ class _PrayerScreenState extends State<PrayerScreen> {
   Future<void> scheduleAllPrayers() async {
     await NotificationService.cancelAll();
 
-    int id = 1;
+    int id = 0;
     final now = DateTime.now();
 
-    for (final entry in prayerTimes.entries) {
-      final name = entry.key;
-      final time = entry.value;
-
-      DateTime scheduleTime = DateTime(
+    prayerTimes.forEach((name, time) {
+      final scheduleTime = DateTime(
         now.year,
         now.month,
         now.day,
@@ -237,18 +234,15 @@ class _PrayerScreenState extends State<PrayerScreen> {
         time.minute,
       );
 
-      // 🔥 FIX: if time passed → schedule for tomorrow
-      if (scheduleTime.isBefore(now)) {
-        scheduleTime = scheduleTime.add(const Duration(days: 1));
+      if (scheduleTime.isAfter(now)) {
+        NotificationService.schedulePrayer(
+          id: id++,
+          title: "Prayer Time",
+          body: "$name time",
+          time: scheduleTime,
+        );
       }
-
-      await NotificationService.schedulePrayer(
-        id: id++,
-        title: "Prayer Time",
-        body: "$name time",
-        time: scheduleTime,
-      );
-    }
+    });
   }
 
   String formatDuration(Duration d) {
@@ -308,72 +302,89 @@ class _PrayerScreenState extends State<PrayerScreen> {
 
       final enabled = prefs.getBool('notifications') ?? true;
 
-      // ✅ LOAD CACHED FIRST
-      final cached = prefs.getString('cached_prayers');
-
-      if (cached != null) {
-        final data = jsonDecode(cached);
-
-        setState(() {
-          prayerTimes = {
-            "fajr": applyOffset(parseTime(data["fajr"] ?? "00:00"), fajrOffset),
-            "sunrise": parseTime(data["sunrise"] ?? "00:00"),
-            "dhuhr": applyOffset(parseTime(data["dhuhr"] ?? "00:00"), dhuhrOffset),
-            "asr": applyOffset(parseTime(data["asr"] ?? "00:00"), asrOffset),
-            "maghrib": applyOffset(parseTime(data["maghrib"] ?? "00:00"), maghribOffset),
-            "isha": applyOffset(parseTime(data["isha"] ?? "00:00"), ishaOffset),
-          };
-          isOffline = true;
-        });
-
-        calculateNextPrayer();
-      }
-
-      // 🔥 INTERNET UPDATE
       final hasInternet = connectivity != ConnectivityResult.none;
+
       if (!hasInternet) {
-        print("Offline mode");
-      } else {
-        final pos = await LocationService.getUserLocation();
+        final cached = prefs.getString('cached_prayers');
 
-        if (pos != null) {
-          await _loadCityFromPosition(pos);
+        if (cached != null) {
+          isOffline = true;
 
-          final result = await PrayerApiService.getPrayerTimes(
-            latitude: pos.latitude,
-            longitude: pos.longitude,
-            method: method,
-            madhhab: madhhab,
-          );
-
-          await prefs.setString('cached_prayers', jsonEncode(result));
+          final data = jsonDecode(cached);
 
           setState(() {
             prayerTimes = {
-              "fajr": applyOffset(parseTime(result["fajr"] ?? "00:00"), fajrOffset),
-              "sunrise": parseTime(result["sunrise"] ?? "00:00"),
-              "dhuhr": applyOffset(parseTime(result["dhuhr"] ?? "00:00"), dhuhrOffset),
-              "asr": applyOffset(parseTime(result["asr"] ?? "00:00"), asrOffset),
-              "maghrib": applyOffset(parseTime(result["maghrib"] ?? "00:00"), maghribOffset),
-              "isha": applyOffset(parseTime(result["isha"] ?? "00:00"), ishaOffset),
+              "fajr": applyOffset(parseTime(data["fajr"] ?? "00:00"), fajrOffset),
+              "sunrise": parseTime(data["sunrise"] ?? "00:00"),
+              "dhuhr": applyOffset(parseTime(data["dhuhr"] ?? "00:00"), dhuhrOffset),
+              "asr": applyOffset(parseTime(data["asr"] ?? "00:00"), asrOffset),
+              "maghrib": applyOffset(parseTime(data["maghrib"] ?? "00:00"), maghribOffset),
+              "isha": applyOffset(parseTime(data["isha"] ?? "00:00"), ishaOffset),
             };
-            isOffline = false;
-            firstLoadFailed = false;
           });
 
           calculateNextPrayer();
+
+          final prefs = await SharedPreferences.getInstance();
+          final enabled = prefs.getBool('notifications') ?? true;
+
+          if (enabled) {
+            await scheduleAllPrayers();
+          } else {
+            await NotificationService.cancelAll();
+          }
+          return;
+        } else {
+          firstLoadFailed = true;
+          setState(() {});
+          return;
         }
       }
 
-      // ✅ NOTIFICATIONS (ONLY ONCE)
+      final Position? pos = await LocationService.getUserLocation();
+
+      if (pos == null) {
+        firstLoadFailed = true;
+        setState(() {});
+        return;
+      }
+
+// ✅ LOAD CITY HERE (AFTER LOCATION IS READY)
+      await _loadCityFromPosition(pos);
+
+      final result = await PrayerApiService.getPrayerTimes(
+        latitude: pos!.latitude,
+        longitude: pos.longitude,
+        method: method,
+        madhhab: madhhab,
+      );
+
+      await prefs.setString('cached_prayers', jsonEncode(result));
+
+      isOffline = false;
+      firstLoadFailed = false;
+
+      setState(() {
+        prayerTimes = {
+          "fajr": applyOffset(parseTime(result["fajr"] ?? "00:00"), fajrOffset),
+          "sunrise": parseTime(result["sunrise"] ?? "00:00"),
+          "dhuhr": applyOffset(parseTime(result["dhuhr"] ?? "00:00"), dhuhrOffset),
+          "asr": applyOffset(parseTime(result["asr"] ?? "00:00"), asrOffset),
+          "maghrib": applyOffset(parseTime(result["maghrib"] ?? "00:00"), maghribOffset),
+          "isha": applyOffset(parseTime(result["isha"] ?? "00:00"), ishaOffset),
+        };
+      });
+
+      calculateNextPrayer();
+
       if (enabled) {
         await scheduleAllPrayers();
       } else {
         await NotificationService.cancelAll();
       }
-
     } catch (e) {
-      print("Error: $e");
+      firstLoadFailed = true;
+      setState(() {});
     }
   }
 
@@ -584,7 +595,7 @@ class _PrayerScreenState extends State<PrayerScreen> {
       padding: const EdgeInsets.all(10),
       color: Colors.orange,
       child: const Text(
-        "Offline Mode - Showing saved data",
+        "Offline Mode",
         textAlign: TextAlign.center,
         style: TextStyle(color: Colors.white),
       ),

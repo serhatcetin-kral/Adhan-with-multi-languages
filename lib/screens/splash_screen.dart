@@ -22,9 +22,8 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _checkFirstLaunch() async {
     final prefs = await SharedPreferences.getInstance();
 
-    bool isFirstLaunch = prefs.getBool('first_launch') ?? true;
+    final isFirstLaunch = prefs.getBool('first_launch') ?? true;
 
-    // small delay for splash feel
     await Future.delayed(const Duration(seconds: 2));
 
     if (!mounted) return;
@@ -44,17 +43,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.mosque, size: 80),
-            SizedBox(height: 20),
-            CircularProgressIndicator(),
-          ],
-        ),
+    return const Scaffold(
+      body: Center(
+        child: CircularProgressIndicator(),
       ),
     );
   }
