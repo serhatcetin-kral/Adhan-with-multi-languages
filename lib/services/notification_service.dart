@@ -1,20 +1,20 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:timezone/timezone.dart' as tz;
-import 'package:timezone/data/latest_all.dart' as tz;
-import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:timezone/data/latest_all.dart' as tzdata;
+import 'package:timezone/timezone.dart' as tz;
 
 class NotificationService {
   static final FlutterLocalNotificationsPlugin _plugin =
   FlutterLocalNotificationsPlugin();
 
-  // ✅ INIT
   static Future<void> init() async {
-    tz.initializeTimeZones();
+    tzdata.initializeTimeZones();
+    final androidPlugin = _plugin
+        .resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>();
 
-    final String timeZoneName = await FlutterTimezone.getLocalTimezone();
-    tz.setLocalLocation(tz.getLocation(timeZoneName));
-
+    final granted = await androidPlugin?.areNotificationsEnabled();
+    print("NOTIFICATION PERMISSION: $granted");
     const android = AndroidInitializationSettings('@mipmap/ic_launcher');
 
     const ios = DarwinInitializationSettings(
@@ -30,13 +30,17 @@ class NotificationService {
 
     await _plugin.initialize(settings);
 
-    // Android permission
     await _plugin
         .resolvePlatformSpecificImplementation<
         AndroidFlutterLocalNotificationsPlugin>()
         ?.requestNotificationsPermission();
 
-    // iOS permission
+
+    await _plugin
+        .resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestExactAlarmsPermission();
+
     await _plugin
         .resolvePlatformSpecificImplementation<
         IOSFlutterLocalNotificationsPlugin>()
@@ -47,7 +51,6 @@ class NotificationService {
     );
   }
 
-  // ✅ SCHEDULE PRAYER
   static Future<void> schedulePrayer({
     required int id,
     required String title,
@@ -56,33 +59,34 @@ class NotificationService {
   }) async {
     final prefs = await SharedPreferences.getInstance();
 
-    final bool notifications = prefs.getBool('notifications') ?? true;
-    final bool adhan = prefs.getBool('adhan') ?? true;
+    final notificationsEnabled = prefs.getBool('notifications') ?? true;
+    final adhanEnabled = prefs.getBool('adhan') ?? true;
 
-    // 🔕 If notifications OFF → stop
-    if (!notifications) return;
+    if (!notificationsEnabled) return;
 
     final scheduled = tz.TZDateTime.from(time, tz.local);
 
-    // ✅ Android
+    if (scheduled.isBefore(tz.TZDateTime.now(tz.local))) {
+      return;
+    }
+
     final androidDetails = AndroidNotificationDetails(
-      'adhan_channel',
+      'adhan_channel_v2',
       'Adhan Notifications',
-      channelDescription: 'Prayer time notifications',
+      channelDescription: 'Prayer time notifications with Adhan sound',
       importance: Importance.max,
       priority: Priority.high,
-      playSound: adhan,
-      sound: adhan
+      playSound: adhanEnabled,
+      sound: adhanEnabled
           ? const RawResourceAndroidNotificationSound('adhan')
           : null,
     );
 
-    // ✅ iOS
     final iosDetails = DarwinNotificationDetails(
-      sound: adhan ? 'adhan.caf' : null,
+      sound: adhanEnabled ? 'adhan.caf' : null,
       presentAlert: true,
       presentBadge: true,
-      presentSound: adhan,
+      presentSound: adhanEnabled,
     );
 
     final details = NotificationDetails(
@@ -96,14 +100,27 @@ class NotificationService {
       body,
       scheduled,
       details,
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
       UILocalNotificationDateInterpretation.absoluteTime,
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      matchDateTimeComponents: DateTimeComponents.time,
     );
   }
 
-  // ✅ CANCEL ALL
+  static Future<void> testNotification() async {
+    final testTime = DateTime.now().add(const Duration(seconds: 10));
+
+    print("Scheduling test notification...");
+    print("NOW: ${DateTime.now()}");
+    print("TARGET: $testTime");
+
+    await schedulePrayer(
+      id: 999,
+      title: "Test Adhan",
+      body: "Should come in 10 seconds",
+      time: testTime,
+    );
+  }
+
   static Future<void> cancelAll() async {
     await _plugin.cancelAll();
   }

@@ -11,22 +11,26 @@ class PrayerApiService {
     final url =
         "https://api.aladhan.com/v1/timings?latitude=$latitude&longitude=$longitude&method=$method&school=$madhhab";
 
-    final response = await http.get(Uri.parse(url));
+    try {
+      final response = await http.get(Uri.parse(url));
 
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        final timings = data['data']['timings'];
 
-      final timings = data['data']['timings'];
-
-      return {
-        "fajr": timings['Fajr'],
-        "sunrise": timings['Sunrise'],
-        "dhuhr": timings['Dhuhr'],
-        "asr": timings['Asr'],
-        "maghrib": timings['Maghrib'],
-        "isha": timings['Isha'],
-      };
-    } else {
+        return {
+          "fajr": timings['Fajr'] ?? "00:00",
+          "sunrise": timings['Sunrise'] ?? "00:00",
+          "dhuhr": timings['Dhuhr'] ?? "00:00",
+          "asr": timings['Asr'] ?? "00:00",
+          "maghrib": timings['Maghrib'] ?? "00:00",
+          "isha": timings['Isha'] ?? "00:00",
+        };
+      } else {
+        throw Exception("API error: ${response.statusCode}");
+      }
+    } catch (e) {
+      print("API ERROR: $e");
       throw Exception("Failed to load prayer times");
     }
   }

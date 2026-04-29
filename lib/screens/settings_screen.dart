@@ -260,6 +260,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
             onPressed: saveSettings,
             child: Text(loc.save),
           ),
+          const SizedBox(height: 10),
+
+          ElevatedButton(
+            onPressed: () async {
+              await NotificationService.testNotification();
+            },
+            child: const Text("Test Adhan Notification (10 sec)"),
+          ),
         ],
       ),
     );

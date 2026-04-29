@@ -302,67 +302,54 @@ class _PrayerScreenState extends State<PrayerScreen> {
 
       final enabled = prefs.getBool('notifications') ?? true;
 
-      final hasInternet = connectivity != ConnectivityResult.none;
+      // 🔥 ALWAYS TRY CACHED FIRST
+      final cached = prefs.getString('cached_prayers');
 
-      if (!hasInternet) {
-        final cached = prefs.getString('cached_prayers');
+      if (cached != null) {
+        final data = jsonDecode(cached);
 
-        if (cached != null) {
+        setState(() {
+          prayerTimes = {
+            "fajr": applyOffset(parseTime(data["fajr"]), fajrOffset),
+            "sunrise": parseTime(data["sunrise"]),
+            "dhuhr": applyOffset(parseTime(data["dhuhr"]), dhuhrOffset),
+            "asr": applyOffset(parseTime(data["asr"]), asrOffset),
+            "maghrib": applyOffset(parseTime(data["maghrib"]), maghribOffset),
+            "isha": applyOffset(parseTime(data["isha"]), ishaOffset),
+          };
           isOffline = true;
+        });
 
-          final data = jsonDecode(cached);
+        calculateNextPrayer();
 
-          setState(() {
-            prayerTimes = {
-              "fajr": applyOffset(parseTime(data["fajr"] ?? "00:00"), fajrOffset),
-              "sunrise": parseTime(data["sunrise"] ?? "00:00"),
-              "dhuhr": applyOffset(parseTime(data["dhuhr"] ?? "00:00"), dhuhrOffset),
-              "asr": applyOffset(parseTime(data["asr"] ?? "00:00"), asrOffset),
-              "maghrib": applyOffset(parseTime(data["maghrib"] ?? "00:00"), maghribOffset),
-              "isha": applyOffset(parseTime(data["isha"] ?? "00:00"), ishaOffset),
-            };
-          });
-
-          calculateNextPrayer();
-
-          final prefs = await SharedPreferences.getInstance();
-          final enabled = prefs.getBool('notifications') ?? true;
-
-          if (enabled) {
-            await scheduleAllPrayers();
-          } else {
-            await NotificationService.cancelAll();
-          }
-          return;
-        } else {
-          firstLoadFailed = true;
-          setState(() {});
-          return;
+        if (enabled) {
+          await scheduleAllPrayers();
         }
-      }
 
-      final Position? pos = await LocationService.getUserLocation();
-
-      if (pos == null) {
+      } else {
+        // ❌ only fail if NO cached
         firstLoadFailed = true;
         setState(() {});
-        return;
       }
 
-// ✅ LOAD CITY HERE (AFTER LOCATION IS READY)
+      // 🔥 THEN TRY INTERNET (update if possible)
+      final hasInternet = connectivity != ConnectivityResult.none;
+
+      if (!hasInternet) return;
+
+      final Position? pos = await LocationService.getUserLocation();
+      if (pos == null) return;
+
       await _loadCityFromPosition(pos);
 
       final result = await PrayerApiService.getPrayerTimes(
-        latitude: pos!.latitude,
+        latitude: pos.latitude,
         longitude: pos.longitude,
         method: method,
         madhhab: madhhab,
       );
 
       await prefs.setString('cached_prayers', jsonEncode(result));
-
-      isOffline = false;
-      firstLoadFailed = false;
 
       setState(() {
         prayerTimes = {
@@ -373,6 +360,8 @@ class _PrayerScreenState extends State<PrayerScreen> {
           "maghrib": applyOffset(parseTime(result["maghrib"] ?? "00:00"), maghribOffset),
           "isha": applyOffset(parseTime(result["isha"] ?? "00:00"), ishaOffset),
         };
+        isOffline = false;
+        firstLoadFailed = false;
       });
 
       calculateNextPrayer();
@@ -382,9 +371,9 @@ class _PrayerScreenState extends State<PrayerScreen> {
       } else {
         await NotificationService.cancelAll();
       }
+
     } catch (e) {
-      firstLoadFailed = true;
-      setState(() {});
+      print("Error: $e");
     }
   }
 
@@ -595,7 +584,7 @@ class _PrayerScreenState extends State<PrayerScreen> {
       padding: const EdgeInsets.all(10),
       color: Colors.orange,
       child: const Text(
-        "Offline Mode",
+        "Offline Mode - Showing saved data",
         textAlign: TextAlign.center,
         style: TextStyle(color: Colors.white),
       ),
