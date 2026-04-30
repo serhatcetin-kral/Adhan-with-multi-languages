@@ -5,10 +5,11 @@ import 'package:timezone/timezone.dart' as tz;
 class NotificationService {
   static final FlutterLocalNotificationsPlugin _plugin =
   FlutterLocalNotificationsPlugin();
-
-  // ✅ INIT
   static Future<void> init() async {
     tzdata.initializeTimeZones();
+
+    // ✅ SIMPLE SAFE FIX
+    tz.setLocalLocation(tz.local);
 
     const android = AndroidInitializationSettings('@mipmap/ic_launcher');
 
@@ -25,13 +26,11 @@ class NotificationService {
 
     await _plugin.initialize(settings);
 
-    // Android permission
     await _plugin
         .resolvePlatformSpecificImplementation<
         AndroidFlutterLocalNotificationsPlugin>()
         ?.requestNotificationsPermission();
 
-    // iOS permission
     await _plugin
         .resolvePlatformSpecificImplementation<
         IOSFlutterLocalNotificationsPlugin>()
@@ -48,11 +47,10 @@ class NotificationService {
     required String title,
     required String body,
     required DateTime time,
-  }) async {
-    final now = tz.TZDateTime.now(tz.local);
-    final scheduled = tz.TZDateTime.from(time, tz.local);
 
-    if (scheduled.isBefore(now)) return;
+  }) async {
+    final scheduled = tz.TZDateTime.from(time, tz.local);
+    print("Scheduled notification at: $scheduled");
 
     const androidDetails = AndroidNotificationDetails(
       'prayer_channel_v1',
@@ -80,7 +78,7 @@ class NotificationService {
       body,
       scheduled,
       details,
-      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
       UILocalNotificationDateInterpretation.absoluteTime,
     );

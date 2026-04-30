@@ -35,7 +35,18 @@ class _PrayerScreenState extends State<PrayerScreen> {
   @override
   void initState() {
     super.initState();
-    loadPrayerTimes();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      // 1. Wait for the UI to be ready and give the system a breath
+      await Future.delayed(const Duration(milliseconds: 500));
+
+      // 2. Check if the user is still on this screen before running logic
+      if (mounted) {
+        loadPrayerTimes();
+      }
+    });
+
+    // Start the ticking clock for the "Remaining Time"
     startTimer();
   }
 
@@ -50,47 +61,42 @@ class _PrayerScreenState extends State<PrayerScreen> {
   Future<void> loadPrayerTimes() async {
     final prefs = await SharedPreferences.getInstance();
 
-    // 1. LOAD CACHE & METADATA IMMEDIATELY
+    // 1. TRY TO LOAD CACHED DATA IMMEDIATELY
     final String? cached = prefs.getString('cached_prayers');
     final String? savedCity = prefs.getString('last_city_name');
-    final String? lastUpdate = prefs.getString('last_update_time');
+    final String? savedUpdate = prefs.getString('last_update_time');
 
-    if (cached != null) {
+    if (cached != null && mounted) {
       final Map<String, dynamic> data = jsonDecode(cached);
-      if (mounted) {
-        setState(() {
-          // Recover saved info
-          _cityName = savedCity;
-          _lastSavedTimeStr = lastUpdate;
-
-          prayerTimes = {
-            "fajr": applyOffset(parseTime(data["fajr"]), prefs.getInt('fajrOffset') ?? 0),
-            "sunrise": parseTime(data["sunrise"]),
-            "dhuhr": applyOffset(parseTime(data["dhuhr"]), prefs.getInt('dhuhrOffset') ?? 0),
-            "asr": applyOffset(parseTime(data["asr"]), prefs.getInt('asrOffset') ?? 0),
-            "maghrib": applyOffset(parseTime(data["maghrib"]), prefs.getInt('maghribOffset') ?? 0),
-            "isha": applyOffset(parseTime(data["isha"]), prefs.getInt('ishaOffset') ?? 0),
-          };
-          isOffline = true;
-          firstLoadFailed = false;
-        });
-        calculateNextPrayer();
-      }
+      setState(() {
+        _cityName = savedCity;
+        _lastSavedTimeStr = savedUpdate;
+        prayerTimes = _mapResultToPrayerTimes(data, prefs);
+      });
+      // Calculate next prayer immediately so the timer has data
+      calculateNextPrayer();
     }
 
-    // 2. CHECK INTERNET
+    // 2. CHECK CONNECTIVITY
     final connectivityResult = await Connectivity().checkConnectivity();
     final hasInternet = !connectivityResult.contains(ConnectivityResult.none);
 
     if (!hasInternet) {
-      if (prayerTimes.isEmpty && mounted) setState(() => firstLoadFailed = true);
+      if (prayerTimes.isEmpty && mounted) {
+        setState(() => firstLoadFailed = true);
+      } else if (mounted) {
+        setState(() => isOffline = true);
+      }
       return;
     }
 
-    // 3. REFRESH FROM API
+    // 3. FETCH FRESH DATA FROM API
     try {
       final Position? pos = await LocationService.getUserLocation();
-      if (pos == null) return;
+      if (pos == null) {
+        if (prayerTimes.isEmpty && mounted) setState(() => firstLoadFailed = true);
+        return;
+      }
 
       await _loadCityFromPosition(pos);
 
@@ -101,7 +107,6 @@ class _PrayerScreenState extends State<PrayerScreen> {
         madhhab: getMadhhabNumber(prefs.getString('madhhab') ?? 'hanafi'),
       );
 
-      // Generate current timestamp
       final String nowStr = DateFormat('HH:mm (MMM d)').format(DateTime.now());
 
       // SAVE TO STORAGE
@@ -114,12 +119,29 @@ class _PrayerScreenState extends State<PrayerScreen> {
           _lastSavedTimeStr = nowStr;
           isOffline = false;
           firstLoadFailed = false;
-          // Update prayerTimes with fresh result... (omitted for brevity)
+          prayerTimes = _mapResultToPrayerTimes(result, prefs);
         });
+        calculateNextPrayer();
+        await scheduleAllPrayers();
       }
     } catch (e) {
-      if (prayerTimes.isEmpty && mounted) setState(() => firstLoadFailed = true);
+      print("Error fetching prayers: $e");
+      if (prayerTimes.isEmpty && mounted) {
+        setState(() => firstLoadFailed = true);
+      }
     }
+  }
+
+// Helper to avoid repeating the mapping logic
+  Map<String, TimeOfDay> _mapResultToPrayerTimes(Map<String, dynamic> result, SharedPreferences prefs) {
+    return {
+      "fajr": applyOffset(parseTime(result["fajr"]), prefs.getInt('fajrOffset') ?? 0),
+      "sunrise": parseTime(result["sunrise"]),
+      "dhuhr": applyOffset(parseTime(result["dhuhr"]), prefs.getInt('dhuhrOffset') ?? 0),
+      "asr": applyOffset(parseTime(result["asr"]), prefs.getInt('asrOffset') ?? 0),
+      "maghrib": applyOffset(parseTime(result["maghrib"]), prefs.getInt('maghribOffset') ?? 0),
+      "isha": applyOffset(parseTime(result["isha"]), prefs.getInt('ishaOffset') ?? 0),
+    };
   }
 
   // Widget buildOfflineBanner() {
@@ -434,13 +456,35 @@ class _PrayerScreenState extends State<PrayerScreen> {
 
   Future<void> scheduleAllPrayers() async {
     await NotificationService.cancelAll();
+
     int id = 0;
     final now = DateTime.now();
-    prayerTimes.forEach((name, time) {
-      final scheduleTime = DateTime(now.year, now.month, now.day, time.hour, time.minute);
-      if (scheduleTime.isAfter(now)) {
-        NotificationService.schedulePrayer(id: id++, title: "Prayer Time", body: "$name time", time: scheduleTime);
+
+    for (final entry in prayerTimes.entries) {
+      final name = entry.key;
+      final time = entry.value;
+
+      DateTime scheduleTime = DateTime(
+        now.year,
+        now.month,
+        now.day,
+        time.hour,
+        time.minute,
+      );
+
+      // 🔥 FIX: if passed → schedule tomorrow
+      if (scheduleTime.isBefore(now)) {
+        scheduleTime = scheduleTime.add(const Duration(days: 1));
       }
-    });
+
+      print("Scheduling $name at $scheduleTime");
+
+      await NotificationService.schedulePrayer(
+        id: id++,
+        title: "Prayer Time",
+        body: "$name time",
+        time: scheduleTime,
+      );
+    }
   }
 }
