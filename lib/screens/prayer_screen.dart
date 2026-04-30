@@ -14,7 +14,6 @@ import '../services/notification_service.dart';
 import '../services/prayer_api_service.dart';
 import '../services/app_location_service.dart';
 
-
 class PrayerScreen extends StatefulWidget {
   const PrayerScreen({super.key});
 
@@ -33,366 +32,129 @@ class _PrayerScreenState extends State<PrayerScreen> {
   Timer? timer;
   String? _cityName;
 
-  String getHijriMonth(int month, String lang) {
-    const months = {
-      'en': [
-        "Muharram","Safar","Rabi al-Awwal","Rabi al-Thani",
-        "Jumada al-Awwal","Jumada al-Thani",
-        "Rajab","Sha'ban","Ramadan","Shawwal",
-        "Dhul-Qi'dah","Dhul-Hijjah"
-      ],
-      'tr': [
-        "Muharrem","Safer","Rebiülevvel","Rebiülahir",
-        "Cemaziyelevvel","Cemaziyelahir",
-        "Recep","Şaban","Ramazan","Şevval",
-        "Zilkade","Zilhicce"
-      ],
-      'ar': [
-        "محرم","صفر","ربيع الأول","ربيع الثاني",
-        "جمادى الأولى","جمادى الآخرة",
-        "رجب","شعبان","رمضان","شوال",
-        "ذو القعدة","ذو الحجة"
-      ],
-      'fr': [
-        "Mousharram", "Safar", "Rabi' al-awwal", "Rabi' ath-thani",
-        "Joumada al-oula", "Joumada ath-thania",
-        "Rajab", "Cha'bane", "Ramadan", "Chawwal",
-        "Dhou al-qi'da", "Dhou al-hijja"
-      ],
-      'de': [
-        "Muharram", "Safar", "Rabi' al-awwal", "Rabi' ath-thani",
-        "Dschumada l-ula", "Dschumada th-thaniya",
-        "Radschab", "Scha'ban", "Ramadan", "Schawwal",
-        "Dhu l-qa'da", "Dhu l-hiddscha"
-      ],
-      'zh': [
-        "穆哈兰姆月", "色法尔月", "雷比欧阿沃尔月", "雷比欧阿色尼月",
-        "朱马达·欧拉月", "朱马达·阿色尼月",
-        "赖哲卜月", "舍尔班月", "赖买丹月", "闪瓦鲁月",
-        "都尔喀德月", "都尔黑哲月"
-      ]
-    };
-
-    return months[lang]?[month - 1] ?? months['en']![month - 1];
-  }
-
   @override
   void initState() {
     super.initState();
     loadPrayerTimes();
     startTimer();
-
-  }
-  Future<void> _loadCityFromPosition(Position position) async {
-    try {
-      final placemarks = await placemarkFromCoordinates(
-        position.latitude,
-        position.longitude,
-      );
-
-      if (placemarks.isEmpty) {
-        setState(() {
-          _cityName = "Unknown location";
-        });
-        return;
-      }
-
-      final place = placemarks.first;
-
-      setState(() {
-        _cityName =
-        "${place.locality ?? 'Unknown'}, ${place.subAdministrativeArea ?? ''}";
-      });
-
-    } catch (e) {
-      setState(() {
-        _cityName = "Location error";
-      });
-    }
-  }
-  Future<void> _loadCity() async {
-    try {
-      final position = await LocationService.getUserLocation();
-
-      if (position == null) {
-        setState(() {
-          _cityName = "Location off";
-        });
-        return;
-      }
-
-      final placemarks = await placemarkFromCoordinates(
-        position.latitude,
-        position.longitude,
-      );
-
-      if (placemarks.isEmpty) {
-        setState(() {
-          _cityName = "Unknown location";
-        });
-        return;
-      }
-
-      final place = placemarks.first;
-
-      setState(() {
-        _cityName =
-        "${place.locality ?? 'Unknown'}, ${place.subAdministrativeArea ?? ''}";
-      });
-
-    } catch (e) {
-      setState(() {
-        _cityName = "Location error";
-      });
-    }
-  }
-  Widget _buildHeader() {
-    final now = DateTime.now();
-    final hijri = HijriCalendar.fromDate(now);
-    final lang = Localizations.localeOf(context).languageCode;
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color(0xFF2E7D32), Color(0xFF4CAF50)],
-          ),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-
-            // 📍 LOCATION
-            Row(
-              children: [
-                const Icon(Icons.location_on, color: Colors.white),
-                const SizedBox(width: 6),
-                Expanded(
-                  child: Text(
-                    _cityName?.isNotEmpty == true
-                        ? _cityName!
-                        : "Fetching location...",
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 10),
-
-            // 📅 GREGORIAN DATE (MULTI LANGUAGE)
-            Row(
-              children: [
-                const Icon(Icons.calendar_today,
-                    color: Colors.white70, size: 18),
-                const SizedBox(width: 6),
-                Text(
-                  DateFormat.yMMMMEEEEd(lang).format(now),
-                  style: const TextStyle(color: Colors.white70),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 6),
-
-            // 🌙 HIJRI DATE (MULTI LANGUAGE)
-            Row(
-              children: [
-                const Icon(Icons.brightness_2,
-                    color: Colors.white70, size: 18),
-                const SizedBox(width: 6),
-                Text(
-                  "${hijri.hDay} ${getHijriMonth(hijri.hMonth, lang)} ${hijri.hYear}",
-                  style: const TextStyle(color: Colors.white70),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
   }
 
-  Future<void> scheduleAllPrayers() async {
-    await NotificationService.cancelAll();
-
-    int id = 0;
-    final now = DateTime.now();
-
-    prayerTimes.forEach((name, time) {
-      final scheduleTime = DateTime(
-        now.year,
-        now.month,
-        now.day,
-        time.hour,
-        time.minute,
-      );
-
-      if (scheduleTime.isAfter(now)) {
-        NotificationService.schedulePrayer(
-          id: id++,
-          title: "Prayer Time",
-          body: "$name time",
-          time: scheduleTime,
-        );
-      }
-    });
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
   }
 
-  String formatDuration(Duration d) {
-    final hours = d.inHours;
-    final minutes = d.inMinutes % 60;
-    final seconds = d.inSeconds % 60;
-
-    return "${hours.toString().padLeft(2, '0')}:"
-        "${minutes.toString().padLeft(2, '0')}:"
-        "${seconds.toString().padLeft(2, '0')}";
-  }
-
-  String formatTime(TimeOfDay time) {
-    return "${time.hour.toString().padLeft(2, '0')}:"
-        "${time.minute.toString().padLeft(2, '0')}";
-  }
-
-  int getMethodNumber(String method) {
-    switch (method) {
-      case 'MWL':
-        return 3;
-      case 'ISNA':
-        return 2;
-      case 'Egypt':
-        return 5;
-      case 'Makkah':
-        return 4;
-      case 'Karachi':
-        return 1;
-      case 'Turkey':
-        return 13;
-      default:
-        return 3;
-    }
-  }
-
-  int getMadhhabNumber(String madhhab) {
-    return madhhab == 'hanafi' ? 1 : 0;
-  }
+  // --- LOGIC ---
 
   Future<void> loadPrayerTimes() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    // 1. LOAD CACHE IMMEDIATELY (Android Null Check included)
+    final String? cached = prefs.getString('cached_prayers');
+    final fajrOffset = prefs.getInt('fajrOffset') ?? 0;
+    final dhuhrOffset = prefs.getInt('dhuhrOffset') ?? 0;
+    final asrOffset = prefs.getInt('asrOffset') ?? 0;
+    final maghribOffset = prefs.getInt('maghribOffset') ?? 0;
+    final ishaOffset = prefs.getInt('ishaOffset') ?? 0;
+
+    if (cached != null) {
+      try {
+        final Map<String, dynamic> data = jsonDecode(cached);
+        if (mounted) {
+          setState(() {
+            prayerTimes = {
+              "fajr": applyOffset(parseTime(data["fajr"]), fajrOffset),
+              "sunrise": parseTime(data["sunrise"]),
+              "dhuhr": applyOffset(parseTime(data["dhuhr"]), dhuhrOffset),
+              "asr": applyOffset(parseTime(data["asr"]), asrOffset),
+              "maghrib": applyOffset(parseTime(data["maghrib"]), maghribOffset),
+              "isha": applyOffset(parseTime(data["isha"]), ishaOffset),
+            };
+            isOffline = true; // Assume offline until internet fetch works
+            firstLoadFailed = false;
+          });
+          calculateNextPrayer();
+        }
+      } catch (e) {
+        debugPrint("Error parsing cache: $e");
+      }
+    }
+
+    // 2. CHECK CONNECTIVITY
+    final connectivityResult = await Connectivity().checkConnectivity();
+    // In newer connectivity_plus, it returns a List<ConnectivityResult>
+    final hasInternet = !connectivityResult.contains(ConnectivityResult.none);
+
+    if (!hasInternet) {
+      if (prayerTimes.isEmpty && mounted) {
+        setState(() => firstLoadFailed = true);
+      }
+      return;
+    }
+
+    // 3. ATTEMPT INTERNET REFRESH
     try {
-      final prefs = await SharedPreferences.getInstance();
-      final connectivity = await Connectivity().checkConnectivity();
+      final Position? pos = await LocationService.getUserLocation();
+      if (pos == null) {
+        if (prayerTimes.isEmpty && mounted) setState(() => firstLoadFailed = true);
+        return;
+      }
+
+      await _loadCityFromPosition(pos);
 
       final methodStr = prefs.getString('method') ?? 'MWL';
       final madhhabStr = prefs.getString('madhhab') ?? 'hanafi';
 
-      final method = getMethodNumber(methodStr);
-      final madhhab = getMadhhabNumber(madhhabStr);
-
-      final fajrOffset = prefs.getInt('fajrOffset') ?? 0;
-      final dhuhrOffset = prefs.getInt('dhuhrOffset') ?? 0;
-      final asrOffset = prefs.getInt('asrOffset') ?? 0;
-      final maghribOffset = prefs.getInt('maghribOffset') ?? 0;
-      final ishaOffset = prefs.getInt('ishaOffset') ?? 0;
-
-      final enabled = prefs.getBool('notifications') ?? true;
-
-      final hasInternet = connectivity != ConnectivityResult.none;
-
-      if (!hasInternet) {
-        final cached = prefs.getString('cached_prayers');
-
-        if (cached != null) {
-          isOffline = true;
-
-          final data = jsonDecode(cached);
-
-          setState(() {
-            prayerTimes = {
-              "fajr": applyOffset(parseTime(data["fajr"] ?? "00:00"), fajrOffset),
-              "sunrise": parseTime(data["sunrise"] ?? "00:00"),
-              "dhuhr": applyOffset(parseTime(data["dhuhr"] ?? "00:00"), dhuhrOffset),
-              "asr": applyOffset(parseTime(data["asr"] ?? "00:00"), asrOffset),
-              "maghrib": applyOffset(parseTime(data["maghrib"] ?? "00:00"), maghribOffset),
-              "isha": applyOffset(parseTime(data["isha"] ?? "00:00"), ishaOffset),
-            };
-          });
-
-          calculateNextPrayer();
-
-          final prefs = await SharedPreferences.getInstance();
-          final enabled = prefs.getBool('notifications') ?? true;
-
-          if (enabled) {
-            await scheduleAllPrayers();
-          } else {
-            await NotificationService.cancelAll();
-          }
-          return;
-        } else {
-          firstLoadFailed = true;
-          setState(() {});
-          return;
-        }
-      }
-
-      final Position? pos = await LocationService.getUserLocation();
-
-      if (pos == null) {
-        firstLoadFailed = true;
-        setState(() {});
-        return;
-      }
-
-// ✅ LOAD CITY HERE (AFTER LOCATION IS READY)
-      await _loadCityFromPosition(pos);
-
       final result = await PrayerApiService.getPrayerTimes(
-        latitude: pos!.latitude,
+        latitude: pos.latitude,
         longitude: pos.longitude,
-        method: method,
-        madhhab: madhhab,
+        method: getMethodNumber(methodStr),
+        madhhab: getMadhhabNumber(madhhabStr),
       );
 
+      // Save to cache
       await prefs.setString('cached_prayers', jsonEncode(result));
 
-      isOffline = false;
-      firstLoadFailed = false;
+      if (mounted) {
+        setState(() {
+          prayerTimes = {
+            "fajr": applyOffset(parseTime(result["fajr"]), fajrOffset),
+            "sunrise": parseTime(result["sunrise"]),
+            "dhuhr": applyOffset(parseTime(result["dhuhr"]), dhuhrOffset),
+            "asr": applyOffset(parseTime(result["asr"]), asrOffset),
+            "maghrib": applyOffset(parseTime(result["maghrib"]), maghribOffset),
+            "isha": applyOffset(parseTime(result["isha"]), ishaOffset),
+          };
+          isOffline = false;
+          firstLoadFailed = false;
+        });
+        calculateNextPrayer();
+      }
 
-      setState(() {
-        prayerTimes = {
-          "fajr": applyOffset(parseTime(result["fajr"] ?? "00:00"), fajrOffset),
-          "sunrise": parseTime(result["sunrise"] ?? "00:00"),
-          "dhuhr": applyOffset(parseTime(result["dhuhr"] ?? "00:00"), dhuhrOffset),
-          "asr": applyOffset(parseTime(result["asr"] ?? "00:00"), asrOffset),
-          "maghrib": applyOffset(parseTime(result["maghrib"] ?? "00:00"), maghribOffset),
-          "isha": applyOffset(parseTime(result["isha"] ?? "00:00"), ishaOffset),
-        };
-      });
-
-      calculateNextPrayer();
-
+      // Notifications
+      final enabled = prefs.getBool('notifications') ?? true;
       if (enabled) {
         await scheduleAllPrayers();
       } else {
         await NotificationService.cancelAll();
       }
     } catch (e) {
-      firstLoadFailed = true;
-      setState(() {});
+      debugPrint("Refresh failed: $e");
+      if (prayerTimes.isEmpty && mounted) {
+        setState(() => firstLoadFailed = true);
+      }
     }
   }
 
-  TimeOfDay parseTime(String time) {
+  // --- HELPERS ---
+
+  TimeOfDay parseTime(String? time) {
+    if (time == null || !time.contains(":")) return const TimeOfDay(hour: 0, minute: 0);
     final parts = time.split(":");
     return TimeOfDay(
-      hour: int.parse(parts[0]),
-      minute: int.parse(parts[1]),
+      hour: int.tryParse(parts[0]) ?? 0,
+      minute: int.tryParse(parts[1]) ?? 0,
     );
   }
 
@@ -400,22 +162,17 @@ class _PrayerScreenState extends State<PrayerScreen> {
     int totalMinutes = time.hour * 60 + time.minute + offset;
     totalMinutes = totalMinutes % (24 * 60);
     if (totalMinutes < 0) totalMinutes += 24 * 60;
-
-    return TimeOfDay(
-      hour: totalMinutes ~/ 60,
-      minute: totalMinutes % 60,
-    );
+    return TimeOfDay(hour: totalMinutes ~/ 60, minute: totalMinutes % 60);
   }
 
   void startTimer() {
     timer = Timer.periodic(const Duration(seconds: 1), (_) {
-      calculateNextPrayer();
+      if (mounted) calculateNextPrayer();
     });
   }
 
   void calculateNextPrayer() {
     if (prayerTimes.isEmpty) return;
-
     final now = DateTime.now();
     final today = DateTime.now();
 
@@ -434,15 +191,7 @@ class _PrayerScreenState extends State<PrayerScreen> {
     for (var prayer in prayerList) {
       final time = prayer["time"] as TimeOfDay?;
       if (time == null) continue;
-
-      final prayerDateTime = DateTime(
-        today.year,
-        today.month,
-        today.day,
-        time.hour,
-        time.minute,
-      );
-
+      final prayerDateTime = DateTime(today.year, today.month, today.day, time.hour, time.minute);
       if (prayerDateTime.isAfter(now)) {
         nextTime = prayerDateTime;
         nextName = prayer["name"] as String;
@@ -452,112 +201,120 @@ class _PrayerScreenState extends State<PrayerScreen> {
 
     if (nextTime == null) {
       final fajr = prayerTimes["fajr"]!;
-      nextTime = DateTime(
-        today.year,
-        today.month,
-        today.day + 1,
-        fajr.hour,
-        fajr.minute,
-      );
+      nextTime = DateTime(today.year, today.month, today.day + 1, fajr.hour, fajr.minute);
       nextName = "fajr";
     }
 
-    setState(() {
-      nextPrayer = nextName;
-      remainingTime = nextTime!.difference(now);
-    });
+    if (mounted) {
+      setState(() {
+        nextPrayer = nextName;
+        remainingTime = nextTime!.difference(now);
+      });
+    }
   }
+
+  // --- UI BUILDING ---
 
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context)!;
 
+    // DECISION LOGIC:
+    // If we have data, show the app.
+    // Only if we have NO DATA and a FAIL occurred, show the refresh/settings screen.
     return Scaffold(
       appBar: AppBar(title: Text(loc.prayerTimes)),
-
-      body: firstLoadFailed
+      body: prayerTimes.isNotEmpty
+          ? _buildMainContent(loc)
+          : firstLoadFailed
           ? buildFirstLoadError(context)
-          : prayerTimes.isEmpty
-          ? Center(child: Text(loc.loading))
-          : Column(
-        children: [
-
-          if (isOffline) buildOfflineBanner(),
-
-          // ✅ HEADER ADDED
-          _buildHeader(),
-
-          const SizedBox(height: 6),
-
-          // 🔥 NEXT PRAYER
-          Text(
-            loc.nextPrayer,
-            style: const TextStyle(fontSize: 14),
-          ),
-
-          Text(
-            getPrayerName(loc, nextPrayer),
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-
-          const SizedBox(height: 6),
-
-          Text(
-            formatDuration(remainingTime),
-            style: const TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              color: Colors.green,
-            ),
-          ),
-
-          const SizedBox(height: 6),
-          const Divider(),
-
-          // 🔥 PRAYER LIST
-          Expanded(
-            child: ListView(
-              children: [
-                buildPrayerTile(loc, "fajr"),
-                buildPrayerTile(loc, "sunrise"),
-                buildPrayerTile(loc, "dhuhr"),
-                buildPrayerTile(loc, "asr"),
-                buildPrayerTile(loc, "maghrib"),
-                buildPrayerTile(loc, "isha"),
-              ],
-            ),
-          ),
-        ],
-      ),
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 
-  IconData getPrayerIcon(String key) {
-    switch (key) {
-      case "fajr":
-        return Icons.nightlight_round;
-      case "sunrise":
-        return Icons.wb_sunny_outlined;
-      case "dhuhr":
-        return Icons.wb_sunny;
-      case "asr":
-        return Icons.wb_twilight;
-      case "maghrib":
-        return Icons.brightness_3;
-      case "isha":
-        return Icons.nightlight;
-      default:
-        return Icons.access_time;
-    }
+  Widget _buildMainContent(AppLocalizations loc) {
+    return Column(
+      children: [
+        if (isOffline) buildOfflineBanner(),
+        _buildHeader(),
+        const SizedBox(height: 6),
+        Text(loc.nextPrayer, style: const TextStyle(fontSize: 14)),
+        Text(
+          getPrayerName(loc, nextPrayer),
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 6),
+        Text(
+          formatDuration(remainingTime),
+          style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.green),
+        ),
+        const SizedBox(height: 6),
+        const Divider(),
+        Expanded(
+          child: ListView(
+            children: [
+              buildPrayerTile(loc, "fajr"),
+              buildPrayerTile(loc, "sunrise"),
+              buildPrayerTile(loc, "dhuhr"),
+              buildPrayerTile(loc, "asr"),
+              buildPrayerTile(loc, "maghrib"),
+              buildPrayerTile(loc, "isha"),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  // --- SUB-WIDGETS ---
+
+  Widget _buildHeader() {
+    final now = DateTime.now();
+    final hijri = HijriCalendar.fromDate(now);
+    final lang = Localizations.localeOf(context).languageCode;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(colors: [Color(0xFF2E7D32), Color(0xFF4CAF50)]),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(children: [
+              const Icon(Icons.location_on, color: Colors.white),
+              const SizedBox(width: 6),
+              Expanded(
+                child: Text(
+                  _cityName?.isNotEmpty == true ? _cityName! : "...",
+                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ]),
+            const SizedBox(height: 10),
+            Row(children: [
+              const Icon(Icons.calendar_today, color: Colors.white70, size: 18),
+              const SizedBox(width: 6),
+              Text(DateFormat.yMMMMEEEEd(lang).format(now), style: const TextStyle(color: Colors.white70)),
+            ]),
+            const SizedBox(height: 6),
+            Row(children: [
+              const Icon(Icons.brightness_2, color: Colors.white70, size: 18),
+              const SizedBox(width: 6),
+              Text("${hijri.hDay} ${getHijriMonth(hijri.hMonth, lang)} ${hijri.hYear}", style: const TextStyle(color: Colors.white70)),
+            ]),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget buildPrayerTile(AppLocalizations loc, String key) {
     final time = prayerTimes[key];
     if (time == null) return const SizedBox();
-
     final isNext = key == nextPrayer;
 
     return Container(
@@ -568,71 +325,28 @@ class _PrayerScreenState extends State<PrayerScreen> {
       ),
       child: ListTile(
         dense: true,
-        visualDensity: const VisualDensity(vertical: -2),
-        leading: Icon(
-          getPrayerIcon(key),
-          color: isNext ? Colors.green : Colors.grey,
-        ),
-
-        title: Text(
-          getPrayerName(loc, key),
-          style: TextStyle(
-            fontWeight: isNext ? FontWeight.bold : FontWeight.normal,
-          ),
-        ),
-
-        trailing: Text(
-          formatTime(time),
-          style: TextStyle(fontSize: 14,
-            fontWeight: isNext ? FontWeight.bold : FontWeight.normal,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildOfflineBanner() {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(10),
-      color: Colors.orange,
-      child: const Text(
-        "Offline Mode",
-        textAlign: TextAlign.center,
-        style: TextStyle(color: Colors.white),
+        leading: Icon(getPrayerIcon(key), color: isNext ? Colors.green : Colors.grey),
+        title: Text(getPrayerName(loc, key), style: TextStyle(fontWeight: isNext ? FontWeight.bold : FontWeight.normal)),
+        trailing: Text(formatTime(time), style: TextStyle(fontSize: 14, fontWeight: isNext ? FontWeight.bold : FontWeight.normal)),
       ),
     );
   }
 
   Widget buildFirstLoadError(BuildContext context) {
     final loc = AppLocalizations.of(context)!;
-
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Icon(Icons.signal_wifi_off, size: 80, color: Colors.grey),
+          const Text("No saved data found.\nPlease check internet.", textAlign: TextAlign.center),
           const SizedBox(height: 20),
-          const Text(
-            "No internet or location access",
-            style: TextStyle(fontSize: 18),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              AppSettings.openAppSettings();
-            },
-            child: Text(loc.settings),
-          ),
+          ElevatedButton(onPressed: () => AppSettings.openAppSettings(), child: Text(loc.settings)),
           const SizedBox(height: 10),
           ElevatedButton.icon(
-            onPressed: () async {
-              setState(() {
-                firstLoadFailed = false;
-                prayerTimes.clear();
-              });
-              await loadPrayerTimes();
+            onPressed: () {
+              setState(() => firstLoadFailed = false);
+              loadPrayerTimes();
             },
             icon: const Icon(Icons.refresh),
             label: const Text("Refresh"),
@@ -642,28 +356,76 @@ class _PrayerScreenState extends State<PrayerScreen> {
     );
   }
 
+  Widget buildOfflineBanner() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(8),
+      color: Colors.orange.shade700,
+      child: const Text("Offline Mode - Using Saved Data", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontSize: 12)),
+    );
+  }
+
+  // --- UTILS ---
+  Future<void> _loadCityFromPosition(Position position) async {
+    try {
+      final placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
+      if (placemarks.isNotEmpty && mounted) {
+        final place = placemarks.first;
+        setState(() => _cityName = "${place.locality ?? ''}, ${place.subAdministrativeArea ?? ''}");
+      }
+    } catch (_) {}
+  }
+
+  String formatDuration(Duration d) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    return "${twoDigits(d.inHours)}:${twoDigits(d.inMinutes.remainder(60))}:${twoDigits(d.inSeconds.remainder(60))}";
+  }
+
+  String formatTime(TimeOfDay time) => "${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}";
+
+  int getMethodNumber(String method) {
+    const map = {'MWL': 3, 'ISNA': 2, 'Egypt': 5, 'Makkah': 4, 'Karachi': 1, 'Turkey': 13};
+    return map[method] ?? 3;
+  }
+
+  int getMadhhabNumber(String madhhab) => madhhab == 'hanafi' ? 1 : 0;
+
+  IconData getPrayerIcon(String key) {
+    const map = {"fajr": Icons.nightlight_round, "sunrise": Icons.wb_sunny_outlined, "dhuhr": Icons.wb_sunny, "asr": Icons.wb_twilight, "maghrib": Icons.brightness_3, "isha": Icons.nightlight};
+    return map[key] ?? Icons.access_time;
+  }
+
   String getPrayerName(AppLocalizations loc, String key) {
+    const map = {"fajr": "fajr", "sunrise": "sunrise", "dhuhr": "dhuhr", "asr": "asr", "maghrib": "maghrib", "isha": "isha"};
     switch (key) {
-      case "fajr":
-        return loc.fajr;
-      case "sunrise":
-        return loc.sunrise;
-      case "dhuhr":
-        return loc.dhuhr;
-      case "asr":
-        return loc.asr;
-      case "maghrib":
-        return loc.maghrib;
-      case "isha":
-        return loc.isha;
-      default:
-        return "";
+      case "fajr": return loc.fajr;
+      case "sunrise": return loc.sunrise;
+      case "dhuhr": return loc.dhuhr;
+      case "asr": return loc.asr;
+      case "maghrib": return loc.maghrib;
+      case "isha": return loc.isha;
+      default: return "";
     }
   }
 
-  @override
-  void dispose() {
-    timer?.cancel();
-    super.dispose();
+  String getHijriMonth(int month, String lang) {
+    const months = {
+      'en': ["Muharram","Safar","Rabi al-Awwal","Rabi al-Thani","Jumada al-Awwal","Jumada al-Thani","Rajab","Sha'ban","Ramadan","Shawwal","Dhul-Qi'dah","Dhul-Hijjah"],
+      'tr': ["Muharrem","Safer","Rebiülevvel","Rebiülahir","Cemaziyelevvel","Cemaziyelahir","Recep","Şaban","Ramazan","Şevval","Zilkade","Zilhicce"],
+      'ar': ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الآخرة","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة"],
+    };
+    return months[lang]?[month - 1] ?? months['en']![month - 1];
+  }
+
+  Future<void> scheduleAllPrayers() async {
+    await NotificationService.cancelAll();
+    int id = 0;
+    final now = DateTime.now();
+    prayerTimes.forEach((name, time) {
+      final scheduleTime = DateTime(now.year, now.month, now.day, time.hour, time.minute);
+      if (scheduleTime.isAfter(now)) {
+        NotificationService.schedulePrayer(id: id++, title: "Prayer Time", body: "$name time", time: scheduleTime);
+      }
+    });
   }
 }
