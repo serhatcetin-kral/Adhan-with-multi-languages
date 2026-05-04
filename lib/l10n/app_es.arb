@@ -1,0 +1,121 @@
+{
+  "@@locale": "es",
+  "appTitle": "Aplicación de Adhan",
+
+  "selectLanguage": "Seleccionar idioma",
+  "continueButton": "Continuar",
+
+  "prayerTimes": "Horarios de oración",
+  "nextPrayer": "Siguiente oración",
+  "remainingTime": "Tiempo restante",
+
+  "fajr": "Fajr",
+  "sunrise": "Amanecer",
+  "dhuhr": "Dhuhr",
+  "asr": "Asr",
+  "maghrib": "Maghrib",
+  "isha": "Isha",
+
+  "settings": "Configuración",
+  "save": "Guardar configuración",
+
+  "language": "Idioma",
+  "calculationMethod": "Método de cálculo",
+  "madhhab": "Escuela jurídica",
+
+  "offsetSettings": "Ajustes de horarios de oración",
+  "fajrOffset": "Ajuste Fajr",
+  "dhuhrOffset": "Ajuste Dhuhr",
+  "asrOffset": "Ajuste Asr",
+  "maghribOffset": "Ajuste Maghrib",
+  "ishaOffset": "Ajuste Isha",
+
+  "notifications": "Notificaciones",
+  "enableNotifications": "Activar notificaciones",
+
+  "methodMWL": "Liga Mundial Musulmana",
+  "methodISNA": "ISNA",
+  "methodEgypt": "Egipcio",
+  "methodMakkah": "Umm Al-Qura (La Meca)",
+  "methodKarachi": "Karachi",
+  "methodTurkey": "Diyanet (Turquía)",
+
+  "hanafi": "Hanafi",
+  "shafi": "Shafi",
+
+  "qibla": "Qibla",
+  "qiblaFinder": "Buscador de Qibla",
+  "selectQiblaMethod": "Seleccionar método de Qibla",
+  "compassQibla": "Brújula Qibla",
+  "googleQibla": "Qibla de Google",
+
+  "calibrating": "Calibrando la brújula...",
+  "pointPhone": "Apunta tu teléfono hacia la Qibla",
+
+  "more": "Más",
+  "dua": "Duas",
+  "zikr": "Zikr",
+  "calendar": "Calendario Hijri",
+  "about": "Acerca de",
+
+  "shareApp": "Compartir app",
+  "rateApp": "Calificar app",
+
+  "loading": "Cargando...",
+  "locationError": "Se requiere permiso de ubicación",
+  "noInternet": "Sin conexión a Internet",
+  "error": "Algo salió mal",
+  "minutesShort": "min",
+
+  "calibratingCompass": "Calibrando la brújula...",
+  "heading": "Dirección",
+  "qiblaDirection": "Dirección de la Qibla",
+  "facingQibla": "Estás orientado hacia la Qibla",
+  "turnToQibla": "Gira hacia la Qibla",
+  "calibrationText": "Mueve tu teléfono en forma de 8 para calibrar la brújula.\nManténlo alejado de objetos metálicos.",
+
+  "welcome": "Bienvenido",
+
+  "latLabel": "Latitud",
+  "lngLabel": "Longitud",
+  "refresh": "Actualizar",
+
+  "support": "Apoyo",
+  "supportMessage": "Si esta app te ayuda a rezar a tiempo, puedes apoyar su desarrollo ❤️",
+  "supportNote": "Los pagos se procesan de forma segura a través de la App Store.",
+
+  "shareAppText": "Mira mi app de oración 🕌\n\nDescárgala aquí:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391",
+  "calendarTitle": "Calendario Islámico",
+  "todayInIslam": "Hoy en el Islam",
+  "holyNights": "Noches sagradas",
+  "upcomingEvents": "Próximos eventos islámicos",
+  "holyMonths": "Meses sagrados",
+  "close": "Cerrar",
+
+  "ramadanMessage": "Ramadán es el mes del ayuno y la misericordia.",
+  "muharramMessage": "Muharram es un mes sagrado.",
+  "defaultIslamMessage": "Cada día es una oportunidad para recordar a Alá.",
+
+  "thisMonthEvents": "Eventos de este mes",
+
+  "todayLabel": "Hoy",
+  "daysShort": "d",
+  "noEventsThisMonth": "No hay eventos islámicos este mes.",
+
+  "rajabMessage": "Rajab es un mes sagrado para la reflexión y la adoración.",
+  "shabanMessage": "Sha'ban es el mes de preparación antes de Ramadán.",
+
+  "shawwalMessage": "Shawwal comienza con Eid al-Fitr e incluye seis ayunos sunnah.",
+  "dhulHijjahMessage": "Dhul-Hijjah es el mes del Hajj, Arafah y Eid al-Adha.",
+
+  "importantIslamicDays": "Días islámicos importantes",
+  "laylatAlQadr": "Laylat al-Qadr",
+  "eidAlFitr": "Eid al-Fitr",
+  "eidAlAdha": "Eid al-Adha",
+  "startOfRamadan": "Inicio de Ramadán",
+  "quran": "Corán",
+
+  "offset": "Ajuste de tiempo",
+  "offsetMinutes": "Ajuste en minutos",
+  "adhanSound": "Sonido del Adhan"
+}

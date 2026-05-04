@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Morgengebet",
+    "arabic": "اللّهـمَّ بِكَ أَصْـبَحْنا وَبِكَ أَمْسَـيْنا وَبِكَ نَحْـيا وَبِكَ نَمـوتُ وَإِلَيْكَ النُّـشور",
+    "translation": "O Allah, durch Dich treten wir in den Morgen ein und durch Dich treten wir in den Abend ein, durch Dich leben wir und durch Dich sterben wir, und zu Dir ist die Auferstehung."
+  },
+  {
+    "title": "Abendgebet",
+    "arabic": "اللّهـمَّ بِكَ أَمْسَـيْنا وَبِكَ أَصْـبَحْنا وَبِكَ نَحْـيا وَبِكَ نَمـوتُ وَإِلَيْكَ المصير",
+    "translation": "O Allah, durch Dich treten wir in den Abend ein und durch Dich treten wir in den Morgen ein, durch Dich leben wir und durch Dich sterben wir, und zu Dir ist die Rückkehr."
+  },
+  {
+    "title": "Vor dem Schlafen",
+    "arabic": "بِاسْمِكَ اللّهُمَّ أَمُوتُ وَأَحْيَا",
+    "translation": "In Deinem Namen, o Allah, sterbe ich und lebe ich."
+  },
+  {
+    "title": "Nach dem Aufwachen",
+    "arabic": "الحَمْـدُ للهِ الذي أَحْـيانا بَعْـدَ ما أَماتَـنا وَإِلَيْهِ النُّـشور",
+    "translation": "Alles Lob gebührt Allah, der uns Leben gab, nachdem Er es uns genommen hatte, und zu Ihm ist die Auferstehung."
+  },
+  {
+    "title": "Beim Betreten des Hauses",
+    "arabic": "بِسْمِ اللَّهِ وَلَجْنَا، وَبِسْمِ اللَّهِ خَرَجْنَا، وَعَلَى رَبِّنَا تَوَكَّلْنَا",
+    "translation": "Im Namen Allahs treten wir ein, im Namen Allahs treten wir hinaus, und auf unseren Herrn vertrauen wir."
+  },
+  {
+    "title": "Beim Verlassen des Hauses",
+    "arabic": "بِسْمِ اللَّهِ، تَوَكَّلْتُ عَلَى اللَّهِ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",
+    "translation": "Im Namen Allahs, ich vertraue auf Allah, und es gibt keine Kraft noch Macht außer bei Allah."
+  },
+  {
+    "title": "Beim Betreten der Moschee",
+    "arabic": "اللّهُـمَّ افْتَـحْ لِي أَبْوابَ رَحْمَـتِك",
+    "translation": "O Allah, öffne mir die Tore Deiner Barmherzigkeit."
+  },
+  {
+    "title": "Beim Verlassen der Moschee",
+    "arabic": "اللّهُـمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِك",
+    "translation": "O Allah, ich bitte Dich um Deine Gunst."
+  },
+  {
+    "title": "Vor dem Essen",
+    "arabic": "بِسْمِ اللَّه",
+    "translation": "Im Namen Allahs."
+  },
+  {
+    "title": "Nach dem Essen",
+    "arabic": "الحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنِي هَذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ",
+    "translation": "Alles Lob gebührt Allah, der mich damit gespeist und es mir gegeben hat, ohne dass ich eigene Kraft oder Macht hatte."
+  }
+]

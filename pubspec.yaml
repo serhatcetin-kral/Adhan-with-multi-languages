@@ -3,7 +3,7 @@ description: Adhan Prayer Time App
 
 publish_to: 'none'
 
-version: 2.0.0+3
+version: 2.0.1+4
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
@@ -73,6 +73,7 @@ flutter:
     - assets/quran/surah.json
     - assets/quran/surah/
     - assets/audio/adhan.mp3
+    - assets/duas/
 flutter_launcher_icons:
   android: true
   ios: true

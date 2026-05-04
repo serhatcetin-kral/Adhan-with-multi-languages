@@ -2,7 +2,6 @@ import 'package:adhan_app/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../main.dart';
-import 'main_screen.dart';
 
 class LanguageScreen extends StatefulWidget {
   const LanguageScreen({super.key});
@@ -125,15 +124,31 @@ class _LanguageScreenState extends State<LanguageScreen>
                       style: TextStyle(color: Colors.white70),
                     ),
 
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 20),
 
-                    _buildLangTile("🇺🇸 English", "en"),
-                    _buildLangTile("🇹🇷 Türkçe", "tr"),
-                    _buildLangTile("🇸🇦 العربية", "ar"),
+                    // ✅ SCROLLABLE LANGUAGE LIST
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            _buildLangTile("🇺🇸 English", "en"),
+                            _buildLangTile("🇹🇷 Türkçe", "tr"),
+                            _buildLangTile("🇸🇦 العربية", "ar"),
+                            _buildLangTile("🇫🇷 Français", "fr"),
+                            _buildLangTile("🇩🇪 Deutsch", "de"),
+                            _buildLangTile("🇪🇸 Español", "es"),
+                            _buildLangTile("🇮🇳 हिन्दी", "hi"),
+                            _buildLangTile("🇵🇰 اردو", "ur"),
+                            _buildLangTile("🇷🇺 Русский", "ru"),
+                            _buildLangTile("🇨🇳 中文", "zh"),
+                          ],
+                        ),
+                      ),
+                    ),
 
-                    const Spacer(),
+                    const SizedBox(height: 10),
 
-                    // 🚀 BUTTON
+                    // 🚀 CONTINUE BUTTON
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(

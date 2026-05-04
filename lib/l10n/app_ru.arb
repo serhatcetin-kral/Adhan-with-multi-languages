@@ -1,0 +1,121 @@
+{
+  "@@locale": "ru",
+  "appTitle": "Азан приложение",
+
+  "selectLanguage": "Выберите язык",
+  "continueButton": "Продолжить",
+
+  "prayerTimes": "Время молитвы",
+  "nextPrayer": "Следующая молитва",
+  "remainingTime": "Оставшееся время",
+
+  "fajr": "Фаджр",
+  "sunrise": "Восход",
+  "dhuhr": "Зухр",
+  "asr": "Аср",
+  "maghrib": "Магриб",
+  "isha": "Иша",
+
+  "settings": "Настройки",
+  "save": "Сохранить настройки",
+
+  "language": "Язык",
+  "calculationMethod": "Метод расчёта",
+  "madhhab": "Мазхаб",
+
+  "offsetSettings": "Коррекция времени молитвы",
+  "fajrOffset": "Коррекция Фаджр",
+  "dhuhrOffset": "Коррекция Зухр",
+  "asrOffset": "Коррекция Аср",
+  "maghribOffset": "Коррекция Магриб",
+  "ishaOffset": "Коррекция Иша",
+
+  "notifications": "Уведомления",
+  "enableNotifications": "Включить уведомления",
+
+  "methodMWL": "Мусульманская мировая лига",
+  "methodISNA": "ISNA",
+  "methodEgypt": "Египетский",
+  "methodMakkah": "Умм аль-Кура (Мекка)",
+  "methodKarachi": "Карачи",
+  "methodTurkey": "Диянет (Турция)",
+
+  "hanafi": "Ханафи",
+  "shafi": "Шафи",
+
+  "qibla": "Кибла",
+  "qiblaFinder": "Поиск Киблы",
+  "selectQiblaMethod": "Выберите метод Киблы",
+  "compassQibla": "Компас Киблы",
+  "googleQibla": "Google Кибла",
+
+  "calibrating": "Калибровка компаса...",
+  "pointPhone": "Направьте телефон в сторону Киблы",
+
+  "more": "Ещё",
+  "dua": "Дуа",
+  "zikr": "Зикр",
+  "calendar": "Хиджрийский календарь",
+  "about": "О приложении",
+
+  "shareApp": "Поделиться приложением",
+  "rateApp": "Оценить приложение",
+
+  "loading": "Загрузка...",
+  "locationError": "Требуется разрешение на геолокацию",
+  "noInternet": "Нет подключения к интернету",
+  "error": "Что-то пошло не так",
+  "minutesShort": "мин",
+
+  "calibratingCompass": "Калибровка компаса...",
+  "heading": "Направление",
+  "qiblaDirection": "Направление Киблы",
+  "facingQibla": "Вы смотрите в сторону Киблы",
+  "turnToQibla": "Повернитесь к Кибле",
+  "calibrationText": "Двигайте телефон в форме восьмёрки, чтобы откалибровать компас.\nДержите его подальше от металлических предметов.",
+
+  "welcome": "Добро пожаловать",
+
+  "latLabel": "Широта",
+  "lngLabel": "Долгота",
+  "refresh": "Обновить",
+
+  "support": "Поддержка",
+  "supportMessage": "Если это приложение помогает вам молиться вовремя, вы можете поддержать его развитие ❤️",
+  "supportNote": "Платежи обрабатываются безопасно через App Store.",
+
+  "shareAppText": "Посмотрите моё приложение для молитвы 🕌\n\nСкачать здесь:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391",
+  "calendarTitle": "Исламский календарь",
+  "todayInIslam": "Сегодня в исламе",
+  "holyNights": "Священные ночи",
+  "upcomingEvents": "Предстоящие исламские события",
+  "holyMonths": "Священные месяцы",
+  "close": "Закрыть",
+
+  "ramadanMessage": "Рамадан — месяц поста и милости.",
+  "muharramMessage": "Мухаррам — священный месяц.",
+  "defaultIslamMessage": "Каждый день — это возможность помнить Аллаха.",
+
+  "thisMonthEvents": "События этого месяца",
+
+  "todayLabel": "Сегодня",
+  "daysShort": "д",
+  "noEventsThisMonth": "В этом хиджрийском месяце нет исламских событий.",
+
+  "rajabMessage": "Раджаб — священный месяц для размышлений и поклонения.",
+  "shabanMessage": "Шаабан — месяц подготовки перед Рамаданом.",
+
+  "shawwalMessage": "Шавваль начинается с Ид аль-Фитр и включает шесть суннат-постов.",
+  "dhulHijjahMessage": "Зуль-хиджа — месяц хаджа, Арафа и Ид аль-Адха.",
+
+  "importantIslamicDays": "Важные исламские дни",
+  "laylatAlQadr": "Ляйлят аль-Кадр",
+  "eidAlFitr": "Ид аль-Фитр",
+  "eidAlAdha": "Ид аль-Адха",
+  "startOfRamadan": "Начало Рамадана",
+  "quran": "Коран",
+
+  "offset": "Коррекция времени",
+  "offsetMinutes": "Коррекция минут",
+  "adhanSound": "Звук азана"
+}

@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
   // 🔥 LOAD SAVED LANGUAGE
   Future<void> loadSavedLocale() async {
     final prefs = await SharedPreferences.getInstance();
-    final langCode = prefs.getString('language_code');
+    final langCode = prefs.getString('language');
 
     if (langCode != null) {
       setState(() {
@@ -70,7 +70,7 @@ class _MyAppState extends State<MyApp> {
   // 🔥 CHANGE LANGUAGE
   void setLocale(Locale locale) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('language_code', locale.languageCode);
+    await prefs.setString('language', locale.languageCode);
 
     setState(() {
       _locale = locale;
@@ -85,11 +85,7 @@ class _MyAppState extends State<MyApp> {
       // 🌍 CURRENT LANGUAGE
       locale: _locale,
 
-      supportedLocales: const [
-        Locale('en'),
-        Locale('tr'),
-        Locale('ar'),
-      ],
+      supportedLocales: AppLocalizations.supportedLocales,
 
       localizationsDelegates: const [
         AppLocalizations.delegate,

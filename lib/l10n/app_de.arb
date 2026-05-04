@@ -1,0 +1,121 @@
+{
+  "@@locale": "de",
+  "appTitle": "Adhan App",
+
+  "selectLanguage": "Sprache auswählen",
+  "continueButton": "Weiter",
+
+  "prayerTimes": "Gebetszeiten",
+  "nextPrayer": "Nächstes Gebet",
+  "remainingTime": "Verbleibende Zeit",
+
+  "fajr": "Fajr",
+  "sunrise": "Sonnenaufgang",
+  "dhuhr": "Dhuhr",
+  "asr": "Asr",
+  "maghrib": "Maghrib",
+  "isha": "Isha",
+
+  "settings": "Einstellungen",
+  "save": "Einstellungen speichern",
+
+  "language": "Sprache",
+  "calculationMethod": "Berechnungsmethode",
+  "madhhab": "Madhhab",
+
+  "offsetSettings": "Gebetszeit-Anpassungen",
+  "fajrOffset": "Fajr Anpassung",
+  "dhuhrOffset": "Dhuhr Anpassung",
+  "asrOffset": "Asr Anpassung",
+  "maghribOffset": "Maghrib Anpassung",
+  "ishaOffset": "Isha Anpassung",
+
+  "notifications": "Benachrichtigungen",
+  "enableNotifications": "Benachrichtigungen aktivieren",
+
+  "methodMWL": "Muslimische Weltliga",
+  "methodISNA": "ISNA",
+  "methodEgypt": "Ägyptisch",
+  "methodMakkah": "Umm Al-Qura (Mekka)",
+  "methodKarachi": "Karachi",
+  "methodTurkey": "Diyanet (Türkei)",
+
+  "hanafi": "Hanafi",
+  "shafi": "Schafi",
+
+  "qibla": "Qibla",
+  "qiblaFinder": "Qibla Finder",
+  "selectQiblaMethod": "Qibla-Methode auswählen",
+  "compassQibla": "Kompass Qibla Finder",
+  "googleQibla": "Google Qibla Finder",
+
+  "calibrating": "Kompass wird kalibriert...",
+  "pointPhone": "Richten Sie Ihr Telefon zur Qibla aus",
+
+  "more": "Mehr",
+  "dua": "Duas",
+  "zikr": "Dhikr",
+  "calendar": "Islamischer Kalender",
+  "about": "Über",
+
+  "shareApp": "App teilen",
+  "rateApp": "App bewerten",
+
+  "loading": "Wird geladen...",
+  "locationError": "Standortberechtigung erforderlich",
+  "noInternet": "Keine Internetverbindung",
+  "error": "Etwas ist schiefgelaufen",
+  "minutesShort": "Min",
+
+  "calibratingCompass": "Kompass wird kalibriert...",
+  "heading": "Richtung",
+  "qiblaDirection": "Qibla-Richtung",
+  "facingQibla": "Sie schauen zur Qibla",
+  "turnToQibla": "Zur Qibla drehen",
+  "calibrationText": "Bewegen Sie Ihr Telefon in einer 8-Form, um den Kompass zu kalibrieren.\nHalten Sie Abstand von Metallgegenständen.",
+
+  "welcome": "Willkommen",
+
+  "latLabel": "Breitengrad",
+  "lngLabel": "Längengrad",
+  "refresh": "Aktualisieren",
+
+  "support": "Unterstützen",
+  "supportMessage": "Wenn diese App Ihnen hilft, pünktlich zu beten, können Sie ihre Entwicklung unterstützen ❤️",
+  "supportNote": "Zahlungen werden sicher über den App Store abgewickelt.",
+
+  "shareAppText": "Schau dir meine Gebets-App an 🕌\n\nHier herunterladen:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391",
+  "calendarTitle": "Islamischer Kalender",
+  "todayInIslam": "Heute im Islam",
+  "holyNights": "Heilige Nächte",
+  "upcomingEvents": "Bevorstehende islamische Ereignisse",
+  "holyMonths": "Heilige Monate",
+  "close": "Schließen",
+
+  "ramadanMessage": "Der Ramadan ist der Monat des Fastens und der Barmherzigkeit.",
+  "muharramMessage": "Muharram ist ein heiliger Monat.",
+  "defaultIslamMessage": "Jeder Tag ist eine Gelegenheit, sich an Allah zu erinnern.",
+
+  "thisMonthEvents": "Ereignisse dieses Monats",
+
+  "todayLabel": "Heute",
+  "daysShort": "T",
+  "noEventsThisMonth": "Keine islamischen Ereignisse in diesem Monat.",
+
+  "rajabMessage": "Rajab ist ein heiliger Monat für Besinnung und Anbetung.",
+  "shabanMessage": "Sha'ban ist der Monat der Vorbereitung vor dem Ramadan.",
+
+  "shawwalMessage": "Shawwal beginnt mit Eid al-Fitr und beinhaltet sechs freiwillige Fastentage.",
+  "dhulHijjahMessage": "Dhul-Hijjah ist der Monat von Hadsch, Arafah und Eid al-Adha.",
+
+  "importantIslamicDays": "Wichtige islamische Tage",
+  "laylatAlQadr": "Laylat al-Qadr",
+  "eidAlFitr": "Eid al-Fitr",
+  "eidAlAdha": "Eid al-Adha",
+  "startOfRamadan": "Beginn des Ramadan",
+  "quran": "Koran",
+
+  "offset": "Zeit-Anpassung",
+  "offsetMinutes": "Minuten-Anpassung",
+  "adhanSound": "Adhan-Ton"
+}

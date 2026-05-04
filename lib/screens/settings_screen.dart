@@ -52,9 +52,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     if (!mounted) return;
 
     setState(() {
-      selectedLanguage = ['en', 'tr', 'ar'].contains(savedLang)
-          ? savedLang!
-          : 'en';
+      selectedLanguage = savedLang ?? 'en';
 
       calculationMethod = methods.contains(savedMethod)
           ? savedMethod!
@@ -150,9 +148,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
             title: loc.language,
             icon: Icons.language,
             children: [
-              _buildSimpleItem("English", () => changeLanguage('en')),
-              _buildSimpleItem("Türkçe", () => changeLanguage('tr')),
-              _buildSimpleItem("العربية", () => changeLanguage('ar')),
+              _buildSimpleItem("🇺🇸 English", () => changeLanguage('en')),
+              _buildSimpleItem("🇹🇷 Türkçe", () => changeLanguage('tr')),
+              _buildSimpleItem("🇸🇦 العربية", () => changeLanguage('ar')),
+              _buildSimpleItem("🇫🇷 Français", () => changeLanguage('fr')),
+              _buildSimpleItem("🇩🇪 Deutsch", () => changeLanguage('de')),
+              _buildSimpleItem("🇪🇸 Español", () => changeLanguage('es')),
+              _buildSimpleItem("🇮🇳 हिन्दी", () => changeLanguage('hi')),
+              _buildSimpleItem("🇵🇰 اردو", () => changeLanguage('ur')),
+              _buildSimpleItem("🇷🇺 Русский", () => changeLanguage('ru')),
+              _buildSimpleItem("🇨🇳 中文", () => changeLanguage('zh')),
             ],
           ),
 

@@ -1,0 +1,121 @@
+{
+  "@@locale": "hi",
+  "appTitle": "अज़ान ऐप",
+
+  "selectLanguage": "भाषा चुनें",
+  "continueButton": "जारी रखें",
+
+  "prayerTimes": "नमाज़ के समय",
+  "nextPrayer": "अगली नमाज़",
+  "remainingTime": "शेष समय",
+
+  "fajr": "फ़ज्र",
+  "sunrise": "सूर्योदय",
+  "dhuhr": "ज़ुहर",
+  "asr": "असर",
+  "maghrib": "मगरिब",
+  "isha": "ईशा",
+
+  "settings": "सेटिंग्स",
+  "save": "सेटिंग्स सहेजें",
+
+  "language": "भाषा",
+  "calculationMethod": "गणना विधि",
+  "madhhab": "मज़हब",
+
+  "offsetSettings": "नमाज़ समय समायोजन",
+  "fajrOffset": "फ़ज्र समायोजन",
+  "dhuhrOffset": "ज़ुहर समायोजन",
+  "asrOffset": "असर समायोजन",
+  "maghribOffset": "मगरिब समायोजन",
+  "ishaOffset": "ईशा समायोजन",
+
+  "notifications": "सूचनाएं",
+  "enableNotifications": "सूचनाएं सक्षम करें",
+
+  "methodMWL": "मुस्लिम वर्ल्ड लीग",
+  "methodISNA": "ISNA",
+  "methodEgypt": "मिस्र",
+  "methodMakkah": "उम्म अल-कुरा (मक्का)",
+  "methodKarachi": "कराची",
+  "methodTurkey": "दियानेट (तुर्की)",
+
+  "hanafi": "हनाfi",
+  "shafi": "शाफ़ी",
+
+  "qibla": "क़िबला",
+  "qiblaFinder": "क़िबला फाइंडर",
+  "selectQiblaMethod": "क़िबला विधि चुनें",
+  "compassQibla": "कंपास क़िबला फाइंडर",
+  "googleQibla": "गूगल क़िबला फाइंडर",
+
+  "calibrating": "कंपास कैलिब्रेट हो रहा है...",
+  "pointPhone": "अपने फोन को क़िबला दिशा में रखें",
+
+  "more": "और",
+  "dua": "दुआएं",
+  "zikr": "ज़िक्र",
+  "calendar": "हिजरी कैलेंडर",
+  "about": "जानकारी",
+
+  "shareApp": "ऐप साझा करें",
+  "rateApp": "ऐप को रेट करें",
+
+  "loading": "लोड हो रहा है...",
+  "locationError": "स्थान अनुमति आवश्यक है",
+  "noInternet": "इंटरनेट कनेक्शन नहीं है",
+  "error": "कुछ गलत हो गया",
+  "minutesShort": "मि",
+
+  "calibratingCompass": "कंपास कैलिब्रेट हो रहा है...",
+  "heading": "दिशा",
+  "qiblaDirection": "क़िबला दिशा",
+  "facingQibla": "आप क़िबला की ओर हैं",
+  "turnToQibla": "क़िबला की ओर मुड़ें",
+  "calibrationText": "कंपास को कैलिब्रेट करने के लिए अपने फोन को 8 के आकार में घुमाएं।\nधातु की वस्तुओं से दूर रखें।",
+
+  "welcome": "स्वागत है",
+
+  "latLabel": "अक्षांश",
+  "lngLabel": "देशांतर",
+  "refresh": "रिफ्रेश करें",
+
+  "support": "सहयोग",
+  "supportMessage": "यदि यह ऐप आपको समय पर नमाज़ पढ़ने में मदद करता है, तो आप इसके विकास का समर्थन कर सकते हैं ❤️",
+  "supportNote": "भुगतान ऐप स्टोर द्वारा सुरक्षित रूप से संभाले जाते हैं।",
+
+  "shareAppText": "मेरी नमाज़ ऐप देखें 🕌\n\nयहाँ डाउनलोड करें:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391",
+  "calendarTitle": "इस्लामी कैलेंडर",
+  "todayInIslam": "आज इस्लाम में",
+  "holyNights": "पवित्र रातें",
+  "upcomingEvents": "आगामी इस्लामी घटनाएं",
+  "holyMonths": "पवित्र महीने",
+  "close": "बंद करें",
+
+  "ramadanMessage": "रमज़ान रोज़े और रहमत का महीना है।",
+  "muharramMessage": "मुहर्रम एक पवित्र महीना है।",
+  "defaultIslamMessage": "हर दिन अल्लाह को याद करने का मौका है।",
+
+  "thisMonthEvents": "इस महीने की घटनाएं",
+
+  "todayLabel": "आज",
+  "daysShort": "दि",
+  "noEventsThisMonth": "इस हिजरी महीने में कोई इस्लामी घटना नहीं है।",
+
+  "rajabMessage": "रजब चिंतन और इबादत का पवित्र महीना है।",
+  "shabanMessage": "शाबान रमज़ान से पहले की तैयारी का महीना है।",
+
+  "shawwalMessage": "शव्वाल ईद-उल-फित्र से शुरू होता है और इसमें छह सुन्नत रोज़े शामिल हैं।",
+  "dhulHijjahMessage": "ज़िल-हिज्जा हज, अराफा और ईद-उल-अज़हा का महीना है।",
+
+  "importantIslamicDays": "महत्वपूर्ण इस्लामी दिन",
+  "laylatAlQadr": "लैलतुल क़द्र",
+  "eidAlFitr": "ईद-उल-फित्र",
+  "eidAlAdha": "ईद-उल-अज़हा",
+  "startOfRamadan": "रमज़ान की शुरुआत",
+  "quran": "क़ुरआन",
+
+  "offset": "समय समायोजन",
+  "offsetMinutes": "मिनट समायोजन",
+  "adhanSound": "अज़ान ध्वनि"
+}

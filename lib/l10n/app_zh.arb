@@ -1,0 +1,121 @@
+{
+  "@@locale": "zh",
+  "appTitle": "宣礼应用",
+
+  "selectLanguage": "选择语言",
+  "continueButton": "继续",
+
+  "prayerTimes": "礼拜时间",
+  "nextPrayer": "下一次礼拜",
+  "remainingTime": "剩余时间",
+
+  "fajr": "晨礼",
+  "sunrise": "日出",
+  "dhuhr": "晌礼",
+  "asr": "晡礼",
+  "maghrib": "昏礼",
+  "isha": "宵礼",
+
+  "settings": "设置",
+  "save": "保存设置",
+
+  "language": "语言",
+  "calculationMethod": "计算方法",
+  "madhhab": "教法学派",
+
+  "offsetSettings": "礼拜时间调整",
+  "fajrOffset": "晨礼调整",
+  "dhuhrOffset": "晌礼调整",
+  "asrOffset": "晡礼调整",
+  "maghribOffset": "昏礼调整",
+  "ishaOffset": "宵礼调整",
+
+  "notifications": "通知",
+  "enableNotifications": "启用通知",
+
+  "methodMWL": "穆斯林世界联盟",
+  "methodISNA": "北美伊斯兰协会",
+  "methodEgypt": "埃及",
+  "methodMakkah": "麦加乌姆古拉",
+  "methodKarachi": "卡拉奇",
+  "methodTurkey": "土耳其宗教事务局",
+
+  "hanafi": "哈乃斐",
+  "shafi": "沙斐仪",
+
+  "qibla": "朝向",
+  "qiblaFinder": "朝向查找",
+  "selectQiblaMethod": "选择朝向方式",
+  "compassQibla": "指南针朝向",
+  "googleQibla": "谷歌朝向",
+
+  "calibrating": "正在校准指南针...",
+  "pointPhone": "将手机指向朝向方向",
+
+  "more": "更多",
+  "dua": "祈祷词",
+  "zikr": "念诵",
+  "calendar": "伊斯兰历",
+  "about": "关于",
+
+  "shareApp": "分享应用",
+  "rateApp": "评价应用",
+
+  "loading": "加载中...",
+  "locationError": "需要位置权限",
+  "noInternet": "无网络连接",
+  "error": "发生错误",
+  "minutesShort": "分",
+
+  "calibratingCompass": "正在校准指南针...",
+  "heading": "方向",
+  "qiblaDirection": "朝向方向",
+  "facingQibla": "您正朝向朝向方向",
+  "turnToQibla": "请转向朝向方向",
+  "calibrationText": "请将手机按“8”字形移动以校准指南针。\n远离金属物体。",
+
+  "welcome": "欢迎",
+
+  "latLabel": "纬度",
+  "lngLabel": "经度",
+  "refresh": "刷新",
+
+  "support": "支持",
+  "supportMessage": "如果此应用帮助您按时礼拜，您可以支持其开发 ❤️",
+  "supportNote": "支付由应用商店安全处理。",
+
+  "shareAppText": "看看我的礼拜应用 🕌\n\n下载链接：\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391",
+  "calendarTitle": "伊斯兰历",
+  "todayInIslam": "今日伊斯兰",
+  "holyNights": "神圣之夜",
+  "upcomingEvents": "即将到来的伊斯兰事件",
+  "holyMonths": "神圣月份",
+  "close": "关闭",
+
+  "ramadanMessage": "斋月是斋戒与仁慈的月份。",
+  "muharramMessage": "穆哈兰姆是一个神圣的月份。",
+  "defaultIslamMessage": "每天都是记念真主的机会。",
+
+  "thisMonthEvents": "本月事件",
+
+  "todayLabel": "今天",
+  "daysShort": "天",
+  "noEventsThisMonth": "本回历月没有伊斯兰事件。",
+
+  "rajabMessage": "拉贾卜是反思与崇拜的神圣月份。",
+  "shabanMessage": "舍尔邦是斋月前的准备月份。",
+
+  "shawwalMessage": "舍瓦尔以开斋节开始，并包含六天的圣行斋戒。",
+  "dhulHijjahMessage": "都尔黑哲是朝觐、阿拉法日和宰牲节的月份。",
+
+  "importantIslamicDays": "重要伊斯兰日",
+  "laylatAlQadr": "盖德尔夜",
+  "eidAlFitr": "开斋节",
+  "eidAlAdha": "宰牲节",
+  "startOfRamadan": "斋月开始",
+  "quran": "古兰经",
+
+  "offset": "时间调整",
+  "offsetMinutes": "分钟调整",
+  "adhanSound": "宣礼声"
+}

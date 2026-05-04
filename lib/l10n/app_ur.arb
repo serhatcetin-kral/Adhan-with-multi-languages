@@ -1,0 +1,121 @@
+{
+  "@@locale": "ur",
+  "appTitle": "اذان ایپ",
+
+  "selectLanguage": "زبان منتخب کریں",
+  "continueButton": "جاری رکھیں",
+
+  "prayerTimes": "نماز کے اوقات",
+  "nextPrayer": "اگلی نماز",
+  "remainingTime": "باقی وقت",
+
+  "fajr": "فجر",
+  "sunrise": "طلوع آفتاب",
+  "dhuhr": "ظہر",
+  "asr": "عصر",
+  "maghrib": "مغرب",
+  "isha": "عشاء",
+
+  "settings": "ترتیبات",
+  "save": "ترتیبات محفوظ کریں",
+
+  "language": "زبان",
+  "calculationMethod": "حساب کا طریقہ",
+  "madhhab": "مذہب",
+
+  "offsetSettings": "نماز کے وقت میں ایڈجسٹمنٹ",
+  "fajrOffset": "فجر ایڈجسٹمنٹ",
+  "dhuhrOffset": "ظہر ایڈجسٹمنٹ",
+  "asrOffset": "عصر ایڈجسٹمنٹ",
+  "maghribOffset": "مغرب ایڈجسٹمنٹ",
+  "ishaOffset": "عشاء ایڈجسٹمنٹ",
+
+  "notifications": "اطلاعات",
+  "enableNotifications": "اطلاعات فعال کریں",
+
+  "methodMWL": "مسلم ورلڈ لیگ",
+  "methodISNA": "ISNA",
+  "methodEgypt": "مصری",
+  "methodMakkah": "ام القریٰ (مکہ)",
+  "methodKarachi": "کراچی",
+  "methodTurkey": "دیانت (ترکی)",
+
+  "hanafi": "حنفی",
+  "shafi": "شافعی",
+
+  "qibla": "قبلہ",
+  "qiblaFinder": "قبلہ فائنڈر",
+  "selectQiblaMethod": "قبلہ کا طریقہ منتخب کریں",
+  "compassQibla": "کمپاس قبلہ فائنڈر",
+  "googleQibla": "گوگل قبلہ فائنڈر",
+
+  "calibrating": "کمپاس کیلیبریٹ ہو رہا ہے...",
+  "pointPhone": "اپنے فون کو قبلہ کی طرف رکھیں",
+
+  "more": "مزید",
+  "dua": "دعائیں",
+  "zikr": "ذکر",
+  "calendar": "ہجری کیلنڈر",
+  "about": "کے بارے میں",
+
+  "shareApp": "ایپ شیئر کریں",
+  "rateApp": "ایپ کو ریٹ کریں",
+
+  "loading": "لوڈ ہو رہا ہے...",
+  "locationError": "لوکیشن کی اجازت درکار ہے",
+  "noInternet": "انٹرنیٹ کنکشن نہیں ہے",
+  "error": "کچھ غلط ہو گیا",
+  "minutesShort": "منٹ",
+
+  "calibratingCompass": "کمپاس کیلیبریٹ ہو رہا ہے...",
+  "heading": "سمت",
+  "qiblaDirection": "قبلہ کی سمت",
+  "facingQibla": "آپ قبلہ کی طرف ہیں",
+  "turnToQibla": "قبلہ کی طرف مڑیں",
+  "calibrationText": "کمپاس کو کیلیبریٹ کرنے کے لیے اپنے فون کو 8 کی شکل میں گھمائیں۔\nدھاتی اشیاء سے دور رکھیں۔",
+
+  "welcome": "خوش آمدید",
+
+  "latLabel": "عرض بلد",
+  "lngLabel": "طول بلد",
+  "refresh": "تازہ کریں",
+
+  "support": "سپورٹ",
+  "supportMessage": "اگر یہ ایپ آپ کو وقت پر نماز پڑھنے میں مدد دیتی ہے تو آپ اس کی ترقی میں مدد کر سکتے ہیں ❤️",
+  "supportNote": "ادائیگیاں ایپ اسٹور کے ذریعے محفوظ طریقے سے کی جاتی ہیں۔",
+
+  "shareAppText": "میری نماز ایپ دیکھیں 🕌\n\nیہاں سے ڈاؤن لوڈ کریں:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391",
+  "calendarTitle": "اسلامی کیلنڈر",
+  "todayInIslam": "آج اسلام میں",
+  "holyNights": "مقدس راتیں",
+  "upcomingEvents": "آنے والے اسلامی واقعات",
+  "holyMonths": "مقدس مہینے",
+  "close": "بند کریں",
+
+  "ramadanMessage": "رمضان روزے اور رحمت کا مہینہ ہے۔",
+  "muharramMessage": "محرم ایک مقدس مہینہ ہے۔",
+  "defaultIslamMessage": "ہر دن اللہ کو یاد کرنے کا موقع ہے۔",
+
+  "thisMonthEvents": "اس مہینے کے واقعات",
+
+  "todayLabel": "آج",
+  "daysShort": "دن",
+  "noEventsThisMonth": "اس ہجری مہینے میں کوئی اسلامی واقعہ نہیں ہے۔",
+
+  "rajabMessage": "رجب غور و فکر اور عبادت کا مقدس مہینہ ہے۔",
+  "shabanMessage": "شعبان رمضان سے پہلے تیاری کا مہینہ ہے۔",
+
+  "shawwalMessage": "شوال عید الفطر سے شروع ہوتا ہے اور اس میں چھ سنت روزے شامل ہیں۔",
+  "dhulHijjahMessage": "ذوالحجہ حج، عرفہ اور عید الاضحیٰ کا مہینہ ہے۔",
+
+  "importantIslamicDays": "اہم اسلامی دن",
+  "laylatAlQadr": "لیلۃ القدر",
+  "eidAlFitr": "عید الفطر",
+  "eidAlAdha": "عید الاضحیٰ",
+  "startOfRamadan": "رمضان کا آغاز",
+  "quran": "قرآن",
+
+  "offset": "وقت کی ایڈجسٹمنٹ",
+  "offsetMinutes": "منٹ کی ایڈجسٹمنٹ",
+  "adhanSound": "اذان کی آواز"
+}
