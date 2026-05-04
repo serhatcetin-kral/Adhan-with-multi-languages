@@ -283,4 +283,16 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get adhanSound => 'Adhan-Ton';
+
+  @override
+  String get setTarget => 'Ziel festlegen';
+
+  @override
+  String get target => 'Ziel';
+
+  @override
+  String get reset => 'Zurücksetzen';
+
+  @override
+  String get done => 'Abgeschlossen';
 }

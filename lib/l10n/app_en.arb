@@ -122,7 +122,12 @@
 
   "offset": "Time Adjustment",
   "offsetMinutes": "Minute Adjustment",
-  "adhanSound":"adhanSound"
+  "adhanSound":"adhanSound",
+  "setTarget": "Set Target",
+  "target": "Target",
+  "reset": "Reset",
+  "done": "Completed",
+
 
 
 }

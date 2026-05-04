@@ -2,6 +2,7 @@ import 'package:adhan_app/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../main.dart';
+import '../l10n/app_localizations.dart'; // ✅ ADD THIS
 
 class LanguageScreen extends StatefulWidget {
   const LanguageScreen({super.key});
@@ -54,6 +55,9 @@ class _LanguageScreenState extends State<LanguageScreen>
     setState(() {
       selectedLanguage = code;
     });
+
+    // 🔥 APPLY LANGUAGE IMMEDIATELY
+    MyApp.setLocale(context, Locale(code));
   }
 
   Future<void> saveAndContinue() async {
@@ -74,6 +78,8 @@ class _LanguageScreenState extends State<LanguageScreen>
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!; // ✅ ADD THIS
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -99,7 +105,6 @@ class _LanguageScreenState extends State<LanguageScreen>
 
                     const SizedBox(height: 40),
 
-                    // 🕌 ICON
                     const Icon(
                       Icons.mosque,
                       size: 80,
@@ -108,9 +113,10 @@ class _LanguageScreenState extends State<LanguageScreen>
 
                     const SizedBox(height: 20),
 
-                    const Text(
-                      "Welcome",
-                      style: TextStyle(
+                    // ✅ LOCALIZED
+                    Text(
+                      t.welcome,
+                      style: const TextStyle(
                         fontSize: 26,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
@@ -119,14 +125,14 @@ class _LanguageScreenState extends State<LanguageScreen>
 
                     const SizedBox(height: 10),
 
-                    const Text(
-                      "Choose your language",
-                      style: TextStyle(color: Colors.white70),
+                    // ✅ LOCALIZED
+                    Text(
+                      t.selectLanguage,
+                      style: const TextStyle(color: Colors.white70),
                     ),
 
                     const SizedBox(height: 20),
 
-                    // ✅ SCROLLABLE LANGUAGE LIST
                     Expanded(
                       child: SingleChildScrollView(
                         child: Column(
@@ -148,7 +154,7 @@ class _LanguageScreenState extends State<LanguageScreen>
 
                     const SizedBox(height: 10),
 
-                    // 🚀 CONTINUE BUTTON
+                    // 🚀 FIXED BUTTON
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
@@ -161,9 +167,10 @@ class _LanguageScreenState extends State<LanguageScreen>
                             borderRadius: BorderRadius.circular(14),
                           ),
                         ),
-                        child: const Text(
-                          "Continue",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        child: Text(
+                          t.continueButton, // ✅ FIXED
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),

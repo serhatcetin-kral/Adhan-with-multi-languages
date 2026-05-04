@@ -662,6 +662,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'adhanSound'**
   String get adhanSound;
+
+  /// No description provided for @setTarget.
+  ///
+  /// In en, this message translates to:
+  /// **'Set Target'**
+  String get setTarget;
+
+  /// No description provided for @target.
+  ///
+  /// In en, this message translates to:
+  /// **'Target'**
+  String get target;
+
+  /// No description provided for @reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get reset;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get done;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

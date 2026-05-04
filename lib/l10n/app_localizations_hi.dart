@@ -283,4 +283,16 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get adhanSound => 'अज़ान ध्वनि';
+
+  @override
+  String get setTarget => 'लक्ष्य निर्धारित करें';
+
+  @override
+  String get target => 'लक्ष्य';
+
+  @override
+  String get reset => 'रीसेट';
+
+  @override
+  String get done => 'पूर्ण';
 }

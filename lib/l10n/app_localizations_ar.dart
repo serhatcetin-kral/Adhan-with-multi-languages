@@ -283,4 +283,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get adhanSound => 'صوت الأذان';
+
+  @override
+  String get setTarget => 'تحديد الهدف';
+
+  @override
+  String get target => 'الهدف';
+
+  @override
+  String get reset => 'إعادة';
+
+  @override
+  String get done => 'تم';
 }

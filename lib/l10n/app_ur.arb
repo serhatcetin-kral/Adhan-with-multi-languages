@@ -117,5 +117,9 @@
 
   "offset": "وقت کی ایڈجسٹمنٹ",
   "offsetMinutes": "منٹ کی ایڈجسٹمنٹ",
-  "adhanSound": "اذان کی آواز"
+  "adhanSound": "اذان کی آواز",
+  "setTarget": "ہدف مقرر کریں",
+  "target": "ہدف",
+  "reset": "ری سیٹ کریں",
+  "done": "مکمل"
 }

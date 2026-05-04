@@ -283,4 +283,16 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get adhanSound => 'Звук азана';
+
+  @override
+  String get setTarget => 'Установить цель';
+
+  @override
+  String get target => 'Цель';
+
+  @override
+  String get reset => 'Сбросить';
+
+  @override
+  String get done => 'Завершено';
 }

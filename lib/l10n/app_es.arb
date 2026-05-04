@@ -117,5 +117,9 @@
 
   "offset": "Ajuste de tiempo",
   "offsetMinutes": "Ajuste en minutos",
-  "adhanSound": "Sonido del Adhan"
+  "adhanSound": "Sonido del Adhan",
+  "setTarget": "Definir objetivo",
+  "target": "Objetivo",
+  "reset": "Reiniciar",
+  "done": "Completado"
 }

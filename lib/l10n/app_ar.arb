@@ -114,7 +114,11 @@
   "quran": "القرآن",
   "offset": "تعديل الوقت",
   "offsetMinutes": "تعديل بالدقائق",
-  "adhanSound":"صوت الأذان"
+  "adhanSound":"صوت الأذان",
+  "setTarget": "تحديد الهدف",
+  "target": "الهدف",
+  "reset": "إعادة",
+  "done": "تم"
 
 
 }

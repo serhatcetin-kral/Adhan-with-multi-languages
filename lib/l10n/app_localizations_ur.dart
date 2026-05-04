@@ -283,4 +283,16 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get adhanSound => 'اذان کی آواز';
+
+  @override
+  String get setTarget => 'ہدف مقرر کریں';
+
+  @override
+  String get target => 'ہدف';
+
+  @override
+  String get reset => 'ری سیٹ کریں';
+
+  @override
+  String get done => 'مکمل';
 }

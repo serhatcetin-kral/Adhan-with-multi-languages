@@ -114,7 +114,11 @@
 
   "offset": "Zaman Kaydırma",
   "offsetMinutes": "Dakika Ayarı",
-  "adhanSound": "ezan"
+  "adhanSound": "ezan",
+  "setTarget": "Hedef Belirle",
+  "target": "Hedef",
+  "reset": "Sıfırla",
+  "done": "Tamamlandı"
 
 
 }

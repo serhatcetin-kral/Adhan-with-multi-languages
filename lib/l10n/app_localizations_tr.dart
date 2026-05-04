@@ -283,4 +283,16 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get adhanSound => 'ezan';
+
+  @override
+  String get setTarget => 'Hedef Belirle';
+
+  @override
+  String get target => 'Hedef';
+
+  @override
+  String get reset => 'Sıfırla';
+
+  @override
+  String get done => 'Tamamlandı';
 }

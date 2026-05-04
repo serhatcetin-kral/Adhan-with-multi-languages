@@ -117,5 +117,9 @@
 
   "offset": "समय समायोजन",
   "offsetMinutes": "मिनट समायोजन",
-  "adhanSound": "अज़ान ध्वनि"
+  "adhanSound": "अज़ान ध्वनि",
+  "setTarget": "लक्ष्य निर्धारित करें",
+  "target": "लक्ष्य",
+  "reset": "रीसेट",
+  "done": "पूर्ण"
 }

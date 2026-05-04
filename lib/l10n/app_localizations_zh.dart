@@ -283,4 +283,16 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get adhanSound => '宣礼声';
+
+  @override
+  String get setTarget => '设置目标';
+
+  @override
+  String get target => '目标';
+
+  @override
+  String get reset => '重置';
+
+  @override
+  String get done => '完成';
 }

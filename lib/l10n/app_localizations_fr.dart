@@ -283,4 +283,16 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get adhanSound => 'Son de l\'Adhan';
+
+  @override
+  String get setTarget => 'Définir l\'objectif';
+
+  @override
+  String get target => 'Objectif';
+
+  @override
+  String get reset => 'Réinitialiser';
+
+  @override
+  String get done => 'Terminé';
 }
