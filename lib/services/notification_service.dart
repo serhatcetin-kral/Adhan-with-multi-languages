@@ -59,12 +59,14 @@ class NotificationService {
       importance: Importance.max,
       priority: Priority.high,
       playSound: true,
+      sound: RawResourceAndroidNotificationSound('adhan'), // 🔥 ADD THIS
     );
 
     const iosDetails = DarwinNotificationDetails(
       presentAlert: true,
       presentBadge: true,
       presentSound: true,
+      sound: 'adhan.caf',
     );
 
     const details = NotificationDetails(

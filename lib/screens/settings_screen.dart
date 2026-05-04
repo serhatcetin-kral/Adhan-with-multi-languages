@@ -45,22 +45,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Future<void> loadSettings() async {
     final prefs = await SharedPreferences.getInstance();
 
-    final savedMethod = prefs.getString('method');
-    final savedMadhhab = prefs.getString('madhhab');
-    final savedLang = prefs.getString('language');
-
     if (!mounted) return;
 
     setState(() {
-      selectedLanguage = savedLang ?? 'en';
-
-      calculationMethod = methods.contains(savedMethod)
-          ? savedMethod!
-          : 'ISNA';
-
-      madhhab = madhhabs.contains(savedMadhhab)
-          ? savedMadhhab!
-          : 'shafi';
+      selectedLanguage = prefs.getString('language') ?? 'en';
+      calculationMethod = prefs.getString('method') ?? 'ISNA';
+      madhhab = prefs.getString('madhhab') ?? 'shafi';
 
       notificationsEnabled = prefs.getBool('notifications') ?? true;
       adhanEnabled = prefs.getBool('adhan') ?? true;
@@ -94,7 +84,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     if (!mounted) return;
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Settings saved")),
+      SnackBar(content: Text(AppLocalizations.of(context)!.save)),
     );
 
     Navigator.pushReplacement(
@@ -107,7 +97,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     setState(() {
       selectedLanguage = code;
     });
-
     MyApp.setLocale(context, Locale(code));
   }
 
@@ -118,11 +107,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
       case 'ISNA':
         return "ISNA (North America)";
       case 'Egypt':
-        return "Egypt (Egyptian Authority)";
+        return "Egypt";
       case 'Makkah':
-        return "Makkah (Umm Al-Qura)";
+        return "Makkah";
       case 'Karachi':
-        return "Karachi (University of Karachi)";
+        return "Karachi";
       case 'Turkey':
         return "Turkey (Diyanet)";
       default:
@@ -135,160 +124,157 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final loc = AppLocalizations.of(context)!;
 
     return Scaffold(
+      backgroundColor: Colors.transparent,
+
       appBar: AppBar(
-        title: Text(loc.settings),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         centerTitle: true,
+        title: Text(
+          loc.settings,
+          style: const TextStyle(color: Colors.white),
+        ),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
 
-          // 🌐 LANGUAGE
-          _buildSectionCard(
-            title: loc.language,
-            icon: Icons.language,
-            children: [
-              _buildSimpleItem("🇺🇸 English", () => changeLanguage('en')),
-              _buildSimpleItem("🇹🇷 Türkçe", () => changeLanguage('tr')),
-              _buildSimpleItem("🇸🇦 العربية", () => changeLanguage('ar')),
-              _buildSimpleItem("🇫🇷 Français", () => changeLanguage('fr')),
-              _buildSimpleItem("🇩🇪 Deutsch", () => changeLanguage('de')),
-              _buildSimpleItem("🇪🇸 Español", () => changeLanguage('es')),
-              _buildSimpleItem("🇮🇳 हिन्दी", () => changeLanguage('hi')),
-              _buildSimpleItem("🇵🇰 اردو", () => changeLanguage('ur')),
-              _buildSimpleItem("🇷🇺 Русский", () => changeLanguage('ru')),
-              _buildSimpleItem("🇨🇳 中文", () => changeLanguage('zh')),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFF0D1B2A),
+              Color(0xFF1B263B),
+              Color(0xFF415A77),
             ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
-
-          // ⚙️ CALCULATION METHOD
-          _buildSectionCard(
-            title: loc.calculationMethod,
-            icon: Icons.calculate,
+        ),
+        child: SafeArea(
+          child: ListView(
+            padding: const EdgeInsets.all(16),
             children: [
-              DropdownButton<String>(
-                value: calculationMethod,
-                isExpanded: true,
-                items: methods.map((m) {
-                  return DropdownMenuItem(
-                    value: m,
-                    child: Text(getMethodLabel(m)),
-                  );
-                }).toList(),
-                onChanged: (val) {
-                  if (val == null) return;
-                  setState(() {
-                    calculationMethod = val;
-                  });
-                },
+
+              _section(loc.language, Icons.language, [
+                _tile("🇺🇸 English", "en"),
+                _tile("🇹🇷 Türkçe", "tr"),
+                _tile("🇸🇦 العربية", "ar"),
+                _tile("🇫🇷 Français", "fr"),
+                _tile("🇩🇪 Deutsch", "de"),
+                _tile("🇪🇸 Español", "es"),
+                _tile("🇮🇳 हिन्दी", "hi"),
+                _tile("🇵🇰 اردو", "ur"),
+                _tile("🇷🇺 Русский", "ru"),
+                _tile("🇨🇳 中文", "zh"),
+              ]),
+
+              _section(loc.calculationMethod, Icons.calculate, [
+                DropdownButton<String>(
+                  value: calculationMethod,
+                  isExpanded: true,
+                  items: methods.map((m) {
+                    return DropdownMenuItem(
+                      value: m,
+                      child: Text(getMethodLabel(m)),
+                    );
+                  }).toList(),
+                  onChanged: (val) => setState(() => calculationMethod = val!),
+                ),
+              ]),
+
+              _section(loc.madhhab, Icons.menu_book, [
+                DropdownButton<String>(
+                  value: madhhab,
+                  isExpanded: true,
+                  items: madhhabs.map((m) {
+                    return DropdownMenuItem(
+                      value: m,
+                      child: Text(m == 'hanafi'
+                          ? "Hanafi"
+                          : "Shafi / Hanbali / Maliki"),
+                    );
+                  }).toList(),
+                  onChanged: (val) => setState(() => madhhab = val!),
+                ),
+              ]),
+
+              _section(loc.notifications, Icons.notifications, [
+                SwitchListTile(
+                  title: Text(loc.notifications),
+                  value: notificationsEnabled,
+                  onChanged: (val) async {
+                    setState(() => notificationsEnabled = val);
+                    final prefs = await SharedPreferences.getInstance();
+                    await prefs.setBool('notifications', val);
+                    if (!val) await NotificationService.cancelAll();
+                  },
+                ),
+                SwitchListTile(
+                  title: Text(loc.adhanSound),
+                  value: adhanEnabled,
+                  onChanged: (val) async {
+                    setState(() => adhanEnabled = val);
+                    final prefs = await SharedPreferences.getInstance();
+                    await prefs.setBool('adhan', val);
+                  },
+                ),
+              ]),
+
+              _section(loc.offsetSettings, Icons.access_time, [
+                _offset(loc.fajrOffset, fajrOffset, (v) => setState(() => fajrOffset = v)),
+                _offset(loc.dhuhrOffset, dhuhrOffset, (v) => setState(() => dhuhrOffset = v)),
+                _offset(loc.asrOffset, asrOffset, (v) => setState(() => asrOffset = v)),
+                _offset(loc.maghribOffset, maghribOffset, (v) => setState(() => maghribOffset = v)),
+                _offset(loc.ishaOffset, ishaOffset, (v) => setState(() => ishaOffset = v)),
+              ]),
+
+              const SizedBox(height: 20),
+
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: saveSettings,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                  ),
+                  child: Text(
+                    loc.save,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
               ),
+
             ],
           ),
-
-          // 🕌 MADHHAB
-          _buildSectionCard(
-            title: loc.madhhab,
-            icon: Icons.menu_book,
-            children: [
-              DropdownButton<String>(
-                value: madhhab,
-                isExpanded: true,
-                items: madhhabs.map((m) {
-                  return DropdownMenuItem(
-                    value: m,
-                    child: Text(m == 'hanafi' ? "Hanafi" : "Shafi / Hanbali / Maliki"),
-                  );
-                }).toList(),
-                onChanged: (val) {
-                  if (val == null) return;
-                  setState(() {
-                    madhhab = val;
-                  });
-                },
-              ),
-            ],
-          ),
-
-          // 🔔 NOTIFICATIONS
-          _buildSectionCard(
-            title: loc.notifications,
-            icon: Icons.notifications,
-            children: [
-              SwitchListTile(
-                title: Text(loc.notifications),
-                value: notificationsEnabled,
-                onChanged: (val) async {
-                  setState(() {
-                    notificationsEnabled = val;
-                  });
-
-                  final prefs = await SharedPreferences.getInstance();
-                  await prefs.setBool('notifications', val);
-
-                  if (!val) {
-                    await NotificationService.cancelAll();
-                  }
-                },
-              ),
-
-              SwitchListTile(
-                title: Text(loc.adhanSound),
-                value: adhanEnabled,
-                onChanged: (val) async {
-                  setState(() {
-                    adhanEnabled = val;
-                  });
-
-                  final prefs = await SharedPreferences.getInstance();
-                  await prefs.setBool('adhan', val);
-                },
-              ),
-            ],
-          ),
-
-          // ⏱ OFFSET
-          _buildSectionCard(
-            title: loc.offsetSettings,
-            icon: Icons.access_time,
-            children: [
-              buildOffsetTile(loc.fajrOffset, fajrOffset, (v) => setState(() => fajrOffset = v)),
-              buildOffsetTile(loc.dhuhrOffset, dhuhrOffset, (v) => setState(() => dhuhrOffset = v)),
-              buildOffsetTile(loc.asrOffset, asrOffset, (v) => setState(() => asrOffset = v)),
-              buildOffsetTile(loc.maghribOffset, maghribOffset, (v) => setState(() => maghribOffset = v)),
-              buildOffsetTile(loc.ishaOffset, ishaOffset, (v) => setState(() => ishaOffset = v)),
-            ],
-          ),
-
-          const SizedBox(height: 20),
-
-          ElevatedButton(
-            onPressed: saveSettings,
-            child: Text(loc.save),
-          ),
-        ],
+        ),
       ),
     );
   }
 
-  Widget _buildSectionCard({
-    required String title,
-    required IconData icon,
-    required List<Widget> children,
-  }) {
-    return Card(
+  Widget _section(String title, IconData icon, List<Widget> children) {
+    return Container(
       margin: const EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.95),
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10),
+        ],
+      ),
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Icon(icon),
-                const SizedBox(width: 8),
-                Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-              ],
-            ),
+            Row(children: [
+              Icon(icon, color: Colors.teal),
+              const SizedBox(width: 8),
+              Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+            ]),
             const Divider(),
             ...children,
           ],
@@ -297,14 +283,42 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  Widget _buildSimpleItem(String text, VoidCallback onTap) {
-    return ListTile(
-      title: Text(text),
-      onTap: onTap,
+  // Widget _tile(String text, VoidCallback onTap) {
+  //   return ListTile(
+  //     title: Text(text),
+  //     onTap: onTap,
+  //   );
+  // }
+  Widget _tile(String text, String code) {
+    final isSelected = selectedLanguage == code;
+
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 250),
+      margin: const EdgeInsets.symmetric(vertical: 4),
+      decoration: BoxDecoration(
+        color: isSelected ? Colors.teal.withOpacity(0.12) : Colors.transparent,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: ListTile(
+        leading: Icon(
+          Icons.language,
+          color: isSelected ? Colors.teal : Colors.grey,
+        ),
+        title: Text(
+          text,
+          style: TextStyle(
+            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+          ),
+        ),
+        trailing: isSelected
+            ? const Icon(Icons.check_circle, color: Colors.teal)
+            : null,
+        onTap: () => changeLanguage(code),
+      ),
     );
   }
 
-  Widget buildOffsetTile(String title, int value, Function(int) onChanged) {
+  Widget _offset(String title, int value, Function(int) onChanged) {
     final loc = AppLocalizations.of(context)!;
 
     return ListTile(
@@ -314,16 +328,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
         children: [
           IconButton(
             icon: const Icon(Icons.remove),
-            onPressed: () {
-              if (value > -30) onChanged(value - 1);
-            },
+            onPressed: () => value > -30 ? onChanged(value - 1) : null,
           ),
           Text("$value ${loc.minutesShort}"),
           IconButton(
             icon: const Icon(Icons.add),
-            onPressed: () {
-              if (value < 30) onChanged(value + 1);
-            },
+            onPressed: () => value < 30 ? onChanged(value + 1) : null,
           ),
         ],
       ),
