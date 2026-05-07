@@ -5,10 +5,11 @@ import 'package:timezone/timezone.dart' as tz;
 class NotificationService {
   static final FlutterLocalNotificationsPlugin _plugin =
   FlutterLocalNotificationsPlugin();
+
+  // ✅ INIT
   static Future<void> init() async {
     tzdata.initializeTimeZones();
 
-    // ✅ SIMPLE SAFE FIX
     tz.setLocalLocation(tz.local);
 
     const android = AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -26,11 +27,13 @@ class NotificationService {
 
     await _plugin.initialize(settings);
 
+    // ✅ Android permission
     await _plugin
         .resolvePlatformSpecificImplementation<
         AndroidFlutterLocalNotificationsPlugin>()
         ?.requestNotificationsPermission();
 
+    // ✅ iOS permission
     await _plugin
         .resolvePlatformSpecificImplementation<
         IOSFlutterLocalNotificationsPlugin>()
@@ -41,15 +44,15 @@ class NotificationService {
     );
   }
 
-  // ✅ SCHEDULE ONE
+  // ✅ SCHEDULE ONE PRAYER
   static Future<void> schedulePrayer({
     required int id,
     required String title,
     required String body,
     required DateTime time,
-
   }) async {
     final scheduled = tz.TZDateTime.from(time, tz.local);
+
     print("Scheduled notification at: $scheduled");
 
     const androidDetails = AndroidNotificationDetails(
@@ -59,7 +62,7 @@ class NotificationService {
       importance: Importance.max,
       priority: Priority.high,
       playSound: true,
-      sound: RawResourceAndroidNotificationSound('adhan'), // 🔥 ADD THIS
+      sound: RawResourceAndroidNotificationSound('adhan'),
     );
 
     const iosDetails = DarwinNotificationDetails(
@@ -86,26 +89,33 @@ class NotificationService {
     );
   }
 
-  // ✅ CANCEL
+  // // ✅ SCHEDULE ALL PRAYERS
+  // static Future<void> scheduleAllPrayers(   {
+  //   required Map<String, DateTime> prayerTimes,
+  // }) async {
+  //   for (final prayer in prayerTimes.entries) {
+  //
+  //     // ❌ SKIP SUNRISE
+  //     if (prayer.key.toLowerCase() == 'sunrise') {
+  //       continue;
+  //     }
+  //
+  //     // ❌ SKIP OLD TIMES
+  //     if (prayer.value.isBefore(DateTime.now())) {
+  //       continue;
+  //     }
+  //
+  //     await schedulePrayer(
+  //       id: prayer.key.hashCode,
+  //       title: '${prayer.key} Prayer Time',
+  //       body: 'It is time for ${prayer.key} prayer',
+  //       time: prayer.value,
+  //     );
+  //   }
+  // }
+
+  // ✅ CANCEL ALL
   static Future<void> cancelAll() async {
     await _plugin.cancelAll();
   }
-
-  // ✅ TEST
-  // static Future<void> testNotification() async {
-  //   await _plugin.show(
-  //     999,
-  //     "Test Notification",
-  //     "Instant test working",
-  //     const NotificationDetails(
-  //       android: AndroidNotificationDetails(
-  //         'test_channel_simple',
-  //         'Test Channel',
-  //         importance: Importance.max,
-  //         priority: Priority.high,
-  //         playSound: true,
-  //       ),
-  //     ),
-  //   );
-  // }
 }

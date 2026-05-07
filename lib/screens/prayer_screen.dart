@@ -132,6 +132,8 @@ class _PrayerScreenState extends State<PrayerScreen> {
     }
   }
 
+
+
 // Helper to avoid repeating the mapping logic
   Map<String, TimeOfDay> _mapResultToPrayerTimes(Map<String, dynamic> result, SharedPreferences prefs) {
     return {
@@ -461,8 +463,15 @@ class _PrayerScreenState extends State<PrayerScreen> {
     final now = DateTime.now();
 
     for (final entry in prayerTimes.entries) {
+
       final name = entry.key;
       final time = entry.value;
+
+      // ❌ SKIP SUNRISE
+      if (name.toLowerCase() == 'sunrise') {
+        print("❌ Sunrise skipped");
+        continue;
+      }
 
       DateTime scheduleTime = DateTime(
         now.year,
@@ -472,7 +481,7 @@ class _PrayerScreenState extends State<PrayerScreen> {
         time.minute,
       );
 
-      // 🔥 FIX: if passed → schedule tomorrow
+      // ✅ IF TIME PASSED -> TOMORROW
       if (scheduleTime.isBefore(now)) {
         scheduleTime = scheduleTime.add(const Duration(days: 1));
       }
