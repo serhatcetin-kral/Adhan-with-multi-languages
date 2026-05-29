@@ -7,6 +7,7 @@ import 'package:vibration/vibration.dart';
 import '../services/app_location_service.dart';
 import '../services/qibla_service.dart';
 import '../widget/app_drawwer.dart';
+import '../widget/banner_ad_widget.dart';
 import '../widget/compass_widget.dart';
 
 import '../l10n/app_localizations.dart';
@@ -193,9 +194,15 @@ class _QiblaScreenState extends State<QiblaScreen> {
               // 🧠 CALIBRATION
               Text(
                 loc.calibrationText,
+
                 textAlign: TextAlign.center,
                 style: const TextStyle(color: Colors.grey),
               ),
+              const Spacer(),
+
+              const BannerAdWidget(),
+
+              const SizedBox(height: 6),
             ],
           ),
         ),

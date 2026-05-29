@@ -13,6 +13,8 @@ import '../l10n/app_localizations.dart';
 import '../services/notification_service.dart';
 import '../services/prayer_api_service.dart';
 import '../services/app_location_service.dart';
+import '../widget/banner_ad_widget.dart';
+
 
 class PrayerScreen extends StatefulWidget {
   const PrayerScreen({super.key});
@@ -282,6 +284,7 @@ class _PrayerScreenState extends State<PrayerScreen> {
             ],
           ),
         ),
+        const BannerAdWidget(),
       ],
     );
   }
@@ -488,11 +491,17 @@ class _PrayerScreenState extends State<PrayerScreen> {
 
       print("Scheduling $name at $scheduleTime");
 
+      final prefs = await SharedPreferences.getInstance();
+
+      final adhanEnabled =
+          prefs.getBool('adhan') ?? true;
+
       await NotificationService.schedulePrayer(
         id: id++,
         title: "Prayer Time",
         body: "$name time",
         time: scheduleTime,
+        adhanEnabled: adhanEnabled,
       );
     }
   }

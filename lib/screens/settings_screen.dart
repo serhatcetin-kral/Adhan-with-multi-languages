@@ -202,20 +202,40 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   title: Text(loc.notifications),
                   value: notificationsEnabled,
                   onChanged: (val) async {
+
                     setState(() => notificationsEnabled = val);
-                    final prefs = await SharedPreferences.getInstance();
+
+                    final prefs =
+                    await SharedPreferences.getInstance();
+
                     await prefs.setBool('notifications', val);
-                    if (!val) await NotificationService.cancelAll();
+
+                    if (!val) {
+
+                      await NotificationService.cancelAll();
+
+                    } else {
+
+                      // TODO:
+                      // reschedule prayer notifications here
+                    }
                   },
                 ),
                 SwitchListTile(
                   title: Text(loc.adhanSound),
                   value: adhanEnabled,
-                  onChanged: (val) async {
+
+                  onChanged: notificationsEnabled
+                      ? (val) async {
+
                     setState(() => adhanEnabled = val);
-                    final prefs = await SharedPreferences.getInstance();
+
+                    final prefs =
+                    await SharedPreferences.getInstance();
+
                     await prefs.setBool('adhan', val);
-                  },
+                  }
+                      : null,
                 ),
               ]),
 

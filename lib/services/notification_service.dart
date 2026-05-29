@@ -50,29 +50,36 @@ class NotificationService {
     required String title,
     required String body,
     required DateTime time,
+    required bool adhanEnabled,
   }) async {
     final scheduled = tz.TZDateTime.from(time, tz.local);
 
     print("Scheduled notification at: $scheduled");
 
-    const androidDetails = AndroidNotificationDetails(
+    final androidDetails = AndroidNotificationDetails(
       'prayer_channel_v1',
       'Prayer Notifications',
       channelDescription: 'Daily prayer notifications',
       importance: Importance.max,
       priority: Priority.high,
-      playSound: true,
-      sound: RawResourceAndroidNotificationSound('adhan'),
+      playSound: adhanEnabled,
+
+      sound: adhanEnabled
+          ? const RawResourceAndroidNotificationSound('adhan')
+          : null,
     );
 
-    const iosDetails = DarwinNotificationDetails(
+    final iosDetails = DarwinNotificationDetails(
       presentAlert: true,
       presentBadge: true,
-      presentSound: true,
-      sound: 'adhan.caf',
+      presentSound: adhanEnabled,
+
+      sound: adhanEnabled
+          ? 'adhan.caf'
+          : null,
     );
 
-    const details = NotificationDetails(
+    final details = NotificationDetails(
       android: androidDetails,
       iOS: iosDetails,
     );

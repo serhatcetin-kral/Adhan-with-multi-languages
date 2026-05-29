@@ -4,14 +4,14 @@ import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:io';
 
+import '../widget/banner_ad_widget.dart';
+
 class MoreScreen extends StatelessWidget {
   const MoreScreen({super.key});
 
   void shareApp(BuildContext context) {
-    final box = context.findRenderObject();
 
-    const androidLink =
-        "https://play.google.com/store/apps/details?id=com.serhatcetin.muslimqiblafinder";
+    final box = context.findRenderObject();
 
     const iosLink =
         "https://apps.apple.com/us/app/sala-prayer-times/id6759267391";
@@ -19,31 +19,39 @@ class MoreScreen extends StatelessWidget {
     const text =
         "🕌 Muslim Salah Prayer Time App\n\n"
         "Check out my prayer app 👇\n\n"
-        "📱 Android:\n$androidLink\n\n"
-        "🍎 iOS:\n$iosLink";
+        "🍎 Download on the App Store:\n$iosLink";
 
     if (box is RenderBox) {
+
       Share.share(
         text,
-        sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
+
+        sharePositionOrigin:
+        box.localToGlobal(Offset.zero) & box.size,
       );
+
     } else {
+
       Share.share(text);
     }
   }
   Future<void> rateApp() async {
+
     final iosUrl = Uri.parse(
       "https://apps.apple.com/us/app/sala-prayer-times/id6759267391",
     );
 
-    final androidUrl = Uri.parse(
-        "https://play.google.com/store/apps/details?id=com.serhatcetin.muslimqiblafinder",
-    );
+    // final androidUrl = Uri.parse(
+    //   "https://play.google.com/store/apps/details?id=com.serhatcetin.muslimqiblafinder",
+    // );
 
-    final url = Platform.isIOS ? iosUrl : androidUrl;
+    final url = iosUrl;
 
     if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
+      await launchUrl(
+        url,
+        mode: LaunchMode.externalApplication,
+      );
     }
   }
 
@@ -77,6 +85,10 @@ class MoreScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16),
 
+            child: Column(
+              children: [
+
+            Expanded(
             child: GridView.count(
               crossAxisCount: 2,
               crossAxisSpacing: 20,
@@ -160,8 +172,16 @@ class MoreScreen extends StatelessWidget {
 
 
               ],
+            ),),
+
+                const BannerAdWidget(),
+
+                const SizedBox(height: 10),
+
+              ],
             ),
           ),
+
         ),
       ),
     );

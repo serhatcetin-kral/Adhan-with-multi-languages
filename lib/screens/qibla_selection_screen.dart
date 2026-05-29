@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../l10n/app_localizations.dart';
+import '../widget/banner_ad_widget.dart';
 import 'qibla_screen.dart';
 
 class QiblaSelectionScreen extends StatelessWidget {
@@ -71,6 +72,11 @@ class QiblaSelectionScreen extends StatelessWidget {
               text: loc.googleQibla,
               onTap: () => openGoogleQibla(context),
             ),
+            const Spacer(),
+
+            const BannerAdWidget(),
+
+            const SizedBox(height: 10),
           ],
         ),
       ),

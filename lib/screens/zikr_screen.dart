@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vibration/vibration.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../l10n/app_localizations.dart';
+import '../widget/banner_ad_widget.dart';
 
 class ZikrScreen extends StatefulWidget {
   const ZikrScreen({super.key});
@@ -208,6 +209,11 @@ class _ZikrScreenState extends State<ZikrScreen> {
                 ),
 
               const SizedBox(height: 20),
+
+
+              const BannerAdWidget(),
+
+              const SizedBox(height: 10),
             ],
           ),
         ),
@@ -268,8 +274,14 @@ class _ZikrScreenState extends State<ZikrScreen> {
             },
             child: const Text("OK"),
           ),
+
+
         ],
       ),
+
+
     );
+
   }
+
 }
