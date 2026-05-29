@@ -11,48 +11,36 @@ class MoreScreen extends StatelessWidget {
 
   void shareApp(BuildContext context) {
 
-    final box = context.findRenderObject();
-
     const iosLink =
         "https://apps.apple.com/us/app/sala-prayer-times/id6759267391";
 
-    const text =
+    const androidLink =
+        "https://play.google.com/store/apps/details?id=com.serhatcetin.muslimqiblafinder";
+
+    final link = Platform.isAndroid
+        ? androidLink
+        : iosLink;
+
+    final text =
         "🕌 Muslim Salah Prayer Time App\n\n"
-        "Check out my prayer app 👇\n\n"
-        "🍎 Download on the App Store:\n$iosLink";
+        "Check out my prayer app 👇\n\n$link";
 
-    if (box is RenderBox) {
-
-      Share.share(
-        text,
-
-        sharePositionOrigin:
-        box.localToGlobal(Offset.zero) & box.size,
-      );
-
-    } else {
-
-      Share.share(text);
-    }
+    Share.share(text);
   }
   Future<void> rateApp() async {
 
-    final iosUrl = Uri.parse(
+    final url = Platform.isAndroid
+        ? Uri.parse(
+      "https://play.google.com/store/apps/details?id=com.serhatcetin.muslimqiblafinder",
+    )
+        : Uri.parse(
       "https://apps.apple.com/us/app/sala-prayer-times/id6759267391",
     );
 
-    // final androidUrl = Uri.parse(
-    //   "https://play.google.com/store/apps/details?id=com.serhatcetin.muslimqiblafinder",
-    // );
-
-    final url = iosUrl;
-
-    if (await canLaunchUrl(url)) {
-      await launchUrl(
-        url,
-        mode: LaunchMode.externalApplication,
-      );
-    }
+    await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    );
   }
 
   @override

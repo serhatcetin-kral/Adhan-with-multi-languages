@@ -3,7 +3,7 @@ description: Adhan Prayer Time App
 
 publish_to: 'none'
 
-version: 4.0.1+5
+version: 4.0.0+6
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
