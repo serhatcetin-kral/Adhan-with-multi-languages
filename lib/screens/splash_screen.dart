@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'language_screen.dart';
 import 'main_screen.dart';
+import '../services/update_service.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -25,6 +26,9 @@ class _SplashScreenState extends State<SplashScreen> {
     final isFirstLaunch = prefs.getBool('first_launch') ?? true;
 
     await Future.delayed(const Duration(seconds: 2));
+
+    // ✅ Check update here
+    await UpdateService.checkForUpdate();
 
     if (!mounted) return;
 

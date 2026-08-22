@@ -59,6 +59,13 @@ class _QuranReaderScreenState extends State<QuranReaderScreen> {
     if (!_scrollController.hasClients) return;
 
     final prefs = await SharedPreferences.getInstance();
+
+    // For Continue Reading card
+    await prefs.setInt('lastSurah', widget.surahNumber);
+    await prefs.setString('lastTitle', widget.title);
+    await prefs.setString('lastTitleAr', widget.titleAr);
+
+    // For restoring same scroll position
     await prefs.setInt('last_surah', widget.surahNumber);
     await prefs.setDouble('last_scroll_offset', _scrollController.offset);
   }

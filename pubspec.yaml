@@ -3,7 +3,7 @@ description: Adhan Prayer Time App
 
 publish_to: 'none'
 
-version: 4.0.0+6
+version: 4.0.1+7
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
@@ -20,7 +20,7 @@ dependencies:
   flutter_map_tile_caching: ^9.0.0
   google_mobile_ads: ^5.1.0
   just_audio: ^0.9.36
-
+  in_app_update: ^4.2.3
 
   flutter_localizations:
     sdk: flutter

@@ -245,7 +245,21 @@ class _PrayerScreenState extends State<PrayerScreen> {
     // If we have data, show the app.
     // Only if we have NO DATA and a FAIL occurred, show the refresh/settings screen.
     return Scaffold(
-      appBar: AppBar(title: Text(loc.prayerTimes)),
+      appBar: AppBar(
+        title: Text(loc.prayerTimes),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () async {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text("Updating prayer times...")),
+              );
+
+              await loadPrayerTimes();
+            },
+          ),
+        ],
+      ),
       body: prayerTimes.isNotEmpty
           ? _buildMainContent(loc)
           : firstLoadFailed
@@ -301,7 +315,7 @@ class _PrayerScreenState extends State<PrayerScreen> {
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          gradient: const LinearGradient(colors: [Color(0xFF2E7D32), Color(0xFF4CAF50)]),
+          gradient: const LinearGradient(colors: [Color(0xFF1B5E20),Color(0xFF2E7D32)]),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
@@ -343,7 +357,7 @@ class _PrayerScreenState extends State<PrayerScreen> {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
       decoration: BoxDecoration(
-        color: isNext ? Colors.green.withOpacity(0.12) : Colors.white,
+        color: isNext ? Colors.green.withOpacity(0.12) : Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(12),
       ),
       child: ListTile(
