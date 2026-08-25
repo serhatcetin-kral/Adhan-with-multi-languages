@@ -16,7 +16,9 @@ import 'screens/splash_screen.dart';
 import 'screens/mosque_map_screen.dart';
 import 'screens/support_screen.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'screens/quran_screen.dart';
+
+import 'package:upgrader/upgrader.dart';
+
 void main() async {
 
 
@@ -113,7 +115,14 @@ class _MyAppState extends State<MyApp> {
       },
 
       // 🚀 START SCREEN
-       home: const SplashScreen(),
+      home: UpgradeAlert(
+        upgrader: Upgrader(
+          durationUntilAlertAgain: const Duration(
+            days: 3,
+          ),
+        ),
+        child: const SplashScreen(),
+      ),
       // home: const QuranTestScreen(),
     );
   }

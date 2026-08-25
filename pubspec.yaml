@@ -3,7 +3,7 @@ description: Adhan Prayer Time App
 
 publish_to: 'none'
 
-version: 4.0.1+7
+version: 4.0.1+9
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
@@ -11,47 +11,59 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   app_settings: ^5.1.1
   vibration: ^3.1.5
   connectivity_plus: ^6.0.3
-  flutter_map: ^6.1.0
+
+
   latlong2: ^0.9.0
-  in_app_purchase: ^3.1.13
-  flutter_map_tile_caching: ^9.0.0
+
+
+  flutter_map: ^8.3.1
+  flutter_map_tile_caching: ^10.1.1
+
   google_mobile_ads: ^5.1.0
+
   just_audio: ^0.9.36
+
+  # Android in-app update system
   in_app_update: ^4.2.3
+
+  # Store version/update support
+  upgrader: ^13.7.0
 
   flutter_localizations:
     sdk: flutter
+
   intl: ^0.20.2
 
-  # 📍 Location
+  # Location
   geolocator: ^9.0.2
   geocoding: ^2.2.0
-  # 🌐 HTTP (Aladhan API)
+
+  # HTTP / Aladhan API
   http: ^1.1.0
 
-  # 💾 Local storage
+  # Local storage
   shared_preferences: ^2.2.0
 
-  # 🔔 Notifications (IMPORTANT: stable version)
+  # Notifications
   flutter_local_notifications: ^17.2.4
   timezone: ^0.9.4
 
-
-  # 🧭 Compass (Qibla)
+  # Qibla compass
   flutter_compass: ^0.8.1
 
-  # 📅 Calendar
+  # Calendar
   table_calendar: ^3.1.2
   hijri: ^3.0.0
 
-  # 🔗 Sharing / Links
+  # Sharing / Links
   url_launcher: ^6.2.5
   share_plus: ^10.0.0
 
-  # 🎨 Icons
+  # Icons
   cupertino_icons: ^1.0.6
 
 dev_dependencies:
@@ -60,10 +72,10 @@ dev_dependencies:
 
   flutter_lints: ^4.0.0
   flutter_launcher_icons: ^0.13.1
+
 flutter:
   uses-material-design: true
 
-  # 🔥 THIS IS VERY IMPORTANT
   generate: true
 
   assets:
@@ -74,6 +86,7 @@ flutter:
     - assets/quran/surah/
     - assets/audio/adhan.mp3
     - assets/duas/
+
 flutter_launcher_icons:
   android: true
   ios: true
