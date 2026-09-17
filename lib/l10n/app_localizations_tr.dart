@@ -295,4 +295,26 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get done => 'Tamamlandı';
+
+  @override
+  String get notificationPrayerTime => 'Namaz Vakti';
+
+  @override
+  String notificationPrayerBody(String prayer) {
+    return '$prayer namazı vakti.';
+  }
+
+  @override
+  String get updatingPrayerTimes => 'Namaz vakitleri güncelleniyor...';
+
+  @override
+  String get offlineMode => 'Çevrimdışı Mod';
+
+  @override
+  String lastSynced(String time) {
+    return 'Son güncelleme: $time';
+  }
+
+  @override
+  String get noSavedPrayerData => 'Kayıtlı namaz vakti bulunamadı.\nLütfen internet bağlantınızı kontrol edin.';
 }

@@ -1,0 +1,146 @@
+{
+  "appTitle": "Aplikasi Adzan",
+
+  "selectLanguage": "Pilih Bahasa",
+  "continueButton": "Lanjutkan",
+
+  "prayerTimes": "Waktu Salat",
+  "nextPrayer": "Salat Berikutnya",
+  "remainingTime": "Waktu Tersisa",
+
+  "fajr": "Subuh",
+  "sunrise": "Matahari Terbit",
+  "dhuhr": "Zuhur",
+  "asr": "Asar",
+  "maghrib": "Magrib",
+  "isha": "Isya",
+
+  "settings": "Pengaturan",
+  "save": "Simpan Pengaturan",
+
+  "language": "Bahasa",
+  "calculationMethod": "Metode Perhitungan",
+  "madhhab": "Mazhab",
+
+  "offsetSettings": "Penyesuaian Waktu Salat",
+  "fajrOffset": "Penyesuaian Subuh",
+  "dhuhrOffset": "Penyesuaian Zuhur",
+  "asrOffset": "Penyesuaian Asar",
+  "maghribOffset": "Penyesuaian Magrib",
+  "ishaOffset": "Penyesuaian Isya",
+
+  "notifications": "Notifikasi",
+  "enableNotifications": "Aktifkan Notifikasi",
+
+  "methodMWL": "MWL (Liga Muslim Dunia)",
+  "methodISNA": "ISNA (Amerika Utara)",
+  "methodEgypt": "Mesir",
+  "methodMakkah": "Umm Al-Qura (Makkah)",
+  "methodKarachi": "Karachi",
+  "methodTurkey": "Turki (Diyanet)",
+
+  "hanafi": "Hanafi",
+  "shafi": "Syafi'i / Hanbali / Maliki",
+
+  "qibla": "Kiblat",
+  "qiblaFinder": "Pencari Arah Kiblat",
+  "selectQiblaMethod": "Pilih Metode Kiblat",
+  "compassQibla": "Pencari Kiblat dengan Kompas",
+  "googleQibla": "Pencari Kiblat Google",
+
+  "calibrating": "Mengkalibrasi kompas...",
+  "pointPhone": "Arahkan ponsel Anda ke arah Kiblat",
+
+  "more": "Lainnya",
+  "dua": "Doa",
+  "zikr": "Zikir",
+  "calendar": "Kalender Hijriah",
+  "about": "Tentang",
+
+  "shareApp": "Bagikan Aplikasi",
+  "rateApp": "Beri Nilai Aplikasi",
+
+  "loading": "Memuat...",
+  "locationError": "Izin lokasi diperlukan",
+  "noInternet": "Tidak ada koneksi internet",
+  "error": "Terjadi kesalahan",
+  "minutesShort": "mnt",
+
+  "calibratingCompass": "Mengkalibrasi kompas...",
+  "heading": "Arah",
+  "qiblaDirection": "Arah Kiblat",
+  "facingQibla": "Anda menghadap Kiblat",
+  "turnToQibla": "Berputar ke arah Kiblat",
+  "calibrationText": "Gerakkan ponsel Anda membentuk angka 8 untuk mengkalibrasi kompas.\nJauhkan dari benda logam.",
+
+  "welcome": "Selamat Datang",
+
+  "latLabel": "Lintang",
+  "lngLabel": "Bujur",
+  "refresh": "Segarkan",
+
+  "support": "Dukungan",
+  "supportMessage": "Jika aplikasi ini membantu Anda salat tepat waktu, Anda dapat mendukung pengembangannya ❤️",
+  "supportNote": "Pembayaran diproses dengan aman oleh App Store.",
+
+  "shareAppText": "Coba aplikasi waktu salat saya 🕌\n\nUnduh di sini:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391",
+
+  "calendarTitle": "Kalender Islam",
+  "todayInIslam": "Hari Ini dalam Islam",
+  "holyNights": "Malam-Malam Suci",
+  "upcomingEvents": "Acara Islam Mendatang",
+  "holyMonths": "Bulan-Bulan Suci",
+  "close": "Tutup",
+
+  "ramadanMessage": "Ramadan adalah bulan puasa dan rahmat.",
+  "muharramMessage": "Muharam adalah bulan suci.",
+  "defaultIslamMessage": "Setiap hari adalah kesempatan untuk mengingat Allah.",
+
+  "thisMonthEvents": "Acara Bulan Ini",
+
+  "todayLabel": "Hari Ini",
+  "daysShort": "h",
+  "noEventsThisMonth": "Tidak ada acara Islam pada bulan Hijriah ini.",
+
+  "rajabMessage": "Rajab adalah bulan suci untuk refleksi dan ibadah.",
+  "shabanMessage": "Syakban adalah bulan persiapan sebelum Ramadan.",
+
+  "shawwalMessage": "Syawal dimulai dengan Idulfitri dan mencakup enam hari puasa sunah.",
+  "dhulHijjahMessage": "Zulhijah adalah bulan Haji, Arafah, dan Iduladha.",
+
+  "importantIslamicDays": "Hari-Hari Penting Islam",
+  "laylatAlQadr": "Lailatulqadar",
+  "eidAlFitr": "Idulfitri",
+  "eidAlAdha": "Iduladha",
+  "startOfRamadan": "Awal Ramadan",
+  "quran": "Al-Qur'an",
+
+  "offset": "Penyesuaian Waktu",
+  "offsetMinutes": "Penyesuaian Menit",
+  "adhanSound": "Suara Adzan",
+  "setTarget": "Tetapkan Target",
+  "target": "Target",
+  "reset": "Atur Ulang",
+  "done": "Selesai",
+
+  "notificationPrayerTime": "Waktu Salat",
+  "notificationPrayerBody": "Waktunya salat {prayer}.",
+  "@notificationPrayerBody": {
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "updatingPrayerTimes": "Memperbarui waktu salat...",
+  "offlineMode": "Mode Offline",
+  "lastSynced": "Terakhir disinkronkan: {time}",
+  "@lastSynced": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "noSavedPrayerData": "Tidak ada waktu salat tersimpan yang ditemukan.\nSilakan periksa koneksi internet Anda."
+}

@@ -33,15 +33,15 @@
   "notifications": "اطلاعات",
   "enableNotifications": "اطلاعات فعال کریں",
 
-  "methodMWL": "مسلم ورلڈ لیگ",
-  "methodISNA": "ISNA",
-  "methodEgypt": "مصری",
+  "methodMWL": "MWL (مسلم ورلڈ لیگ)",
+  "methodISNA": "ISNA (شمالی امریکہ)",
+  "methodEgypt": "مصر",
   "methodMakkah": "ام القریٰ (مکہ)",
   "methodKarachi": "کراچی",
-  "methodTurkey": "دیانت (ترکی)",
+  "methodTurkey": "ترکی (دیانت)",
 
   "hanafi": "حنفی",
-  "shafi": "شافعی",
+  "shafi": "شافعی / حنبلی / مالکی",
 
   "qibla": "قبلہ",
   "qiblaFinder": "قبلہ فائنڈر",
@@ -121,5 +121,26 @@
   "setTarget": "ہدف مقرر کریں",
   "target": "ہدف",
   "reset": "ری سیٹ کریں",
-  "done": "مکمل"
+  "done": "مکمل",
+
+  "notificationPrayerTime": "نماز کا وقت",
+  "notificationPrayerBody": "{prayer} کی نماز کا وقت ہو گیا ہے۔",
+  "@notificationPrayerBody": {
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "updatingPrayerTimes": "نماز کے اوقات اپ ڈیٹ کیے جا رہے ہیں...",
+  "offlineMode": "آف لائن موڈ",
+  "lastSynced": "آخری بار مطابقت پذیر: {time}",
+  "@lastSynced": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "noSavedPrayerData": "کوئی محفوظ شدہ نماز کا وقت نہیں ملا۔\nبراہ کرم اپنا انٹرنیٹ کنکشن چیک کریں۔"
 }

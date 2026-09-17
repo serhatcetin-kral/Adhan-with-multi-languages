@@ -118,7 +118,27 @@
   "setTarget": "Hedef Belirle",
   "target": "Hedef",
   "reset": "Sıfırla",
-  "done": "Tamamlandı"
-
+  "done": "Tamamlandı",
+  "notificationPrayerTime": "Namaz Vakti",
+  "notificationPrayerBody": "{prayer} namazı vakti.",
+  "@notificationPrayerBody": {
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      }
+    }
+  }
+,
+  "updatingPrayerTimes": "Namaz vakitleri güncelleniyor...",
+  "offlineMode": "Çevrimdışı Mod",
+  "lastSynced": "Son güncelleme: {time}",
+  "@lastSynced": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "noSavedPrayerData": "Kayıtlı namaz vakti bulunamadı.\nLütfen internet bağlantınızı kontrol edin."
 
 }

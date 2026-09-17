@@ -127,7 +127,27 @@
   "target": "Target",
   "reset": "Reset",
   "done": "Completed",
+  "notificationPrayerTime": "Prayer Time",
+  "notificationPrayerBody": "It's time for {prayer}.",
+  "@notificationPrayerBody": {
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      }
+    }
+  }
 
+,"updatingPrayerTimes": "Updating prayer times...",
+  "offlineMode": "Offline Mode",
+  "lastSynced": "Last synced: {time}",
+  "@lastSynced": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "noSavedPrayerData": "No saved data found.\nPlease check your internet connection."
 
 
 }

@@ -84,13 +84,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get enableNotifications => 'Включить уведомления';
 
   @override
-  String get methodMWL => 'Мусульманская мировая лига';
+  String get methodMWL => 'MWL (Всемирная мусульманская лига)';
 
   @override
-  String get methodISNA => 'ISNA';
+  String get methodISNA => 'ISNA (Северная Америка)';
 
   @override
-  String get methodEgypt => 'Египетский';
+  String get methodEgypt => 'Египет';
 
   @override
   String get methodMakkah => 'Умм аль-Кура (Мекка)';
@@ -99,13 +99,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get methodKarachi => 'Карачи';
 
   @override
-  String get methodTurkey => 'Диянет (Турция)';
+  String get methodTurkey => 'Турция (Диянет)';
 
   @override
-  String get hanafi => 'Ханафи';
+  String get hanafi => 'Ханафитский';
 
   @override
-  String get shafi => 'Шафи';
+  String get shafi => 'Шафиитский / Ханбалитский / Маликитский';
 
   @override
   String get qibla => 'Кибла';
@@ -295,4 +295,26 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get done => 'Завершено';
+
+  @override
+  String get notificationPrayerTime => 'Время намаза';
+
+  @override
+  String notificationPrayerBody(String prayer) {
+    return 'Настало время намаза $prayer.';
+  }
+
+  @override
+  String get updatingPrayerTimes => 'Обновление времени намаза...';
+
+  @override
+  String get offlineMode => 'Офлайн-режим';
+
+  @override
+  String lastSynced(String time) {
+    return 'Последняя синхронизация: $time';
+  }
+
+  @override
+  String get noSavedPrayerData => 'Сохранённое время намаза не найдено.\nПожалуйста, проверьте подключение к интернету.';
 }

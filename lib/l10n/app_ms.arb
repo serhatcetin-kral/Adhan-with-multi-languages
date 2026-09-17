@@ -1,0 +1,146 @@
+{
+  "appTitle": "Aplikasi Azan",
+
+  "selectLanguage": "Pilih Bahasa",
+  "continueButton": "Teruskan",
+
+  "prayerTimes": "Waktu Solat",
+  "nextPrayer": "Solat Seterusnya",
+  "remainingTime": "Masa Berbaki",
+
+  "fajr": "Subuh",
+  "sunrise": "Matahari Terbit",
+  "dhuhr": "Zohor",
+  "asr": "Asar",
+  "maghrib": "Maghrib",
+  "isha": "Isyak",
+
+  "settings": "Tetapan",
+  "save": "Simpan Tetapan",
+
+  "language": "Bahasa",
+  "calculationMethod": "Kaedah Pengiraan",
+  "madhhab": "Mazhab",
+
+  "offsetSettings": "Pelarasan Waktu Solat",
+  "fajrOffset": "Pelarasan Subuh",
+  "dhuhrOffset": "Pelarasan Zohor",
+  "asrOffset": "Pelarasan Asar",
+  "maghribOffset": "Pelarasan Maghrib",
+  "ishaOffset": "Pelarasan Isyak",
+
+  "notifications": "Pemberitahuan",
+  "enableNotifications": "Aktifkan Pemberitahuan",
+
+  "methodMWL": "MWL (Liga Dunia Islam)",
+  "methodISNA": "ISNA (Amerika Utara)",
+  "methodEgypt": "Mesir",
+  "methodMakkah": "Umm Al-Qura (Makkah)",
+  "methodKarachi": "Karachi",
+  "methodTurkey": "Turki (Diyanet)",
+
+  "hanafi": "Hanafi",
+  "shafi": "Syafi'i / Hanbali / Maliki",
+
+  "qibla": "Kiblat",
+  "qiblaFinder": "Pencari Arah Kiblat",
+  "selectQiblaMethod": "Pilih Kaedah Kiblat",
+  "compassQibla": "Pencari Kiblat Kompas",
+  "googleQibla": "Pencari Kiblat Google",
+
+  "calibrating": "Menentukur kompas...",
+  "pointPhone": "Halakan telefon anda ke arah Kiblat",
+
+  "more": "Lagi",
+  "dua": "Doa",
+  "zikr": "Zikir",
+  "calendar": "Kalendar Hijrah",
+  "about": "Tentang",
+
+  "shareApp": "Kongsi Aplikasi",
+  "rateApp": "Nilai Aplikasi",
+
+  "loading": "Memuatkan...",
+  "locationError": "Kebenaran lokasi diperlukan",
+  "noInternet": "Tiada sambungan internet",
+  "error": "Sesuatu telah berlaku",
+  "minutesShort": "min",
+
+  "calibratingCompass": "Menentukur kompas...",
+  "heading": "Arah",
+  "qiblaDirection": "Arah Kiblat",
+  "facingQibla": "Anda sedang menghadap Kiblat",
+  "turnToQibla": "Pusing ke arah Kiblat",
+  "calibrationText": "Gerakkan telefon anda dalam bentuk angka 8 untuk menentukur kompas.\nJauhkan daripada objek logam.",
+
+  "welcome": "Selamat Datang",
+
+  "latLabel": "Latitud",
+  "lngLabel": "Longitud",
+  "refresh": "Muat Semula",
+
+  "support": "Sokongan",
+  "supportMessage": "Jika aplikasi ini membantu anda menunaikan solat tepat pada waktunya, anda boleh menyokong pembangunannya ❤️",
+  "supportNote": "Pembayaran dikendalikan dengan selamat oleh App Store.",
+
+  "shareAppText": "Lihat aplikasi waktu solat saya 🕌\n\nMuat turun di sini:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391",
+
+  "calendarTitle": "Kalendar Islam",
+  "todayInIslam": "Hari Ini dalam Islam",
+  "holyNights": "Malam-Malam Suci",
+  "upcomingEvents": "Acara Islam Akan Datang",
+  "holyMonths": "Bulan-Bulan Suci",
+  "close": "Tutup",
+
+  "ramadanMessage": "Ramadan ialah bulan puasa dan rahmat.",
+  "muharramMessage": "Muharam ialah bulan yang suci.",
+  "defaultIslamMessage": "Setiap hari adalah peluang untuk mengingati Allah.",
+
+  "thisMonthEvents": "Acara Bulan Ini",
+
+  "todayLabel": "Hari Ini",
+  "daysShort": "h",
+  "noEventsThisMonth": "Tiada acara Islam dalam bulan Hijrah ini.",
+
+  "rajabMessage": "Rejab ialah bulan suci untuk renungan dan ibadah.",
+  "shabanMessage": "Syaaban ialah bulan persediaan sebelum Ramadan.",
+
+  "shawwalMessage": "Syawal bermula dengan Aidilfitri dan merangkumi enam hari puasa sunat.",
+  "dhulHijjahMessage": "Zulhijah ialah bulan Haji, Arafah dan Aidiladha.",
+
+  "importantIslamicDays": "Hari-Hari Penting Islam",
+  "laylatAlQadr": "Lailatulqadar",
+  "eidAlFitr": "Aidilfitri",
+  "eidAlAdha": "Aidiladha",
+  "startOfRamadan": "Permulaan Ramadan",
+  "quran": "Al-Quran",
+
+  "offset": "Pelarasan Masa",
+  "offsetMinutes": "Pelarasan Minit",
+  "adhanSound": "Bunyi Azan",
+  "setTarget": "Tetapkan Sasaran",
+  "target": "Sasaran",
+  "reset": "Tetapkan Semula",
+  "done": "Selesai",
+
+  "notificationPrayerTime": "Waktu Solat",
+  "notificationPrayerBody": "Sudah masuk waktu solat {prayer}.",
+  "@notificationPrayerBody": {
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "updatingPrayerTimes": "Mengemas kini waktu solat...",
+  "offlineMode": "Mod Luar Talian",
+  "lastSynced": "Terakhir disegerakkan: {time}",
+  "@lastSynced": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "noSavedPrayerData": "Tiada waktu solat yang disimpan ditemui.\nSila semak sambungan internet anda."
+}

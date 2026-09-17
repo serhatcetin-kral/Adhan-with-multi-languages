@@ -20,13 +20,14 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:upgrader/upgrader.dart';
 
 void main() async {
-
-
   WidgetsFlutterBinding.ensureInitialized();
 
   // 🔔 INIT NOTIFICATIONS
   await NotificationService.init();
+
+  // 🌍 INIT DATE FORMATTING
   await initializeDateFormatting();
+
   // 🔒 LOCK PORTRAIT
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -34,7 +35,6 @@ void main() async {
 
   runApp(const MyApp());
 }
-
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -57,6 +57,35 @@ class _MyAppState extends State<MyApp> {
     loadSavedLocale();
   }
 
+  // ✅ CONVERT SAVED CODE TO LOCALE
+  Locale _localeFromCode(String code) {
+    switch (code) {
+      case 'pt_BR':
+        return const Locale('pt', 'BR');
+
+      case 'pt_PT':
+        return const Locale('pt', 'PT');
+
+      default:
+        return Locale(code);
+    }
+  }
+
+  // ✅ CONVERT LOCALE TO SAVED CODE
+  String _codeFromLocale(Locale locale) {
+    if (locale.languageCode == 'pt') {
+      if (locale.countryCode == 'BR') {
+        return 'pt_BR';
+      }
+
+      if (locale.countryCode == 'PT') {
+        return 'pt_PT';
+      }
+    }
+
+    return locale.languageCode;
+  }
+
   // 🔥 LOAD SAVED LANGUAGE
   Future<void> loadSavedLocale() async {
     final prefs = await SharedPreferences.getInstance();
@@ -64,15 +93,21 @@ class _MyAppState extends State<MyApp> {
 
     if (langCode != null) {
       setState(() {
-        _locale = Locale(langCode);
+        _locale = _localeFromCode(langCode);
       });
     }
   }
 
   // 🔥 CHANGE LANGUAGE
-  void setLocale(Locale locale) async {
+  Future<void> setLocale(Locale locale) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('language', locale.languageCode);
+
+    await prefs.setString(
+      'language',
+      _codeFromLocale(locale),
+    );
+
+    if (!mounted) return;
 
     setState(() {
       _locale = locale;
@@ -84,7 +119,6 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
-      // 🌍 CURRENT LANGUAGE
       locale: _locale,
 
       supportedLocales: AppLocalizations.supportedLocales,
@@ -96,17 +130,13 @@ class _MyAppState extends State<MyApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
 
-      // 🎨 THEME
       theme: ThemeData(
         primarySwatch: Colors.teal,
         scaffoldBackgroundColor: Colors.white,
       ),
 
-      // 🔀 ROUTES (IMPORTANT)
       routes: {
         '/home': (_) => const SplashScreen(),
-        // '/mosque': (_) => const MosqueMapScreen(),
-        // '/support': (_) => const SupportScreen(),
         '/dua': (context) => const DuaScreen(),
         '/zikr': (context) => const ZikrScreen(),
         '/calendar': (context) => const CalendarScreen(),
@@ -114,7 +144,6 @@ class _MyAppState extends State<MyApp> {
         '/settings': (_) => const SettingsScreen(),
       },
 
-      // 🚀 START SCREEN
       home: UpgradeAlert(
         upgrader: Upgrader(
           durationUntilAlertAgain: const Duration(
@@ -123,7 +152,6 @@ class _MyAppState extends State<MyApp> {
         ),
         child: const SplashScreen(),
       ),
-      // home: const QuranTestScreen(),
     );
   }
 }

@@ -33,15 +33,15 @@
   "notifications": "सूचनाएं",
   "enableNotifications": "सूचनाएं सक्षम करें",
 
-  "methodMWL": "मुस्लिम वर्ल्ड लीग",
-  "methodISNA": "ISNA",
+  "methodMWL": "MWL (मुस्लिम वर्ल्ड लीग)",
+  "methodISNA": "ISNA (उत्तरी अमेरिका)",
   "methodEgypt": "मिस्र",
   "methodMakkah": "उम्म अल-कुरा (मक्का)",
   "methodKarachi": "कराची",
-  "methodTurkey": "दियानेट (तुर्की)",
+  "methodTurkey": "तुर्की (दियानेट)",
 
-  "hanafi": "हनाfi",
-  "shafi": "शाफ़ी",
+  "hanafi": "हनफ़ी",
+  "shafi": "शाफ़ई / हनबली / मालिकी",
 
   "qibla": "क़िबला",
   "qiblaFinder": "क़िबला फाइंडर",
@@ -121,5 +121,26 @@
   "setTarget": "लक्ष्य निर्धारित करें",
   "target": "लक्ष्य",
   "reset": "रीसेट",
-  "done": "पूर्ण"
+  "done": "पूर्ण",
+
+  "notificationPrayerTime": "नमाज़ का समय",
+  "notificationPrayerBody": "{prayer} की नमाज़ का समय हो गया है।",
+  "@notificationPrayerBody": {
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "updatingPrayerTimes": "नमाज़ के समय अपडेट किए जा रहे हैं...",
+  "offlineMode": "ऑफ़लाइन मोड",
+  "lastSynced": "अंतिम सिंक: {time}",
+  "@lastSynced": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "noSavedPrayerData": "कोई सहेजा हुआ नमाज़ का समय नहीं मिला।\nकृपया अपना इंटरनेट कनेक्शन जांचें।"
 }

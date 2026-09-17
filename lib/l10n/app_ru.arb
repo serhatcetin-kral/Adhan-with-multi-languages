@@ -33,15 +33,15 @@
   "notifications": "Уведомления",
   "enableNotifications": "Включить уведомления",
 
-  "methodMWL": "Мусульманская мировая лига",
-  "methodISNA": "ISNA",
-  "methodEgypt": "Египетский",
+  "methodMWL": "MWL (Всемирная мусульманская лига)",
+  "methodISNA": "ISNA (Северная Америка)",
+  "methodEgypt": "Египет",
   "methodMakkah": "Умм аль-Кура (Мекка)",
   "methodKarachi": "Карачи",
-  "methodTurkey": "Диянет (Турция)",
+  "methodTurkey": "Турция (Диянет)",
 
-  "hanafi": "Ханафи",
-  "shafi": "Шафи",
+  "hanafi": "Ханафитский",
+  "shafi": "Шафиитский / Ханбалитский / Маликитский",
 
   "qibla": "Кибла",
   "qiblaFinder": "Поиск Киблы",
@@ -121,5 +121,26 @@
   "setTarget": "Установить цель",
   "target": "Цель",
   "reset": "Сбросить",
-  "done": "Завершено"
+  "done": "Завершено",
+
+  "notificationPrayerTime": "Время намаза",
+  "notificationPrayerBody": "Настало время намаза {prayer}.",
+  "@notificationPrayerBody": {
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "updatingPrayerTimes": "Обновление времени намаза...",
+  "offlineMode": "Офлайн-режим",
+  "lastSynced": "Последняя синхронизация: {time}",
+  "@lastSynced": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "noSavedPrayerData": "Сохранённое время намаза не найдено.\nПожалуйста, проверьте подключение к интернету."
 }

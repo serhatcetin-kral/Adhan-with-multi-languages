@@ -84,13 +84,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get enableNotifications => 'Activer les notifications';
 
   @override
-  String get methodMWL => 'Ligue Musulmane Mondiale';
+  String get methodMWL => 'MWL (Ligue islamique mondiale)';
 
   @override
-  String get methodISNA => 'ISNA';
+  String get methodISNA => 'ISNA (Amérique du Nord)';
 
   @override
-  String get methodEgypt => 'Égyptienne';
+  String get methodEgypt => 'Égypte';
 
   @override
   String get methodMakkah => 'Umm Al-Qura (La Mecque)';
@@ -99,13 +99,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get methodKarachi => 'Karachi';
 
   @override
-  String get methodTurkey => 'Diyanet (Turquie)';
+  String get methodTurkey => 'Turquie (Diyanet)';
 
   @override
-  String get hanafi => 'Hanafi';
+  String get hanafi => 'Hanafite';
 
   @override
-  String get shafi => 'Shafi';
+  String get shafi => 'Chaféite / Hanbalite / Malikite';
 
   @override
   String get qibla => 'Qibla';
@@ -295,4 +295,26 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get done => 'Terminé';
+
+  @override
+  String get notificationPrayerTime => 'Heure de la prière';
+
+  @override
+  String notificationPrayerBody(String prayer) {
+    return 'C\'est l\'heure de la prière de $prayer.';
+  }
+
+  @override
+  String get updatingPrayerTimes => 'Mise à jour des horaires de prière...';
+
+  @override
+  String get offlineMode => 'Mode hors ligne';
+
+  @override
+  String lastSynced(String time) {
+    return 'Dernière synchronisation : $time';
+  }
+
+  @override
+  String get noSavedPrayerData => 'Aucun horaire de prière enregistré trouvé.\nVeuillez vérifier votre connexion Internet.';
 }

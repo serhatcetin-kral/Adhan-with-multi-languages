@@ -9,23 +9,24 @@ import '../widget/banner_ad_widget.dart';
 class MoreScreen extends StatelessWidget {
   const MoreScreen({super.key});
 
-  void shareApp(BuildContext context) {
-
+  Future<void> shareApp(BuildContext context) async {
     const iosLink =
         "https://apps.apple.com/us/app/sala-prayer-times/id6759267391";
 
-    const androidLink =
-        "https://play.google.com/store/apps/details?id=com.serhatcetin.muslimqiblafinder";
-
-    final link = Platform.isAndroid
-        ? androidLink
-        : iosLink;
-
     final text =
-        "🕌 Muslim Salah Prayer Time App\n\n"
-        "Check out my prayer app 👇\n\n$link";
+        "🕌 Muslim Adhan Salah PrayerTimes\n\n"
+        "Prayer times, Adhan notifications, Qibla direction, Quran and more.\n\n"
+        "$iosLink";
 
-    Share.share(text);
+    final box =
+    Overlay.of(context).context.findRenderObject() as RenderBox;
+
+    await Share.share(
+      text,
+      subject: "Muslim Adhan Salah PrayerTimes",
+      sharePositionOrigin:
+      box.localToGlobal(Offset.zero) & box.size,
+    );
   }
   Future<void> rateApp() async {
 

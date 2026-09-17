@@ -32,15 +32,15 @@
   "notifications": "الإشعارات",
   "enableNotifications": "تفعيل الإشعارات",
 
-  "methodMWL": "رابطة العالم الإسلامي",
-  "methodISNA": "أمريكا الشمالية",
-  "methodEgypt": "الهيئة المصرية",
+  "methodMWL": "MWL (رابطة العالم الإسلامي)",
+  "methodISNA": "ISNA (أمريكا الشمالية)",
+  "methodEgypt": "الهيئة المصرية العامة للمساحة",
   "methodMakkah": "أم القرى (مكة)",
-  "methodKarachi": "كراتشي",
-  "methodTurkey": "ديانت تركيا",
+  "methodKarachi": "جامعة العلوم الإسلامية (كراتشي)",
+  "methodTurkey": "تركيا (ديانت)",
 
   "hanafi": "حنفي",
-  "shafi": "شافعي",
+  "shafi": "شافعي / حنبلي / مالكي",
 
   "qibla": "القبلة",
   "qiblaFinder": "محدد القبلة",
@@ -118,7 +118,26 @@
   "setTarget": "تحديد الهدف",
   "target": "الهدف",
   "reset": "إعادة",
-  "done": "تم"
-
+  "done": "تم",
+  "notificationPrayerTime": "وقت الصلاة",
+  "notificationPrayerBody": "حان وقت صلاة {prayer}.",
+  "@notificationPrayerBody": {
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      }
+    }
+  }
+,"updatingPrayerTimes": "جارٍ تحديث مواقيت الصلاة...",
+  "offlineMode": "وضع عدم الاتصال",
+  "lastSynced": "آخر تحديث: {time}",
+  "@lastSynced": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "noSavedPrayerData": "لم يتم العثور على مواقيت صلاة محفوظة.\nيرجى التحقق من اتصالك بالإنترنت."
 
 }

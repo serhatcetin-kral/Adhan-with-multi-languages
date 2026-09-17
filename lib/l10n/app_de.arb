@@ -33,15 +33,15 @@
   "notifications": "Benachrichtigungen",
   "enableNotifications": "Benachrichtigungen aktivieren",
 
-  "methodMWL": "Muslimische Weltliga",
-  "methodISNA": "ISNA",
-  "methodEgypt": "Ägyptisch",
+  "methodMWL": "MWL (Muslimische Weltliga)",
+  "methodISNA": "ISNA (Nordamerika)",
+  "methodEgypt": "Ägypten",
   "methodMakkah": "Umm Al-Qura (Mekka)",
   "methodKarachi": "Karachi",
-  "methodTurkey": "Diyanet (Türkei)",
+  "methodTurkey": "Türkei (Diyanet)",
 
-  "hanafi": "Hanafi",
-  "shafi": "Schafi",
+  "hanafi": "Hanafitisch",
+  "shafi": "Schafiitisch / Hanbalitisch / Malikitisch",
 
   "qibla": "Qibla",
   "qiblaFinder": "Qibla Finder",
@@ -122,5 +122,26 @@
   "target": "Ziel",
   "reset": "Zurücksetzen",
   "done": "Abgeschlossen",
+
+  "notificationPrayerTime": "Gebetszeit",
+  "notificationPrayerBody": "Es ist Zeit für das {prayer}-Gebet.",
+  "@notificationPrayerBody": {
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "updatingPrayerTimes": "Gebetszeiten werden aktualisiert...",
+  "offlineMode": "Offline-Modus",
+  "lastSynced": "Zuletzt synchronisiert: {time}",
+  "@lastSynced": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "noSavedPrayerData": "Keine gespeicherten Gebetszeiten gefunden.\nBitte überprüfe deine Internetverbindung."
 
 }

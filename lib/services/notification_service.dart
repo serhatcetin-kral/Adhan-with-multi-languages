@@ -6,34 +6,49 @@ class NotificationService {
   static final FlutterLocalNotificationsPlugin _plugin =
   FlutterLocalNotificationsPlugin();
 
-  // ✅ INIT
+  static bool _initialized = false;
+
+  // ============================================================
+  // 🔔 INITIALIZE NOTIFICATIONS + TIMEZONE
+  // ============================================================
+
   static Future<void> init() async {
+    if (_initialized) return;
+
+    // Load timezone database
     tzdata.initializeTimeZones();
 
-    tz.setLocalLocation(tz.local);
+    const androidSettings =
+    AndroidInitializationSettings('@mipmap/ic_launcher');
 
-    const android = AndroidInitializationSettings('@mipmap/ic_launcher');
-
-    const ios = DarwinInitializationSettings(
+    const iosSettings = DarwinInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
       requestSoundPermission: true,
     );
 
-    const settings = InitializationSettings(
-      android: android,
-      iOS: ios,
+    const initializationSettings = InitializationSettings(
+      android: androidSettings,
+      iOS: iosSettings,
     );
 
-    await _plugin.initialize(settings);
+    await _plugin.initialize(
+      initializationSettings,
+    );
 
-    // ✅ Android permission
+    // ============================================================
+    // 🤖 ANDROID PERMISSION
+    // ============================================================
+
     await _plugin
         .resolvePlatformSpecificImplementation<
         AndroidFlutterLocalNotificationsPlugin>()
         ?.requestNotificationsPermission();
 
-    // ✅ iOS permission
+    // ============================================================
+    // 🍎 IOS PERMISSION
+    // ============================================================
+
     await _plugin
         .resolvePlatformSpecificImplementation<
         IOSFlutterLocalNotificationsPlugin>()
@@ -42,9 +57,16 @@ class NotificationService {
       badge: true,
       sound: true,
     );
+
+    _initialized = true;
+
+    print('✅ NotificationService initialized');
   }
 
-  // ✅ SCHEDULE ONE PRAYER
+  // ============================================================
+  // 🕌 SCHEDULE ONE PRAYER
+  // ============================================================
+
   static Future<void> schedulePrayer({
     required int id,
     required String title,
@@ -52,22 +74,44 @@ class NotificationService {
     required DateTime time,
     required bool adhanEnabled,
   }) async {
-    final scheduled = tz.TZDateTime.from(time, tz.local);
+    // Safety check
+    if (!_initialized) {
+      await init();
+    }
 
-    print("Scheduled notification at: $scheduled");
+    // Convert normal DateTime to timezone DateTime
+    final scheduled = tz.TZDateTime.from(
+      time,
+      tz.local,
+    );
+
+    print('🔔 Scheduled notification at: $scheduled');
+
+    // ============================================================
+    // 🤖 ANDROID NOTIFICATION
+    // ============================================================
 
     final androidDetails = AndroidNotificationDetails(
       'prayer_channel_v1',
       'Prayer Notifications',
-      channelDescription: 'Daily prayer notifications',
+      channelDescription:
+      'Daily prayer notifications',
+
       importance: Importance.max,
       priority: Priority.high,
+
       playSound: adhanEnabled,
 
       sound: adhanEnabled
-          ? const RawResourceAndroidNotificationSound('adhan')
+          ? const RawResourceAndroidNotificationSound(
+        'adhan',
+      )
           : null,
     );
+
+    // ============================================================
+    // 🍎 IOS NOTIFICATION
+    // ============================================================
 
     final iosDetails = DarwinNotificationDetails(
       presentAlert: true,
@@ -84,45 +128,92 @@ class NotificationService {
       iOS: iosDetails,
     );
 
+    // ============================================================
+    // ⏰ SCHEDULE
+    // ============================================================
+
     await _plugin.zonedSchedule(
       id,
       title,
       body,
       scheduled,
       details,
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+
+      androidScheduleMode:
+      AndroidScheduleMode.exactAllowWhileIdle,
+
       uiLocalNotificationDateInterpretation:
       UILocalNotificationDateInterpretation.absoluteTime,
     );
+
+    print(
+      '✅ Prayer notification scheduled: '
+          '$title at $scheduled',
+    );
   }
 
-  // // ✅ SCHEDULE ALL PRAYERS
-  // static Future<void> scheduleAllPrayers(   {
-  //   required Map<String, DateTime> prayerTimes,
-  // }) async {
-  //   for (final prayer in prayerTimes.entries) {
+  // ============================================================
+  // 🧪 TEMPORARY TEST NOTIFICATION
+  // ============================================================
   //
-  //     // ❌ SKIP SUNRISE
-  //     if (prayer.key.toLowerCase() == 'sunrise') {
-  //       continue;
-  //     }
+  // Schedules a notification 1 minute from now.
   //
-  //     // ❌ SKIP OLD TIMES
-  //     if (prayer.value.isBefore(DateTime.now())) {
-  //       continue;
-  //     }
-  //
-  //     await schedulePrayer(
-  //       id: prayer.key.hashCode,
-  //       title: '${prayer.key} Prayer Time',
-  //       body: 'It is time for ${prayer.key} prayer',
-  //       time: prayer.value,
-  //     );
-  //   }
-  // }
+  // DELETE THIS METHOD AFTER THE TEST IS FINISHED.
+  // ============================================================
 
-  // ✅ CANCEL ALL
+  static Future<void> testNotification() async {
+    if (!_initialized) {
+      await init();
+    }
+
+    final testTime = DateTime.now().add(
+      const Duration(minutes: 1),
+    );
+
+    print(
+      '🧪 TEST notification scheduled for: $testTime',
+    );
+
+    await schedulePrayer(
+      id: 999,
+      title: 'Prayer Time Test',
+      body: 'Testing Adhan notification',
+      time: testTime,
+      adhanEnabled: true,
+    );
+  }
+
+  // ============================================================
+  // 🗑️ CANCEL ONE NOTIFICATION
+  // ============================================================
+
+  static Future<void> cancel(
+      int id,
+      ) async {
+    if (!_initialized) {
+      await init();
+    }
+
+    await _plugin.cancel(id);
+
+    print(
+      '🗑️ Notification cancelled: $id',
+    );
+  }
+
+  // ============================================================
+  // 🗑️ CANCEL ALL NOTIFICATIONS
+  // ============================================================
+
   static Future<void> cancelAll() async {
+    if (!_initialized) {
+      await init();
+    }
+
     await _plugin.cancelAll();
+
+    print(
+      '🗑️ All prayer notifications cancelled',
+    );
   }
 }

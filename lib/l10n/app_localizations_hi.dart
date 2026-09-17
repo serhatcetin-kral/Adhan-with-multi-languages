@@ -84,10 +84,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get enableNotifications => 'सूचनाएं सक्षम करें';
 
   @override
-  String get methodMWL => 'मुस्लिम वर्ल्ड लीग';
+  String get methodMWL => 'MWL (मुस्लिम वर्ल्ड लीग)';
 
   @override
-  String get methodISNA => 'ISNA';
+  String get methodISNA => 'ISNA (उत्तरी अमेरिका)';
 
   @override
   String get methodEgypt => 'मिस्र';
@@ -99,13 +99,13 @@ class AppLocalizationsHi extends AppLocalizations {
   String get methodKarachi => 'कराची';
 
   @override
-  String get methodTurkey => 'दियानेट (तुर्की)';
+  String get methodTurkey => 'तुर्की (दियानेट)';
 
   @override
-  String get hanafi => 'हनाfi';
+  String get hanafi => 'हनफ़ी';
 
   @override
-  String get shafi => 'शाफ़ी';
+  String get shafi => 'शाफ़ई / हनबली / मालिकी';
 
   @override
   String get qibla => 'क़िबला';
@@ -295,4 +295,26 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get done => 'पूर्ण';
+
+  @override
+  String get notificationPrayerTime => 'नमाज़ का समय';
+
+  @override
+  String notificationPrayerBody(String prayer) {
+    return '$prayer की नमाज़ का समय हो गया है।';
+  }
+
+  @override
+  String get updatingPrayerTimes => 'नमाज़ के समय अपडेट किए जा रहे हैं...';
+
+  @override
+  String get offlineMode => 'ऑफ़लाइन मोड';
+
+  @override
+  String lastSynced(String time) {
+    return 'अंतिम सिंक: $time';
+  }
+
+  @override
+  String get noSavedPrayerData => 'कोई सहेजा हुआ नमाज़ का समय नहीं मिला।\nकृपया अपना इंटरनेट कनेक्शन जांचें।';
 }

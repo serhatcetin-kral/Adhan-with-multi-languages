@@ -11,6 +11,9 @@ import 'app_localizations_en.dart';
 import 'app_localizations_es.dart';
 import 'app_localizations_fr.dart';
 import 'app_localizations_hi.dart';
+import 'app_localizations_id.dart';
+import 'app_localizations_ms.dart';
+import 'app_localizations_pt.dart';
 import 'app_localizations_ru.dart';
 import 'app_localizations_tr.dart';
 import 'app_localizations_ur.dart';
@@ -105,6 +108,11 @@ abstract class AppLocalizations {
     Locale('es'),
     Locale('fr'),
     Locale('hi'),
+    Locale('id'),
+    Locale('ms'),
+    Locale('pt'),
+    Locale('pt', 'BR'),
+    Locale('pt', 'PT'),
     Locale('ru'),
     Locale('tr'),
     Locale('ur'),
@@ -686,6 +694,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Completed'**
   String get done;
+
+  /// No description provided for @notificationPrayerTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer Time'**
+  String get notificationPrayerTime;
+
+  /// No description provided for @notificationPrayerBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s time for {prayer}.'**
+  String notificationPrayerBody(String prayer);
+
+  /// No description provided for @updatingPrayerTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Updating prayer times...'**
+  String get updatingPrayerTimes;
+
+  /// No description provided for @offlineMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Offline Mode'**
+  String get offlineMode;
+
+  /// No description provided for @lastSynced.
+  ///
+  /// In en, this message translates to:
+  /// **'Last synced: {time}'**
+  String lastSynced(String time);
+
+  /// No description provided for @noSavedPrayerData.
+  ///
+  /// In en, this message translates to:
+  /// **'No saved data found.\nPlease check your internet connection.'**
+  String get noSavedPrayerData;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
@@ -697,7 +741,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'de', 'en', 'es', 'fr', 'hi', 'ru', 'tr', 'ur', 'zh'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'de', 'en', 'es', 'fr', 'hi', 'id', 'ms', 'pt', 'ru', 'tr', 'ur', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -705,6 +749,16 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
 
+  // Lookup logic when language+country codes are specified.
+  switch (locale.languageCode) {
+    case 'pt': {
+  switch (locale.countryCode) {
+    case 'BR': return AppLocalizationsPtBr();
+case 'PT': return AppLocalizationsPtPt();
+   }
+  break;
+   }
+  }
 
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
@@ -714,6 +768,9 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
     case 'es': return AppLocalizationsEs();
     case 'fr': return AppLocalizationsFr();
     case 'hi': return AppLocalizationsHi();
+    case 'id': return AppLocalizationsId();
+    case 'ms': return AppLocalizationsMs();
+    case 'pt': return AppLocalizationsPt();
     case 'ru': return AppLocalizationsRu();
     case 'tr': return AppLocalizationsTr();
     case 'ur': return AppLocalizationsUr();

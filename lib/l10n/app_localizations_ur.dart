@@ -84,13 +84,13 @@ class AppLocalizationsUr extends AppLocalizations {
   String get enableNotifications => 'اطلاعات فعال کریں';
 
   @override
-  String get methodMWL => 'مسلم ورلڈ لیگ';
+  String get methodMWL => 'MWL (مسلم ورلڈ لیگ)';
 
   @override
-  String get methodISNA => 'ISNA';
+  String get methodISNA => 'ISNA (شمالی امریکہ)';
 
   @override
-  String get methodEgypt => 'مصری';
+  String get methodEgypt => 'مصر';
 
   @override
   String get methodMakkah => 'ام القریٰ (مکہ)';
@@ -99,13 +99,13 @@ class AppLocalizationsUr extends AppLocalizations {
   String get methodKarachi => 'کراچی';
 
   @override
-  String get methodTurkey => 'دیانت (ترکی)';
+  String get methodTurkey => 'ترکی (دیانت)';
 
   @override
   String get hanafi => 'حنفی';
 
   @override
-  String get shafi => 'شافعی';
+  String get shafi => 'شافعی / حنبلی / مالکی';
 
   @override
   String get qibla => 'قبلہ';
@@ -295,4 +295,26 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get done => 'مکمل';
+
+  @override
+  String get notificationPrayerTime => 'نماز کا وقت';
+
+  @override
+  String notificationPrayerBody(String prayer) {
+    return '$prayer کی نماز کا وقت ہو گیا ہے۔';
+  }
+
+  @override
+  String get updatingPrayerTimes => 'نماز کے اوقات اپ ڈیٹ کیے جا رہے ہیں...';
+
+  @override
+  String get offlineMode => 'آف لائن موڈ';
+
+  @override
+  String lastSynced(String time) {
+    return 'آخری بار مطابقت پذیر: $time';
+  }
+
+  @override
+  String get noSavedPrayerData => 'کوئی محفوظ شدہ نماز کا وقت نہیں ملا۔\nبراہ کرم اپنا انٹرنیٹ کنکشن چیک کریں۔';
 }

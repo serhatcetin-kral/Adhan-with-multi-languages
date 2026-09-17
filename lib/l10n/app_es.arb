@@ -33,15 +33,15 @@
   "notifications": "Notificaciones",
   "enableNotifications": "Activar notificaciones",
 
-  "methodMWL": "Liga Mundial Musulmana",
-  "methodISNA": "ISNA",
-  "methodEgypt": "Egipcio",
+  "methodMWL": "MWL (Liga Mundial Musulmana)",
+  "methodISNA": "ISNA (América del Norte)",
+  "methodEgypt": "Egipto",
   "methodMakkah": "Umm Al-Qura (La Meca)",
   "methodKarachi": "Karachi",
-  "methodTurkey": "Diyanet (Turquía)",
+  "methodTurkey": "Turquía (Diyanet)",
 
-  "hanafi": "Hanafi",
-  "shafi": "Shafi",
+  "hanafi": "Hanafí",
+  "shafi": "Shafií / Hanbalí / Malikí",
 
   "qibla": "Qibla",
   "qiblaFinder": "Buscador de Qibla",
@@ -121,5 +121,26 @@
   "setTarget": "Definir objetivo",
   "target": "Objetivo",
   "reset": "Reiniciar",
-  "done": "Completado"
+  "done": "Completado",
+
+  "notificationPrayerTime": "Hora de la oración",
+  "notificationPrayerBody": "Es hora de la oración de {prayer}.",
+  "@notificationPrayerBody": {
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "updatingPrayerTimes": "Actualizando los horarios de oración...",
+  "offlineMode": "Modo sin conexión",
+  "lastSynced": "Última sincronización: {time}",
+  "@lastSynced": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "noSavedPrayerData": "No se encontraron horarios de oración guardados.\nComprueba tu conexión a Internet."
 }

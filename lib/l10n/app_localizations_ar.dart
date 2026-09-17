@@ -84,28 +84,28 @@ class AppLocalizationsAr extends AppLocalizations {
   String get enableNotifications => 'تفعيل الإشعارات';
 
   @override
-  String get methodMWL => 'رابطة العالم الإسلامي';
+  String get methodMWL => 'MWL (رابطة العالم الإسلامي)';
 
   @override
-  String get methodISNA => 'أمريكا الشمالية';
+  String get methodISNA => 'ISNA (أمريكا الشمالية)';
 
   @override
-  String get methodEgypt => 'الهيئة المصرية';
+  String get methodEgypt => 'الهيئة المصرية العامة للمساحة';
 
   @override
   String get methodMakkah => 'أم القرى (مكة)';
 
   @override
-  String get methodKarachi => 'كراتشي';
+  String get methodKarachi => 'جامعة العلوم الإسلامية (كراتشي)';
 
   @override
-  String get methodTurkey => 'ديانت تركيا';
+  String get methodTurkey => 'تركيا (ديانت)';
 
   @override
   String get hanafi => 'حنفي';
 
   @override
-  String get shafi => 'شافعي';
+  String get shafi => 'شافعي / حنبلي / مالكي';
 
   @override
   String get qibla => 'القبلة';
@@ -295,4 +295,26 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get done => 'تم';
+
+  @override
+  String get notificationPrayerTime => 'وقت الصلاة';
+
+  @override
+  String notificationPrayerBody(String prayer) {
+    return 'حان وقت صلاة $prayer.';
+  }
+
+  @override
+  String get updatingPrayerTimes => 'جارٍ تحديث مواقيت الصلاة...';
+
+  @override
+  String get offlineMode => 'وضع عدم الاتصال';
+
+  @override
+  String lastSynced(String time) {
+    return 'آخر تحديث: $time';
+  }
+
+  @override
+  String get noSavedPrayerData => 'لم يتم العثور على مواقيت صلاة محفوظة.\nيرجى التحقق من اتصالك بالإنترنت.';
 }

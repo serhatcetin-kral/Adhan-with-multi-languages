@@ -128,8 +128,21 @@ class _PrayerScreenState extends State<PrayerScreen> {
       }
     } catch (e) {
       print("Error fetching prayers: $e");
-      if (prayerTimes.isEmpty && mounted) {
-        setState(() => firstLoadFailed = true);
+
+      if (!mounted) return;
+
+      if (prayerTimes.isEmpty) {
+        // No internet/API + no saved prayer data
+        setState(() {
+          firstLoadFailed = true;
+          isOffline = false;
+        });
+      } else {
+        // Internet/API failed, but we already have saved prayer data
+        setState(() {
+          isOffline = true;
+          firstLoadFailed = false;
+        });
       }
     }
   }
@@ -148,28 +161,7 @@ class _PrayerScreenState extends State<PrayerScreen> {
     };
   }
 
-  // Widget buildOfflineBanner() {
-  //   return Container(
-  //     width: double.infinity,
-  //     padding: const EdgeInsets.all(8),
-  //     color: Colors.orange.shade800,
-  //     child: Column(
-  //       children: [
-  //         const Text(
-  //           "Offline Mode",
-  //           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-  //         ),
-  //         if (_lastSavedTimeStr != null)
-  //           Text(
-  //             "Last updated: $_lastSavedTimeStr",
-  //             style: const TextStyle(color: Colors.white70, fontSize: 11),
-  //           ),
-  //       ],
-  //     ),
-  //   );
-  // }
 
-  // --- HELPERS ---
 
   TimeOfDay parseTime(String? time) {
     if (time == null || !time.contains(":")) return const TimeOfDay(hour: 0, minute: 0);
@@ -252,7 +244,9 @@ class _PrayerScreenState extends State<PrayerScreen> {
             icon: const Icon(Icons.refresh),
             onPressed: () async {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Updating prayer times...")),
+                SnackBar(
+                  content: Text(loc.updatingPrayerTimes),
+                ),
               );
 
               await loadPrayerTimes();
@@ -474,17 +468,48 @@ class _PrayerScreenState extends State<PrayerScreen> {
   }
 
   Future<void> scheduleAllPrayers() async {
+    // ============================================================
+    // 🔔 READ NOTIFICATION SETTINGS
+    // ============================================================
+
+    final prefs = await SharedPreferences.getInstance();
+    if (!mounted) return;
+
+    final loc = AppLocalizations.of(context)!;
+
+    final notificationsEnabled =
+        prefs.getBool('notifications') ?? true;
+
+    final adhanEnabled =
+        prefs.getBool('adhan') ?? true;
+
+    // ============================================================
+    // 🗑️ REMOVE OLD NOTIFICATIONS
+    // ============================================================
+
     await NotificationService.cancelAll();
+
+    // ============================================================
+    // 🔕 MASTER NOTIFICATIONS SWITCH IS OFF
+    // ============================================================
+
+    if (!notificationsEnabled) {
+      print("🔕 Prayer notifications are disabled");
+      return;
+    }
+
+    // ============================================================
+    // 🕌 SCHEDULE PRAYER NOTIFICATIONS
+    // ============================================================
 
     int id = 0;
     final now = DateTime.now();
 
     for (final entry in prayerTimes.entries) {
-
       final name = entry.key;
       final time = entry.value;
 
-      // ❌ SKIP SUNRISE
+      // ❌ NO NOTIFICATION FOR SUNRISE
       if (name.toLowerCase() == 'sunrise') {
         print("❌ Sunrise skipped");
         continue;
@@ -498,25 +523,29 @@ class _PrayerScreenState extends State<PrayerScreen> {
         time.minute,
       );
 
-      // ✅ IF TIME PASSED -> TOMORROW
+      // If today's prayer already passed,
+      // schedule it for tomorrow.
       if (scheduleTime.isBefore(now)) {
-        scheduleTime = scheduleTime.add(const Duration(days: 1));
+        scheduleTime =
+            scheduleTime.add(const Duration(days: 1));
       }
 
-      print("Scheduling $name at $scheduleTime");
+      print(
+        "Scheduling $name at $scheduleTime "
+            "(Adhan: $adhanEnabled)",
+      );
 
-      final prefs = await SharedPreferences.getInstance();
-
-      final adhanEnabled =
-          prefs.getBool('adhan') ?? true;
+      final localizedPrayerName = getPrayerName(loc, name);
 
       await NotificationService.schedulePrayer(
         id: id++,
-        title: "Prayer Time",
-        body: "$name time",
+        title: loc.notificationPrayerTime,
+        body: loc.notificationPrayerBody(localizedPrayerName),
         time: scheduleTime,
         adhanEnabled: adhanEnabled,
       );
     }
+
+    print("✅ All prayer notifications scheduled");
   }
 }

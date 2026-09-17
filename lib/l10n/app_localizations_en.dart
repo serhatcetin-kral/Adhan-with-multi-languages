@@ -295,4 +295,26 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get done => 'Completed';
+
+  @override
+  String get notificationPrayerTime => 'Prayer Time';
+
+  @override
+  String notificationPrayerBody(String prayer) {
+    return 'It\'s time for $prayer.';
+  }
+
+  @override
+  String get updatingPrayerTimes => 'Updating prayer times...';
+
+  @override
+  String get offlineMode => 'Offline Mode';
+
+  @override
+  String lastSynced(String time) {
+    return 'Last synced: $time';
+  }
+
+  @override
+  String get noSavedPrayerData => 'No saved data found.\nPlease check your internet connection.';
 }

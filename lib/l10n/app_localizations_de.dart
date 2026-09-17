@@ -84,13 +84,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get enableNotifications => 'Benachrichtigungen aktivieren';
 
   @override
-  String get methodMWL => 'Muslimische Weltliga';
+  String get methodMWL => 'MWL (Muslimische Weltliga)';
 
   @override
-  String get methodISNA => 'ISNA';
+  String get methodISNA => 'ISNA (Nordamerika)';
 
   @override
-  String get methodEgypt => 'Ägyptisch';
+  String get methodEgypt => 'Ägypten';
 
   @override
   String get methodMakkah => 'Umm Al-Qura (Mekka)';
@@ -99,13 +99,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get methodKarachi => 'Karachi';
 
   @override
-  String get methodTurkey => 'Diyanet (Türkei)';
+  String get methodTurkey => 'Türkei (Diyanet)';
 
   @override
-  String get hanafi => 'Hanafi';
+  String get hanafi => 'Hanafitisch';
 
   @override
-  String get shafi => 'Schafi';
+  String get shafi => 'Schafiitisch / Hanbalitisch / Malikitisch';
 
   @override
   String get qibla => 'Qibla';
@@ -295,4 +295,26 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get done => 'Abgeschlossen';
+
+  @override
+  String get notificationPrayerTime => 'Gebetszeit';
+
+  @override
+  String notificationPrayerBody(String prayer) {
+    return 'Es ist Zeit für das $prayer-Gebet.';
+  }
+
+  @override
+  String get updatingPrayerTimes => 'Gebetszeiten werden aktualisiert...';
+
+  @override
+  String get offlineMode => 'Offline-Modus';
+
+  @override
+  String lastSynced(String time) {
+    return 'Zuletzt synchronisiert: $time';
+  }
+
+  @override
+  String get noSavedPrayerData => 'Keine gespeicherten Gebetszeiten gefunden.\nBitte überprüfe deine Internetverbindung.';
 }

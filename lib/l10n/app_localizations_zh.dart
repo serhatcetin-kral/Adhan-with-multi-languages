@@ -84,28 +84,28 @@ class AppLocalizationsZh extends AppLocalizations {
   String get enableNotifications => '启用通知';
 
   @override
-  String get methodMWL => '穆斯林世界联盟';
+  String get methodMWL => 'MWL（穆斯林世界联盟）';
 
   @override
-  String get methodISNA => '北美伊斯兰协会';
+  String get methodISNA => 'ISNA（北美伊斯兰协会）';
 
   @override
   String get methodEgypt => '埃及';
 
   @override
-  String get methodMakkah => '麦加乌姆古拉';
+  String get methodMakkah => '乌姆古拉（麦加）';
 
   @override
   String get methodKarachi => '卡拉奇';
 
   @override
-  String get methodTurkey => '土耳其宗教事务局';
+  String get methodTurkey => '土耳其（Diyanet）';
 
   @override
-  String get hanafi => '哈乃斐';
+  String get hanafi => '哈乃斐学派';
 
   @override
-  String get shafi => '沙斐仪';
+  String get shafi => '沙斐仪 / 罕百里 / 马立克学派';
 
   @override
   String get qibla => '朝向';
@@ -295,4 +295,26 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get done => '完成';
+
+  @override
+  String get notificationPrayerTime => '礼拜时间';
+
+  @override
+  String notificationPrayerBody(String prayer) {
+    return '$prayer礼拜时间到了。';
+  }
+
+  @override
+  String get updatingPrayerTimes => '正在更新礼拜时间...';
+
+  @override
+  String get offlineMode => '离线模式';
+
+  @override
+  String lastSynced(String time) {
+    return '上次同步：$time';
+  }
+
+  @override
+  String get noSavedPrayerData => '未找到已保存的礼拜时间。\n请检查您的网络连接。';
 }

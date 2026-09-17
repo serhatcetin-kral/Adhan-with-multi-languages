@@ -1,0 +1,146 @@
+{
+  "appTitle": "Adhan App",
+
+  "selectLanguage": "Selecionar idioma",
+  "continueButton": "Continuar",
+
+  "prayerTimes": "Horários de oração",
+  "nextPrayer": "Próxima oração",
+  "remainingTime": "Tempo restante",
+
+  "fajr": "Fajr",
+  "sunrise": "Nascer do sol",
+  "dhuhr": "Dhuhr",
+  "asr": "Asr",
+  "maghrib": "Maghrib",
+  "isha": "Isha",
+
+  "settings": "Configurações",
+  "save": "Salvar configurações",
+
+  "language": "Idioma",
+  "calculationMethod": "Método de cálculo",
+  "madhhab": "Madhhab",
+
+  "offsetSettings": "Ajustes dos horários de oração",
+  "fajrOffset": "Ajuste do Fajr",
+  "dhuhrOffset": "Ajuste do Dhuhr",
+  "asrOffset": "Ajuste do Asr",
+  "maghribOffset": "Ajuste do Maghrib",
+  "ishaOffset": "Ajuste do Isha",
+
+  "notifications": "Notificações",
+  "enableNotifications": "Ativar notificações",
+
+  "methodMWL": "MWL (Liga Mundial Islâmica)",
+  "methodISNA": "ISNA (América do Norte)",
+  "methodEgypt": "Egito",
+  "methodMakkah": "Umm Al-Qura (Meca)",
+  "methodKarachi": "Karachi",
+  "methodTurkey": "Turquia (Diyanet)",
+
+  "hanafi": "Hanafi",
+  "shafi": "Shafi / Hanbali / Maliki",
+
+  "qibla": "Qibla",
+  "qiblaFinder": "Localizador da Qibla",
+  "selectQiblaMethod": "Selecionar método da Qibla",
+  "compassQibla": "Localizador da Qibla por bússola",
+  "googleQibla": "Localizador da Qibla do Google",
+
+  "calibrating": "Calibrando a bússola...",
+  "pointPhone": "Aponte seu celular em direção à Qibla",
+
+  "more": "Mais",
+  "dua": "Duas",
+  "zikr": "Dhikr",
+  "calendar": "Calendário Hijri",
+  "about": "Sobre",
+
+  "shareApp": "Compartilhar aplicativo",
+  "rateApp": "Avaliar aplicativo",
+
+  "loading": "Carregando...",
+  "locationError": "É necessária permissão de localização",
+  "noInternet": "Sem conexão com a internet",
+  "error": "Algo deu errado",
+  "minutesShort": "min",
+
+  "calibratingCompass": "Calibrando a bússola...",
+  "heading": "Direção",
+  "qiblaDirection": "Direção da Qibla",
+  "facingQibla": "Você está voltado para a Qibla",
+  "turnToQibla": "Vire-se em direção à Qibla",
+  "calibrationText": "Mova seu celular em forma de 8 para calibrar a bússola.\nMantenha-o longe de objetos metálicos.",
+
+  "welcome": "Bem-vindo",
+
+  "latLabel": "Latitude",
+  "lngLabel": "Longitude",
+  "refresh": "Atualizar",
+
+  "support": "Apoiar",
+  "supportMessage": "Se este aplicativo ajuda você a orar no horário, apoie seu desenvolvimento ❤️",
+  "supportNote": "Os pagamentos são processados com segurança pela App Store.",
+
+  "shareAppText": "Confira este aplicativo de oração 🕌\n\nBaixe aqui:\nhttps://apps.apple.com/us/app/sala-prayer-times/id6759267391",
+
+  "calendarTitle": "Calendário Islâmico",
+  "todayInIslam": "Hoje no Islã",
+  "holyNights": "Noites sagradas",
+  "upcomingEvents": "Próximos eventos islâmicos",
+  "holyMonths": "Meses sagrados",
+  "close": "Fechar",
+
+  "ramadanMessage": "O Ramadã é o mês do jejum e da misericórdia.",
+  "muharramMessage": "Muharram é um mês sagrado.",
+  "defaultIslamMessage": "Cada dia é uma oportunidade para lembrar de Allah.",
+
+  "thisMonthEvents": "Eventos deste mês",
+
+  "todayLabel": "Hoje",
+  "daysShort": "d",
+  "noEventsThisMonth": "Não há eventos islâmicos neste mês Hijri.",
+
+  "rajabMessage": "Rajab é um mês sagrado para reflexão e adoração.",
+  "shabanMessage": "Sha'ban é o mês de preparação antes do Ramadã.",
+
+  "shawwalMessage": "Shawwal começa com o Eid al-Fitr e inclui seis dias de jejum da Sunnah.",
+  "dhulHijjahMessage": "Dhul-Hijjah é o mês do Hajj, Arafah e Eid al-Adha.",
+
+  "importantIslamicDays": "Dias islâmicos importantes",
+  "laylatAlQadr": "Laylat al-Qadr",
+  "eidAlFitr": "Eid al-Fitr",
+  "eidAlAdha": "Eid al-Adha",
+  "startOfRamadan": "Início do Ramadã",
+  "quran": "Alcorão",
+
+  "offset": "Ajuste de horário",
+  "offsetMinutes": "Ajuste em minutos",
+  "adhanSound": "Som do Adhan",
+  "setTarget": "Definir meta",
+  "target": "Meta",
+  "reset": "Redefinir",
+  "done": "Concluído",
+
+  "notificationPrayerTime": "Hora da oração",
+  "notificationPrayerBody": "Está na hora da oração de {prayer}.",
+  "@notificationPrayerBody": {
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },"updatingPrayerTimes": "Atualizando os horários de oração...",
+  "offlineMode": "Modo offline",
+  "lastSynced": "Última sincronização: {time}",
+  "@lastSynced": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "noSavedPrayerData": "Nenhum horário de oração salvo foi encontrado.\nVerifique sua conexão com a internet."
+
+}

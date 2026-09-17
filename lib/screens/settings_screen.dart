@@ -14,7 +14,6 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-
   String selectedLanguage = 'en';
   String calculationMethod = 'ISNA';
   String madhhab = 'shafi';
@@ -28,12 +27,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
   int maghribOffset = 0;
   int ishaOffset = 0;
 
+  // These are INTERNAL values.
+  // Do not translate/change these codes.
   final List<String> methods = [
-    'MWL', 'ISNA', 'Egypt', 'Makkah', 'Karachi', 'Turkey'
+    'MWL',
+    'ISNA',
+    'Egypt',
+    'Makkah',
+    'Karachi',
+    'Turkey',
   ];
 
+  // These are INTERNAL values.
+  // Do not translate/change these codes.
   final List<String> madhhabs = [
-    'hanafi', 'shafi'
+    'hanafi',
+    'shafi',
   ];
 
   @override
@@ -41,6 +50,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
     super.initState();
     loadSettings();
   }
+
+  // ============================================================
+  // LOAD SETTINGS
+  // ============================================================
 
   Future<void> loadSettings() async {
     final prefs = await SharedPreferences.getInstance();
@@ -63,6 +76,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
     });
   }
 
+  // ============================================================
+  // SAVE SETTINGS
+  // ============================================================
+
   Future<void> saveSettings() async {
     final prefs = await SharedPreferences.getInstance();
 
@@ -79,45 +96,110 @@ class _SettingsScreenState extends State<SettingsScreen> {
     await prefs.setInt('maghribOffset', maghribOffset);
     await prefs.setInt('ishaOffset', ishaOffset);
 
+    // First setup is now complete.
     await prefs.setBool('first_launch', false);
 
     if (!mounted) return;
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(AppLocalizations.of(context)!.save)),
+      SnackBar(
+        content: Text(
+          AppLocalizations.of(context)!.save,
+        ),
+      ),
     );
 
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (_) => const MainScreen()),
+      MaterialPageRoute(
+        builder: (_) => const MainScreen(),
+      ),
     );
+  }
+
+  // ============================================================
+  // LANGUAGE / LOCALE
+  // ============================================================
+
+  Locale _localeFromCode(String code) {
+    switch (code) {
+      case 'pt_BR':
+        return const Locale('pt', 'BR');
+
+      case 'pt_PT':
+        return const Locale('pt', 'PT');
+
+      default:
+        return Locale(code);
+    }
   }
 
   void changeLanguage(String code) {
     setState(() {
       selectedLanguage = code;
     });
-    MyApp.setLocale(context, Locale(code));
+
+    MyApp.setLocale(
+      context,
+      _localeFromCode(code),
+    );
   }
 
-  String getMethodLabel(String method) {
+  // ============================================================
+  // LOCALIZED CALCULATION METHOD LABELS
+  // ============================================================
+
+  String getMethodLabel(
+      AppLocalizations loc,
+      String method,
+      ) {
     switch (method) {
       case 'MWL':
-        return "MWL (Muslim World League)";
+        return loc.methodMWL;
+
       case 'ISNA':
-        return "ISNA (North America)";
+        return loc.methodISNA;
+
       case 'Egypt':
-        return "Egypt";
+        return loc.methodEgypt;
+
       case 'Makkah':
-        return "Makkah";
+        return loc.methodMakkah;
+
       case 'Karachi':
-        return "Karachi";
+        return loc.methodKarachi;
+
       case 'Turkey':
-        return "Turkey (Diyanet)";
+        return loc.methodTurkey;
+
       default:
         return method;
     }
   }
+
+  // ============================================================
+  // LOCALIZED MADHHAB LABELS
+  // ============================================================
+
+  String getMadhhabLabel(
+      AppLocalizations loc,
+      String value,
+      ) {
+    switch (value) {
+      case 'hanafi':
+        return loc.hanafi;
+
+      case 'shafi':
+        return loc.shafi;
+
+      default:
+        return value;
+    }
+  }
+
+  // ============================================================
+  // BUILD
+  // ============================================================
 
   @override
   Widget build(BuildContext context) {
@@ -126,16 +208,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       backgroundColor: Colors.transparent,
 
+      // ========================================================
+      // APP BAR
+      // ========================================================
+
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
         title: Text(
           loc.settings,
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(
+            color: Colors.white,
+          ),
         ),
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
       ),
+
+      // ========================================================
+      // BACKGROUND
+      // ========================================================
 
       body: Container(
         decoration: const BoxDecoration(
@@ -149,105 +243,275 @@ class _SettingsScreenState extends State<SettingsScreen> {
             end: Alignment.bottomCenter,
           ),
         ),
+
         child: SafeArea(
           child: ListView(
             padding: const EdgeInsets.all(16),
             children: [
+              // =================================================
+              // LANGUAGE
+              // =================================================
 
-              _section(loc.language, Icons.language, [
-                _tile("🇺🇸 English", "en"),
-                _tile("🇹🇷 Türkçe", "tr"),
-                _tile("🇸🇦 العربية", "ar"),
-                _tile("🇫🇷 Français", "fr"),
-                _tile("🇩🇪 Deutsch", "de"),
-                _tile("🇪🇸 Español", "es"),
-                _tile("🇮🇳 हिन्दी", "hi"),
-                _tile("🇵🇰 اردو", "ur"),
-                _tile("🇷🇺 Русский", "ru"),
-                _tile("🇨🇳 中文", "zh"),
-              ]),
+              _section(
+                loc.language,
+                Icons.language,
+                [
+                  _tile(
+                    "🇺🇸 English",
+                    "en",
+                  ),
+                  _tile(
+                    "🇹🇷 Türkçe",
+                    "tr",
+                  ),
+                  _tile(
+                    "🇸🇦 العربية",
+                    "ar",
+                  ),
+                  _tile(
+                    "🇫🇷 Français",
+                    "fr",
+                  ),
+                  _tile(
+                    "🇩🇪 Deutsch",
+                    "de",
+                  ),
+                  _tile(
+                    "🇪🇸 Español",
+                    "es",
+                  ),
 
-              _section(loc.calculationMethod, Icons.calculate, [
-                DropdownButton<String>(
-                  value: calculationMethod,
-                  isExpanded: true,
-                  items: methods.map((m) {
-                    return DropdownMenuItem(
-                      value: m,
-                      child: Text(getMethodLabel(m)),
-                    );
-                  }).toList(),
-                  onChanged: (val) => setState(() => calculationMethod = val!),
-                ),
-              ]),
+                  // Portuguese - Brazil
+                  _tile(
+                    "🇧🇷 Português (Brasil)",
+                    "pt_BR",
+                  ),
 
-              _section(loc.madhhab, Icons.menu_book, [
-                DropdownButton<String>(
-                  value: madhhab,
-                  isExpanded: true,
-                  items: madhhabs.map((m) {
-                    return DropdownMenuItem(
-                      value: m,
-                      child: Text(m == 'hanafi'
-                          ? "Hanafi"
-                          : "Shafi / Hanbali / Maliki"),
-                    );
-                  }).toList(),
-                  onChanged: (val) => setState(() => madhhab = val!),
-                ),
-              ]),
+                  // Portuguese - Portugal
+                  _tile(
+                    "🇵🇹 Português (Portugal)",
+                    "pt_PT",
+                  ),
 
-              _section(loc.notifications, Icons.notifications, [
-                SwitchListTile(
-                  title: Text(loc.notifications),
-                  value: notificationsEnabled,
-                  onChanged: (val) async {
+                  _tile(
+                    "🇮🇳 हिन्दी",
+                    "hi",
+                  ),
+                  _tile(
+                    "🇵🇰 اردو",
+                    "ur",
+                  ),
+                  _tile(
+                    "🇷🇺 Русский",
+                    "ru",
+                  ),
+                  _tile(
+                    "🇨🇳 中文",
+                    "zh",
+                  ),
 
-                    setState(() => notificationsEnabled = val);
+                  // Indonesian
+                  _tile(
+                    "🇮🇩 Bahasa Indonesia",
+                    "id",
+                  ),
 
-                    final prefs =
-                    await SharedPreferences.getInstance();
+                  // Malay
+                  _tile(
+                    "🇲🇾 Bahasa Melayu",
+                    "ms",
+                  ),
+                ],
+              ),
 
-                    await prefs.setBool('notifications', val);
+              // =================================================
+              // CALCULATION METHOD
+              // =================================================
 
-                    if (!val) {
+              _section(
+                loc.calculationMethod,
+                Icons.calculate,
+                [
+                  DropdownButton<String>(
+                    value: calculationMethod,
+                    isExpanded: true,
+                    items: methods.map((m) {
+                      return DropdownMenuItem<String>(
+                        value: m,
+                        child: Text(
+                          getMethodLabel(
+                            loc,
+                            m,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (val) {
+                      if (val == null) return;
 
-                      await NotificationService.cancelAll();
+                      setState(() {
+                        calculationMethod = val;
+                      });
+                    },
+                  ),
+                ],
+              ),
 
-                    } else {
+              // =================================================
+              // MADHHAB
+              // =================================================
 
-                      // TODO:
-                      // reschedule prayer notifications here
+              _section(
+                loc.madhhab,
+                Icons.menu_book,
+                [
+                  DropdownButton<String>(
+                    value: madhhab,
+                    isExpanded: true,
+                    items: madhhabs.map((m) {
+                      return DropdownMenuItem<String>(
+                        value: m,
+                        child: Text(
+                          getMadhhabLabel(
+                            loc,
+                            m,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (val) {
+                      if (val == null) return;
+
+                      setState(() {
+                        madhhab = val;
+                      });
+                    },
+                  ),
+                ],
+              ),
+
+              // =================================================
+              // NOTIFICATIONS
+              // =================================================
+
+              _section(
+                loc.notifications,
+                Icons.notifications,
+                [
+                  SwitchListTile(
+                    title: Text(
+                      loc.notifications,
+                    ),
+                    value: notificationsEnabled,
+                    onChanged: (val) async {
+                      setState(() {
+                        notificationsEnabled = val;
+                      });
+
+                      final prefs =
+                      await SharedPreferences.getInstance();
+
+                      await prefs.setBool(
+                        'notifications',
+                        val,
+                      );
+
+                      if (!val) {
+                        await NotificationService.cancelAll();
+                      } else {
+                        // TODO:
+                        // Reschedule prayer notifications here.
+                      }
+                    },
+                  ),
+
+                  SwitchListTile(
+                    title: Text(
+                      loc.adhanSound,
+                    ),
+                    value: adhanEnabled,
+                    onChanged: notificationsEnabled
+                        ? (val) async {
+                      setState(() {
+                        adhanEnabled = val;
+                      });
+
+                      final prefs =
+                      await SharedPreferences.getInstance();
+
+                      await prefs.setBool(
+                        'adhan',
+                        val,
+                      );
                     }
-                  },
-                ),
-                SwitchListTile(
-                  title: Text(loc.adhanSound),
-                  value: adhanEnabled,
+                        : null,
+                  ),
+                ],
+              ),
 
-                  onChanged: notificationsEnabled
-                      ? (val) async {
+              // =================================================
+              // PRAYER TIME OFFSETS
+              // =================================================
 
-                    setState(() => adhanEnabled = val);
+              _section(
+                loc.offsetSettings,
+                Icons.access_time,
+                [
+                  _offset(
+                    loc.fajrOffset,
+                    fajrOffset,
+                        (v) {
+                      setState(() {
+                        fajrOffset = v;
+                      });
+                    },
+                  ),
+                  _offset(
+                    loc.dhuhrOffset,
+                    dhuhrOffset,
+                        (v) {
+                      setState(() {
+                        dhuhrOffset = v;
+                      });
+                    },
+                  ),
+                  _offset(
+                    loc.asrOffset,
+                    asrOffset,
+                        (v) {
+                      setState(() {
+                        asrOffset = v;
+                      });
+                    },
+                  ),
+                  _offset(
+                    loc.maghribOffset,
+                    maghribOffset,
+                        (v) {
+                      setState(() {
+                        maghribOffset = v;
+                      });
+                    },
+                  ),
+                  _offset(
+                    loc.ishaOffset,
+                    ishaOffset,
+                        (v) {
+                      setState(() {
+                        ishaOffset = v;
+                      });
+                    },
+                  ),
+                ],
+              ),
 
-                    final prefs =
-                    await SharedPreferences.getInstance();
+              const SizedBox(
+                height: 20,
+              ),
 
-                    await prefs.setBool('adhan', val);
-                  }
-                      : null,
-                ),
-              ]),
-
-              _section(loc.offsetSettings, Icons.access_time, [
-                _offset(loc.fajrOffset, fajrOffset, (v) => setState(() => fajrOffset = v)),
-                _offset(loc.dhuhrOffset, dhuhrOffset, (v) => setState(() => dhuhrOffset = v)),
-                _offset(loc.asrOffset, asrOffset, (v) => setState(() => asrOffset = v)),
-                _offset(loc.maghribOffset, maghribOffset, (v) => setState(() => maghribOffset = v)),
-                _offset(loc.ishaOffset, ishaOffset, (v) => setState(() => ishaOffset = v)),
-              ]),
-
-              const SizedBox(height: 20),
+              // =================================================
+              // SAVE BUTTON
+              // =================================================
 
               SizedBox(
                 width: double.infinity,
@@ -256,18 +520,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     foregroundColor: Colors.black,
-                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 14,
+                    ),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
+                      borderRadius: BorderRadius.circular(
+                        14,
+                      ),
                     ),
                   ),
                   child: Text(
                     loc.save,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
 
+              const SizedBox(
+                height: 20,
+              ),
             ],
           ),
         ),
@@ -275,26 +548,61 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  Widget _section(String title, IconData icon, List<Widget> children) {
+  // ============================================================
+  // SECTION CARD
+  // ============================================================
+
+  Widget _section(
+      String title,
+      IconData icon,
+      List<Widget> children,
+      ) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
+      margin: const EdgeInsets.only(
+        bottom: 16,
+      ),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.95),
-        borderRadius: BorderRadius.circular(16),
+        color: Colors.white.withOpacity(
+          0.95,
+        ),
+        borderRadius: BorderRadius.circular(
+          16,
+        ),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10),
+          BoxShadow(
+            color: Colors.black.withOpacity(
+              0.1,
+            ),
+            blurRadius: 10,
+          ),
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(
+          12,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(children: [
-              Icon(icon, color: Colors.teal),
-              const SizedBox(width: 8),
-              Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-            ]),
+            Row(
+              children: [
+                Icon(
+                  icon,
+                  color: Colors.teal,
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
             const Divider(),
             ...children,
           ],
@@ -303,57 +611,109 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  // Widget _tile(String text, VoidCallback onTap) {
-  //   return ListTile(
-  //     title: Text(text),
-  //     onTap: onTap,
-  //   );
-  // }
-  Widget _tile(String text, String code) {
-    final isSelected = selectedLanguage == code;
+  // ============================================================
+  // LANGUAGE TILE
+  // ============================================================
+
+  Widget _tile(
+      String text,
+      String code,
+      ) {
+    final isSelected =
+        selectedLanguage == code;
 
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 250),
-      margin: const EdgeInsets.symmetric(vertical: 4),
+      duration: const Duration(
+        milliseconds: 250,
+      ),
+      margin: const EdgeInsets.symmetric(
+        vertical: 4,
+      ),
       decoration: BoxDecoration(
-        color: isSelected ? Colors.teal.withOpacity(0.12) : Colors.transparent,
-        borderRadius: BorderRadius.circular(10),
+        color: isSelected
+            ? Colors.teal.withOpacity(
+          0.12,
+        )
+            : Colors.transparent,
+        borderRadius: BorderRadius.circular(
+          10,
+        ),
       ),
       child: ListTile(
         leading: Icon(
           Icons.language,
-          color: isSelected ? Colors.teal : Colors.grey,
+          color: isSelected
+              ? Colors.teal
+              : Colors.grey,
         ),
         title: Text(
           text,
           style: TextStyle(
-            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+            fontWeight: isSelected
+                ? FontWeight.bold
+                : FontWeight.normal,
           ),
         ),
         trailing: isSelected
-            ? const Icon(Icons.check_circle, color: Colors.teal)
+            ? const Icon(
+          Icons.check_circle,
+          color: Colors.teal,
+        )
             : null,
-        onTap: () => changeLanguage(code),
+        onTap: () {
+          changeLanguage(
+            code,
+          );
+        },
       ),
     );
   }
 
-  Widget _offset(String title, int value, Function(int) onChanged) {
-    final loc = AppLocalizations.of(context)!;
+  // ============================================================
+  // PRAYER OFFSET
+  // ============================================================
+
+  Widget _offset(
+      String title,
+      int value,
+      Function(int) onChanged,
+      ) {
+    final loc =
+    AppLocalizations.of(context)!;
 
     return ListTile(
-      title: Text(title),
+      title: Text(
+        title,
+      ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           IconButton(
-            icon: const Icon(Icons.remove),
-            onPressed: () => value > -30 ? onChanged(value - 1) : null,
+            icon: const Icon(
+              Icons.remove,
+            ),
+            onPressed: () {
+              if (value > -30) {
+                onChanged(
+                  value - 1,
+                );
+              }
+            },
           ),
-          Text("$value ${loc.minutesShort}"),
+          Text(
+            "$value ${loc.minutesShort}",
+          ),
           IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () => value < 30 ? onChanged(value + 1) : null,
+            icon: const Icon(
+              Icons.add,
+            ),
+            onPressed: () {
+              if (value < 30) {
+                onChanged(
+                  value + 1,
+                );
+              }
+            },
           ),
         ],
       ),

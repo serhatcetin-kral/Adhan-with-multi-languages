@@ -33,15 +33,15 @@
   "notifications": "通知",
   "enableNotifications": "启用通知",
 
-  "methodMWL": "穆斯林世界联盟",
-  "methodISNA": "北美伊斯兰协会",
+  "methodMWL": "MWL（穆斯林世界联盟）",
+  "methodISNA": "ISNA（北美伊斯兰协会）",
   "methodEgypt": "埃及",
-  "methodMakkah": "麦加乌姆古拉",
+  "methodMakkah": "乌姆古拉（麦加）",
   "methodKarachi": "卡拉奇",
-  "methodTurkey": "土耳其宗教事务局",
+  "methodTurkey": "土耳其（Diyanet）",
 
-  "hanafi": "哈乃斐",
-  "shafi": "沙斐仪",
+  "hanafi": "哈乃斐学派",
+  "shafi": "沙斐仪 / 罕百里 / 马立克学派",
 
   "qibla": "朝向",
   "qiblaFinder": "朝向查找",
@@ -121,5 +121,26 @@
   "setTarget": "设置目标",
   "target": "目标",
   "reset": "重置",
-  "done": "完成"
+  "done": "完成",
+
+  "notificationPrayerTime": "礼拜时间",
+  "notificationPrayerBody": "{prayer}礼拜时间到了。",
+  "@notificationPrayerBody": {
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "updatingPrayerTimes": "正在更新礼拜时间...",
+  "offlineMode": "离线模式",
+  "lastSynced": "上次同步：{time}",
+  "@lastSynced": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "noSavedPrayerData": "未找到已保存的礼拜时间。\n请检查您的网络连接。"
 }
