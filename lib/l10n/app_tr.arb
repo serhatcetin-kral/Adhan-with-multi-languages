@@ -139,6 +139,7 @@
       }
     }
   },
-  "noSavedPrayerData": "Kayıtlı namaz vakti bulunamadı.\nLütfen internet bağlantınızı kontrol edin."
+  "noSavedPrayerData": "Kayıtlı namaz vakti bulunamadı.\nLütfen internet bağlantınızı kontrol edin.",
+  "version": "Sürüm"
 
 }

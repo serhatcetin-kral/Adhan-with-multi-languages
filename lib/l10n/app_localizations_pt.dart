@@ -317,6 +317,9 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get noSavedPrayerData => 'Nenhum horário de oração salvo foi encontrado.\nVerifique sua conexão com a internet.';
+
+  @override
+  String get version => 'Versão';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -632,6 +635,9 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get noSavedPrayerData => 'Nenhum horário de oração salvo foi encontrado.\nVerifique sua conexão com a internet.';
+
+  @override
+  String get version => 'Versão';
 }
 
 /// The translations for Portuguese, as used in Portugal (`pt_PT`).
@@ -947,4 +953,7 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
 
   @override
   String get noSavedPrayerData => 'Não foram encontrados horários de oração guardados.\nVerifique a sua ligação à Internet.';
+
+  @override
+  String get version => 'Versão';
 }

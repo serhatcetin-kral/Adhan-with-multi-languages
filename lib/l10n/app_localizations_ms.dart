@@ -317,4 +317,7 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get noSavedPrayerData => 'Tiada waktu solat yang disimpan ditemui.\nSila semak sambungan internet anda.';
+
+  @override
+  String get version => 'Versi';
 }

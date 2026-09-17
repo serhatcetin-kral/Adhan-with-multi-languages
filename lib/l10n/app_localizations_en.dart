@@ -317,4 +317,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noSavedPrayerData => 'No saved data found.\nPlease check your internet connection.';
+
+  @override
+  String get version => 'Version';
 }

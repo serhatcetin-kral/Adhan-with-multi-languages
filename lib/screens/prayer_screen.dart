@@ -265,7 +265,7 @@ class _PrayerScreenState extends State<PrayerScreen> {
   Widget _buildMainContent(AppLocalizations loc) {
     return Column(
       children: [
-        if (isOffline) buildOfflineBanner(),
+        if (isOffline) buildOfflineBanner(loc),
         _buildHeader(),
         const SizedBox(height: 6),
         Text(loc.nextPrayer, style: const TextStyle(fontSize: 14)),
@@ -365,50 +365,80 @@ class _PrayerScreenState extends State<PrayerScreen> {
 
   Widget buildFirstLoadError(BuildContext context) {
     final loc = AppLocalizations.of(context)!;
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.signal_wifi_off, size: 80, color: Colors.grey),
-          const Text("No saved data found.\nPlease check internet.", textAlign: TextAlign.center),
+          const Icon(
+            Icons.signal_wifi_off,
+            size: 80,
+            color: Colors.grey,
+          ),
+
+          Text(
+            loc.noSavedPrayerData,
+            textAlign: TextAlign.center,
+          ),
+
           const SizedBox(height: 20),
-          ElevatedButton(onPressed: () => AppSettings.openAppSettings(), child: Text(loc.settings)),
+
+          ElevatedButton(
+            onPressed: () => AppSettings.openAppSettings(),
+            child: Text(loc.settings),
+          ),
+
           const SizedBox(height: 10),
+
           ElevatedButton.icon(
             onPressed: () {
               setState(() => firstLoadFailed = false);
               loadPrayerTimes();
             },
             icon: const Icon(Icons.refresh),
-            label: const Text("Refresh"),
+            label: Text(loc.refresh),
           ),
         ],
       ),
     );
   }
 
-  Widget buildOfflineBanner() {
+  Widget buildOfflineBanner(AppLocalizations loc) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      padding: const EdgeInsets.symmetric(
+        vertical: 8,
+        horizontal: 16,
+      ),
       color: Colors.orange.shade800,
       child: Column(
         children: [
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.cloud_off, color: Colors.white, size: 16),
-              SizedBox(width: 8),
+              const Icon(
+                Icons.cloud_off,
+                color: Colors.white,
+                size: 16,
+              ),
+              const SizedBox(width: 8),
               Text(
-                "Offline Mode",
-                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                loc.offlineMode,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
+
           if (_lastSavedTimeStr != null)
             Text(
-              "Last synced: $_lastSavedTimeStr",
-              style: const TextStyle(color: Colors.white70, fontSize: 12),
+              loc.lastSynced(_lastSavedTimeStr!),
+              style: const TextStyle(
+                color: Colors.white70,
+                fontSize: 12,
+              ),
             ),
         ],
       ),

@@ -317,4 +317,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get noSavedPrayerData => 'Tidak ada waktu salat tersimpan yang ditemukan.\nSilakan periksa koneksi internet Anda.';
+
+  @override
+  String get version => 'Versi';
 }

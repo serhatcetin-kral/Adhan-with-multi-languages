@@ -142,5 +142,6 @@
       }
     }
   },
-  "noSavedPrayerData": "未找到已保存的礼拜时间。\n请检查您的网络连接。"
+  "noSavedPrayerData": "未找到已保存的礼拜时间。\n请检查您的网络连接。",
+  "version": "版本"
 }

@@ -317,4 +317,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get noSavedPrayerData => 'Kayıtlı namaz vakti bulunamadı.\nLütfen internet bağlantınızı kontrol edin.';
+
+  @override
+  String get version => 'Sürüm';
 }

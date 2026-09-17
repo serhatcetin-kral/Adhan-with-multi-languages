@@ -142,6 +142,7 @@
       }
     }
   },
-  "noSavedPrayerData": "Aucun horaire de prière enregistré trouvé.\nVeuillez vérifier votre connexion Internet."
+  "noSavedPrayerData": "Aucun horaire de prière enregistré trouvé.\nVeuillez vérifier votre connexion Internet.",
+  "version": "Version"
 
 }

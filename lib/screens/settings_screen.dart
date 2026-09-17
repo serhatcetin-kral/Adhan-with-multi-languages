@@ -1,3 +1,4 @@
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,6 +27,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   int asrOffset = 0;
   int maghribOffset = 0;
   int ishaOffset = 0;
+  String appVersion = '';
 
   // These are INTERNAL values.
   // Do not translate/change these codes.
@@ -49,6 +51,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void initState() {
     super.initState();
     loadSettings();
+    loadAppVersion();
+  }
+  Future<void> loadAppVersion() async {
+    final packageInfo = await PackageInfo.fromPlatform();
+
+    if (!mounted) return;
+
+    setState(() {
+      appVersion = packageInfo.version;
+    });
   }
 
   // ============================================================
@@ -538,9 +550,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
 
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 16),
+
+              if (appVersion.isNotEmpty)
+                Center(
+                  child: Text(
+                    '${loc.version} $appVersion',
+                    style: const TextStyle(
+                      color: Colors.white70,
+                      fontSize: 13,
+                    ),
+                  ),
+                ),
+
+              const SizedBox(height: 20),
             ],
           ),
         ),

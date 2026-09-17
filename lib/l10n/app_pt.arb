@@ -142,5 +142,6 @@
       }
     }
   },
-  "noSavedPrayerData": "Nenhum horário de oração salvo foi encontrado.\nVerifique sua conexão com a internet."
+  "noSavedPrayerData": "Nenhum horário de oração salvo foi encontrado.\nVerifique sua conexão com a internet.",
+  "version": "Versão"
 }

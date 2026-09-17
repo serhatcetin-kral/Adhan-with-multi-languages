@@ -142,5 +142,6 @@
       }
     }
   },
-  "noSavedPrayerData": "Tiada waktu solat yang disimpan ditemui.\nSila semak sambungan internet anda."
+  "noSavedPrayerData": "Tiada waktu solat yang disimpan ditemui.\nSila semak sambungan internet anda.",
+  "version": "Versi"
 }

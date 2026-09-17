@@ -317,4 +317,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get noSavedPrayerData => 'Keine gespeicherten Gebetszeiten gefunden.\nBitte überprüfe deine Internetverbindung.';
+
+  @override
+  String get version => 'Version';
 }

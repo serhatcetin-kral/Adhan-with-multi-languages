@@ -317,4 +317,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get noSavedPrayerData => 'No se encontraron horarios de oración guardados.\nComprueba tu conexión a Internet.';
+
+  @override
+  String get version => 'Versión';
 }

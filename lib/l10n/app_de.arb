@@ -142,6 +142,7 @@
       }
     }
   },
-  "noSavedPrayerData": "Keine gespeicherten Gebetszeiten gefunden.\nBitte überprüfe deine Internetverbindung."
+  "noSavedPrayerData": "Keine gespeicherten Gebetszeiten gefunden.\nBitte überprüfe deine Internetverbindung.",
+  "version": "Version"
 
 }

@@ -317,4 +317,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get noSavedPrayerData => 'Aucun horaire de prière enregistré trouvé.\nVeuillez vérifier votre connexion Internet.';
+
+  @override
+  String get version => 'Version';
 }

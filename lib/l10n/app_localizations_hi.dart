@@ -317,4 +317,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get noSavedPrayerData => 'कोई सहेजा हुआ नमाज़ का समय नहीं मिला।\nकृपया अपना इंटरनेट कनेक्शन जांचें।';
+
+  @override
+  String get version => 'संस्करण';
 }

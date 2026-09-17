@@ -147,7 +147,8 @@
       }
     }
   },
-  "noSavedPrayerData": "No saved data found.\nPlease check your internet connection."
+  "noSavedPrayerData": "No saved data found.\nPlease check your internet connection.",
+  "version": "Version"
 
 
 }

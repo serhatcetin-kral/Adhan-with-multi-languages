@@ -317,4 +317,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get noSavedPrayerData => 'Сохранённое время намаза не найдено.\nПожалуйста, проверьте подключение к интернету.';
+
+  @override
+  String get version => 'Версия';
 }

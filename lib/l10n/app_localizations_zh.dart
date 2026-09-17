@@ -317,4 +317,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get noSavedPrayerData => '未找到已保存的礼拜时间。\n请检查您的网络连接。';
+
+  @override
+  String get version => '版本';
 }

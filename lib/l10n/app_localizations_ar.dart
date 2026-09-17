@@ -317,4 +317,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noSavedPrayerData => 'لم يتم العثور على مواقيت صلاة محفوظة.\nيرجى التحقق من اتصالك بالإنترنت.';
+
+  @override
+  String get version => 'الإصدار';
 }

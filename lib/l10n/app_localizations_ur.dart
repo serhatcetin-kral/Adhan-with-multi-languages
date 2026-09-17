@@ -317,4 +317,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get noSavedPrayerData => 'کوئی محفوظ شدہ نماز کا وقت نہیں ملا۔\nبراہ کرم اپنا انٹرنیٹ کنکشن چیک کریں۔';
+
+  @override
+  String get version => 'ورژن';
 }
