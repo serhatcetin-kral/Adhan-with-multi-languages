@@ -159,5 +159,10 @@
   "hijriRamadan": "Ramadán",
   "hijriShawwal": "Shawwal",
   "hijriDhulQadah": "Dhu al-Qi'dah",
-  "hijriDhulHijjah": "Dhu al-Hiyyah"
+  "hijriDhulHijjah": "Dhu al-Hiyyah",
+  "mosqueFinder": "Buscador de mezquitas",
+  "findNearbyMosques": "Buscar mezquitas cercanas",
+  "mosqueFinderDescription": "Encuentra mezquitas cerca de tu ubicación actual usando tu aplicación de mapas.",
+  "openMaps": "Abrir mapas",
+  "unableToOpenMaps": "No se pudo abrir la aplicación de mapas."
 }

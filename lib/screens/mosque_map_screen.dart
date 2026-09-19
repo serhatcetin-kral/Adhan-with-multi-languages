@@ -1,208 +1,132 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_map/flutter_map.dart';
-// import 'package:geolocator/geolocator.dart';
-// import 'package:latlong2/latlong.dart';
-// import 'package:geocoding/geocoding.dart';
-//
-// import '../services/mosque_service.dart';
-// import '../services/app_location_service.dart';
-// import '../models/mosque.dart';
-//
-// class MosqueMapScreen extends StatefulWidget {
-//   const MosqueMapScreen({super.key});
-//
-//   @override
-//   State<MosqueMapScreen> createState() => _MosqueMapScreenState();
-// }
-//
-// class _MosqueMapScreenState extends State<MosqueMapScreen> {
-//
-//   LatLng? userLocation;
-//   List<Mosque> mosques = [];
-//
-//   bool isLoading = true;
-//   bool useMiles = false;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     loadData();
-//   }
-//
-//   Future<void> loadData() async {
-//
-//     setState(() => isLoading = true);
-//
-//     try {
-//       var pos = await AppLocationService.getUserLocation();
-//
-//       if (pos == null) {
-//         setState(() => isLoading = false);
-//         return;
-//       }
-//
-//       print("USER LOCATION: ${pos.latitude}, ${pos.longitude}");
-//
-//       // 🚨 FIX WRONG LOCATION (Africa bug)
-//       if (pos.latitude.abs() < 1 && pos.longitude.abs() < 1) {
-//         print("⚠️ Wrong location detected → using fallback");
-//         pos = Position(
-//           latitude: 40.7128,
-//           longitude: -74.0060,
-//           timestamp: DateTime.now(),
-//           accuracy: 1,
-//           altitude: 0,
-//           heading: 0,
-//           speed: 0,
-//           speedAccuracy: 0, altitudeAccuracy: null, headingAccuracy: null,
-//         );
-//       }
-//
-//       final placemarks = await placemarkFromCoordinates(
-//         pos.latitude,
-//         pos.longitude,
-//       );
-//
-//       useMiles = (placemarks.first.isoCountryCode == "US");
-//
-//       final list = await MosqueService.fetchNearbyMosques(
-//         pos.latitude,
-//         pos.longitude,
-//       );
-//
-//       setState(() {
-//         userLocation = LatLng(pos!.latitude, pos!.longitude);
-//         mosques = list;
-//         isLoading = false;
-//       });
-//
-//     } catch (e) {
-//       setState(() => isLoading = false);
-//     }
-//   }
-//
-//   double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
-//     const Distance distance = Distance();
-//
-//     final meters = distance.as(
-//       LengthUnit.Meter,
-//       LatLng(lat1, lon1),
-//       LatLng(lat2, lon2),
-//     );
-//
-//     return meters / 1000;
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//
-//     if (isLoading) {
-//       return const Scaffold(
-//         body: Center(child: CircularProgressIndicator()),
-//       );
-//     }
-//
-//     if (userLocation == null) {
-//       return const Scaffold(
-//         body: Center(child: Text("Location not available")),
-//       );
-//     }
-//
-//     mosques.sort((a, b) {
-//       final d1 = calculateDistance(
-//         userLocation!.latitude,
-//         userLocation!.longitude,
-//         a.lat,
-//         a.lng,
-//       );
-//
-//       final d2 = calculateDistance(
-//         userLocation!.latitude,
-//         userLocation!.longitude,
-//         b.lat,
-//         b.lng,
-//       );
-//
-//       return d1.compareTo(d2);
-//     });
-//
-//     return Scaffold(
-//       appBar: AppBar(title: const Text("Nearby Mosques")),
-//
-//       body: Column(
-//         children: [
-//
-//           // MAP
-//           SizedBox(
-//             height: MediaQuery.of(context).size.height * 0.55,
-//             child: FlutterMap(
-//               options: MapOptions(
-//                 initialCenter: userLocation!,
-//                 initialZoom: 14,
-//               ),
-//               children: [
-//
-//                 TileLayer(
-//                   urlTemplate:
-//                   "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-//                   userAgentPackageName: 'com.serhat.adhan_app',
-//                 ),
-//
-//                 MarkerLayer(
-//                   markers: [
-//                     Marker(
-//                       point: userLocation!,
-//                       width: 50,
-//                       height: 50,
-//                       child: const Icon(Icons.my_location, color: Colors.blue),
-//                     ),
-//                   ],
-//                 ),
-//
-//                 MarkerLayer(
-//                   markers: mosques.map((m) {
-//                     return Marker(
-//                       point: LatLng(m.lat, m.lng),
-//                       width: 40,
-//                       height: 40,
-//                       child: const Icon(Icons.location_on, color: Colors.green),
-//                     );
-//                   }).toList(),
-//                 ),
-//               ],
-//             ),
-//           ),
-//
-//           // LIST
-//           Expanded(
-//             child: ListView.builder(
-//               itemCount: mosques.length > 15 ? 15 : mosques.length,
-//               itemBuilder: (context, index) {
-//
-//                 final m = mosques[index];
-//
-//                 final distKm = calculateDistance(
-//                   userLocation!.latitude,
-//                   userLocation!.longitude,
-//                   m.lat,
-//                   m.lng,
-//                 );
-//
-//                 final distanceText = useMiles
-//                     ? "${(distKm * 0.621371).toStringAsFixed(2)} mi"
-//                     : distKm < 1
-//                     ? "${(distKm * 1000).toStringAsFixed(0)} m"
-//                     : "${distKm.toStringAsFixed(2)} km";
-//
-//                 return ListTile(
-//                   title: Text(m.name),
-//                   subtitle: Text(distanceText),
-//                 );
-//               },
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../l10n/app_localizations.dart';
+
+class MosqueMapScreen extends StatelessWidget {
+  const MosqueMapScreen({super.key});
+
+  Future<void> _findNearbyMosques(
+      BuildContext context,
+      ) async {
+    Uri uri;
+
+    if (Platform.isIOS) {
+      // Opens Apple Maps and searches around the user's current area.
+      uri = Uri.parse(
+        'https://maps.apple.com/?q=mosque',
+      );
+    } else {
+      // Opens Google Maps / browser and searches around the user's area.
+      uri = Uri.parse(
+        'https://www.google.com/maps/search/?api=1&query=mosque',
+      );
+    }
+
+    final launched = await launchUrl(
+      uri,
+      mode: LaunchMode.externalApplication,
+    );
+
+    if (!launched && context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            AppLocalizations.of(context)!.unableToOpenMaps,
+          ),
+        ),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context)!;
+
+    return Scaffold(
+      backgroundColor: const Color(0xFFF5F7FA),
+
+      appBar: AppBar(
+        title: Text(loc.mosqueFinder),
+        centerTitle: true,
+        backgroundColor: Colors.teal,
+        foregroundColor: Colors.white,
+      ),
+
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 130,
+                height: 130,
+                decoration: BoxDecoration(
+                  color: Colors.teal.withOpacity(0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.mosque,
+                  size: 70,
+                  color: Colors.teal,
+                ),
+              ),
+
+              const SizedBox(height: 30),
+
+              Text(
+                loc.findNearbyMosques,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(height: 12),
+
+              Text(
+                loc.mosqueFinderDescription,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15,
+                  height: 1.5,
+                  color: Colors.grey.shade700,
+                ),
+              ),
+
+              const SizedBox(height: 32),
+
+              SizedBox(
+                width: double.infinity,
+                height: 54,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    _findNearbyMosques(context);
+                  },
+                  icon: const Icon(
+                    Icons.location_on,
+                  ),
+                  label: Text(
+                    loc.openMaps,
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.teal,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(14),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

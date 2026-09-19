@@ -368,4 +368,19 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get hijriDhulHijjah => 'Зуль-хиджа';
+
+  @override
+  String get mosqueFinder => 'Поиск мечетей';
+
+  @override
+  String get findNearbyMosques => 'Найти мечети поблизости';
+
+  @override
+  String get mosqueFinderDescription => 'Найдите мечети рядом с вашим текущим местоположением с помощью приложения карт.';
+
+  @override
+  String get openMaps => 'Открыть карты';
+
+  @override
+  String get unableToOpenMaps => 'Не удалось открыть приложение карт.';
 }

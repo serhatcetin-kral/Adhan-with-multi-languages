@@ -151,14 +151,16 @@ class MoreScreen extends StatelessWidget {
                 //       () => Navigator.pushNamed(context, '/support'),
                 // ),
 
-                // 🕌 MOSQUE
-                // _buildItem(
-                //   context,
-                //   'assets/more/mosque.png',
-                //   "Mosques",
-                //       () => Navigator.pushNamed(context, '/mosque'),
-                // ),
-
+                // 🕌 MOSQUE FINDER
+                _buildItem(
+                  context,
+                  'assets/more/mosque.png',
+                  loc.mosqueFinder,
+                      () => Navigator.pushNamed(
+                    context,
+                    '/mosque',
+                  ),
+                ),
 
               ],
             ),),

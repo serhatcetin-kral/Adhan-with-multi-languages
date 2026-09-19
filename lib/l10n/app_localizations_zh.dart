@@ -368,4 +368,19 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get hijriDhulHijjah => '都尔黑哲月';
+
+  @override
+  String get mosqueFinder => '清真寺查找器';
+
+  @override
+  String get findNearbyMosques => '查找附近的清真寺';
+
+  @override
+  String get mosqueFinderDescription => '使用地图应用查找您当前位置附近的清真寺。';
+
+  @override
+  String get openMaps => '打开地图';
+
+  @override
+  String get unableToOpenMaps => '无法打开地图。';
 }

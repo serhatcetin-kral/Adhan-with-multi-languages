@@ -142,6 +142,7 @@ class _MyAppState extends State<MyApp> {
         '/calendar': (context) => const CalendarScreen(),
         '/quran-test': (_) => const QuranScreen(),
         '/settings': (_) => const SettingsScreen(),
+        '/mosque': (_) => const MosqueMapScreen(),
       },
 
       home: UpgradeAlert(

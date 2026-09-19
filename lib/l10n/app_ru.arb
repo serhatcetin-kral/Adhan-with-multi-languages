@@ -159,5 +159,10 @@
   "hijriRamadan": "Рамадан",
   "hijriShawwal": "Шавваль",
   "hijriDhulQadah": "Зуль-када",
-  "hijriDhulHijjah": "Зуль-хиджа"
+  "hijriDhulHijjah": "Зуль-хиджа",
+  "mosqueFinder": "Поиск мечетей",
+  "findNearbyMosques": "Найти мечети поблизости",
+  "mosqueFinderDescription": "Найдите мечети рядом с вашим текущим местоположением с помощью приложения карт.",
+  "openMaps": "Открыть карты",
+  "unableToOpenMaps": "Не удалось открыть приложение карт."
 }

@@ -156,6 +156,11 @@
   "hijriRamadan": "Ramazan",
   "hijriShawwal": "Şevval",
   "hijriDhulQadah": "Zilkade",
-  "hijriDhulHijjah": "Zilhicce"
+  "hijriDhulHijjah": "Zilhicce",
+  "mosqueFinder": "Cami Bulucu",
+  "findNearbyMosques": "Yakındaki Camileri Bul",
+  "mosqueFinderDescription": "Harita uygulamanızı kullanarak bulunduğunuz konuma yakın camileri bulun.",
+  "openMaps": "Haritayı Aç",
+  "unableToOpenMaps": "Harita açılamadı."
 
 }

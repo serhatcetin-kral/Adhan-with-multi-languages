@@ -155,6 +155,11 @@
   "hijriRamadan": "رمضان",
   "hijriShawwal": "شوال",
   "hijriDhulQadah": "ذو القعدة",
-  "hijriDhulHijjah": "ذو الحجة"
+  "hijriDhulHijjah": "ذو الحجة",
+  "mosqueFinder": "البحث عن المساجد",
+  "findNearbyMosques": "البحث عن المساجد القريبة",
+  "mosqueFinderDescription": "اعثر على المساجد القريبة من موقعك الحالي باستخدام تطبيق الخرائط.",
+  "openMaps": "فتح الخرائط",
+  "unableToOpenMaps": "تعذر فتح الخرائط."
 
 }

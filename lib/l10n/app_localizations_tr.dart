@@ -368,4 +368,19 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get hijriDhulHijjah => 'Zilhicce';
+
+  @override
+  String get mosqueFinder => 'Cami Bulucu';
+
+  @override
+  String get findNearbyMosques => 'Yakındaki Camileri Bul';
+
+  @override
+  String get mosqueFinderDescription => 'Harita uygulamanızı kullanarak bulunduğunuz konuma yakın camileri bulun.';
+
+  @override
+  String get openMaps => 'Haritayı Aç';
+
+  @override
+  String get unableToOpenMaps => 'Harita açılamadı.';
 }

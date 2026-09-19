@@ -159,5 +159,10 @@
   "hijriRamadan": "Ramadan",
   "hijriShawwal": "Syawal",
   "hijriDhulQadah": "Zulkaidah",
-  "hijriDhulHijjah": "Zulhijah"
+  "hijriDhulHijjah": "Zulhijah",
+  "mosqueFinder": "Pencari Masjid",
+  "findNearbyMosques": "Temukan Masjid Terdekat",
+  "mosqueFinderDescription": "Temukan masjid di dekat lokasi Anda saat ini menggunakan aplikasi peta.",
+  "openMaps": "Buka Peta",
+  "unableToOpenMaps": "Tidak dapat membuka aplikasi peta."
 }

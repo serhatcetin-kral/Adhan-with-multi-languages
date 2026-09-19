@@ -832,6 +832,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Dhul-Hijjah'**
   String get hijriDhulHijjah;
+
+  /// No description provided for @mosqueFinder.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque Finder'**
+  String get mosqueFinder;
+
+  /// No description provided for @findNearbyMosques.
+  ///
+  /// In en, this message translates to:
+  /// **'Find Nearby Mosques'**
+  String get findNearbyMosques;
+
+  /// No description provided for @mosqueFinderDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Find mosques near your current location using your maps app.'**
+  String get mosqueFinderDescription;
+
+  /// No description provided for @openMaps.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Maps'**
+  String get openMaps;
+
+  /// No description provided for @unableToOpenMaps.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to open Maps.'**
+  String get unableToOpenMaps;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

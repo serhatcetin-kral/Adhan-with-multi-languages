@@ -368,4 +368,19 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get hijriDhulHijjah => 'Zulhijah';
+
+  @override
+  String get mosqueFinder => 'Pencari Masjid';
+
+  @override
+  String get findNearbyMosques => 'Cari Masjid Berdekatan';
+
+  @override
+  String get mosqueFinderDescription => 'Cari masjid berhampiran lokasi semasa anda menggunakan aplikasi peta.';
+
+  @override
+  String get openMaps => 'Buka Peta';
+
+  @override
+  String get unableToOpenMaps => 'Tidak dapat membuka aplikasi peta.';
 }

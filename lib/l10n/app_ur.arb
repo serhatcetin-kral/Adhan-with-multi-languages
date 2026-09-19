@@ -159,6 +159,11 @@
   "hijriRamadan": "رمضان",
   "hijriShawwal": "شوال",
   "hijriDhulQadah": "ذوالقعدہ",
-  "hijriDhulHijjah": "ذوالحجہ"
+  "hijriDhulHijjah": "ذوالحجہ",
+  "mosqueFinder": "مسجد تلاش کریں",
+  "findNearbyMosques": "قریبی مساجد تلاش کریں",
+  "mosqueFinderDescription": "اپنی میپس ایپ کے ذریعے اپنے موجودہ مقام کے قریب مساجد تلاش کریں۔",
+  "openMaps": "نقشہ کھولیں",
+  "unableToOpenMaps": "نقشہ نہیں کھولا جا سکا۔"
 
 }

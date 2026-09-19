@@ -368,4 +368,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get hijriDhulHijjah => 'ذو الحجة';
+
+  @override
+  String get mosqueFinder => 'البحث عن المساجد';
+
+  @override
+  String get findNearbyMosques => 'البحث عن المساجد القريبة';
+
+  @override
+  String get mosqueFinderDescription => 'اعثر على المساجد القريبة من موقعك الحالي باستخدام تطبيق الخرائط.';
+
+  @override
+  String get openMaps => 'فتح الخرائط';
+
+  @override
+  String get unableToOpenMaps => 'تعذر فتح الخرائط.';
 }

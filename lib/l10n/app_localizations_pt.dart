@@ -368,6 +368,21 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get hijriDhulHijjah => 'Dhul-Hijjah';
+
+  @override
+  String get mosqueFinder => 'Localizador de Mesquitas';
+
+  @override
+  String get findNearbyMosques => 'Encontrar Mesquitas Próximas';
+
+  @override
+  String get mosqueFinderDescription => 'Encontre mesquitas perto da sua localização atual utilizando a aplicação de mapas.';
+
+  @override
+  String get openMaps => 'Abrir Mapas';
+
+  @override
+  String get unableToOpenMaps => 'Não foi possível abrir a aplicação de mapas.';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -734,6 +749,21 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get hijriDhulHijjah => 'Dhul-Hijjah';
+
+  @override
+  String get mosqueFinder => 'Localizador de Mesquitas';
+
+  @override
+  String get findNearbyMosques => 'Encontrar Mesquitas Próximas';
+
+  @override
+  String get mosqueFinderDescription => 'Encontre mesquitas próximas à sua localização atual usando o aplicativo de mapas.';
+
+  @override
+  String get openMaps => 'Abrir Mapas';
+
+  @override
+  String get unableToOpenMaps => 'Não foi possível abrir o aplicativo de mapas.';
 }
 
 /// The translations for Portuguese, as used in Portugal (`pt_PT`).
@@ -1100,4 +1130,19 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
 
   @override
   String get hijriDhulHijjah => 'Dhul-Hijjah';
+
+  @override
+  String get mosqueFinder => 'Localizador de Mesquitas';
+
+  @override
+  String get findNearbyMosques => 'Encontrar Mesquitas Próximas';
+
+  @override
+  String get mosqueFinderDescription => 'Encontre mesquitas perto da sua localização atual utilizando a aplicação de mapas.';
+
+  @override
+  String get openMaps => 'Abrir Mapas';
+
+  @override
+  String get unableToOpenMaps => 'Não foi possível abrir a aplicação de mapas.';
 }

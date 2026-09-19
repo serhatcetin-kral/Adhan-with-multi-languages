@@ -368,4 +368,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get hijriDhulHijjah => 'Dhul-Hijjah';
+
+  @override
+  String get mosqueFinder => 'Mosque Finder';
+
+  @override
+  String get findNearbyMosques => 'Find Nearby Mosques';
+
+  @override
+  String get mosqueFinderDescription => 'Find mosques near your current location using your maps app.';
+
+  @override
+  String get openMaps => 'Open Maps';
+
+  @override
+  String get unableToOpenMaps => 'Unable to open Maps.';
 }

@@ -368,4 +368,19 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get hijriDhulHijjah => 'ذوالحجہ';
+
+  @override
+  String get mosqueFinder => 'مسجد تلاش کریں';
+
+  @override
+  String get findNearbyMosques => 'قریبی مساجد تلاش کریں';
+
+  @override
+  String get mosqueFinderDescription => 'اپنی میپس ایپ کے ذریعے اپنے موجودہ مقام کے قریب مساجد تلاش کریں۔';
+
+  @override
+  String get openMaps => 'نقشہ کھولیں';
+
+  @override
+  String get unableToOpenMaps => 'نقشہ نہیں کھولا جا سکا۔';
 }

@@ -368,4 +368,19 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get hijriDhulHijjah => 'Dhu al-Hiyyah';
+
+  @override
+  String get mosqueFinder => 'Buscador de mezquitas';
+
+  @override
+  String get findNearbyMosques => 'Buscar mezquitas cercanas';
+
+  @override
+  String get mosqueFinderDescription => 'Encuentra mezquitas cerca de tu ubicación actual usando tu aplicación de mapas.';
+
+  @override
+  String get openMaps => 'Abrir mapas';
+
+  @override
+  String get unableToOpenMaps => 'No se pudo abrir la aplicación de mapas.';
 }

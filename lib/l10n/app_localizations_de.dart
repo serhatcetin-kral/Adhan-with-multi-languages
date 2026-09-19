@@ -368,4 +368,19 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get hijriDhulHijjah => 'Dhu al-Hiddscha';
+
+  @override
+  String get mosqueFinder => 'Moscheefinder';
+
+  @override
+  String get findNearbyMosques => 'Moscheen in der Nähe finden';
+
+  @override
+  String get mosqueFinderDescription => 'Finde Moscheen in der Nähe deines aktuellen Standorts mit deiner Karten-App.';
+
+  @override
+  String get openMaps => 'Karte öffnen';
+
+  @override
+  String get unableToOpenMaps => 'Die Karten-App konnte nicht geöffnet werden.';
 }
