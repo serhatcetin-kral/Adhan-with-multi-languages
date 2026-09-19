@@ -320,4 +320,52 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get version => 'Версия';
+
+  @override
+  String get continueReading => 'Продолжить чтение';
+
+  @override
+  String get surah => 'Сура';
+
+  @override
+  String get searchDua => 'Найти дуа...';
+
+  @override
+  String get ok => 'ОК';
+
+  @override
+  String get hijriMuharram => 'Мухаррам';
+
+  @override
+  String get hijriSafar => 'Сафар';
+
+  @override
+  String get hijriRabiAlAwwal => 'Раби аль-авваль';
+
+  @override
+  String get hijriRabiAlThani => 'Раби ас-сани';
+
+  @override
+  String get hijriJumadaAlAwwal => 'Джумада аль-уля';
+
+  @override
+  String get hijriJumadaAlThani => 'Джумада ас-сания';
+
+  @override
+  String get hijriRajab => 'Раджаб';
+
+  @override
+  String get hijriShaban => 'Шаабан';
+
+  @override
+  String get hijriRamadan => 'Рамадан';
+
+  @override
+  String get hijriShawwal => 'Шавваль';
+
+  @override
+  String get hijriDhulQadah => 'Зуль-када';
+
+  @override
+  String get hijriDhulHijjah => 'Зуль-хиджа';
 }

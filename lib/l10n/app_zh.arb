@@ -143,5 +143,21 @@
     }
   },
   "noSavedPrayerData": "未找到已保存的礼拜时间。\n请检查您的网络连接。",
-  "version": "版本"
+  "version": "版本",
+  "continueReading": "继续阅读",
+  "surah": "苏拉",
+  "searchDua": "搜索祈祷词...",
+  "ok": "确定",
+  "hijriMuharram": "穆哈兰姆月",
+  "hijriSafar": "色法尔月",
+  "hijriRabiAlAwwal": "赖比尔·敖外鲁月",
+  "hijriRabiAlThani": "赖比尔·阿色尼月",
+  "hijriJumadaAlAwwal": "主马达·敖外鲁月",
+  "hijriJumadaAlThani": "主马达·阿色尼月",
+  "hijriRajab": "赖哲卜月",
+  "hijriShaban": "舍尔邦月",
+  "hijriRamadan": "莱麦丹月",
+  "hijriShawwal": "闪瓦鲁月",
+  "hijriDhulQadah": "都尔喀尔德月",
+  "hijriDhulHijjah": "都尔黑哲月"
 }

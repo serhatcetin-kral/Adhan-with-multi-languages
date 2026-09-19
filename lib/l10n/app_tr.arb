@@ -140,6 +140,22 @@
     }
   },
   "noSavedPrayerData": "Kayıtlı namaz vakti bulunamadı.\nLütfen internet bağlantınızı kontrol edin.",
-  "version": "Sürüm"
+  "version": "Sürüm",
+  "continueReading": "Okumaya Devam Et",
+  "surah": "Sure",
+  "searchDua": "Dua ara...",
+  "ok": "Tamam",
+  "hijriMuharram": "Muharrem",
+  "hijriSafar": "Safer",
+  "hijriRabiAlAwwal": "Rebiülevvel",
+  "hijriRabiAlThani": "Rebiülahir",
+  "hijriJumadaAlAwwal": "Cemaziyelevvel",
+  "hijriJumadaAlThani": "Cemaziyelahir",
+  "hijriRajab": "Recep",
+  "hijriShaban": "Şaban",
+  "hijriRamadan": "Ramazan",
+  "hijriShawwal": "Şevval",
+  "hijriDhulQadah": "Zilkade",
+  "hijriDhulHijjah": "Zilhicce"
 
 }

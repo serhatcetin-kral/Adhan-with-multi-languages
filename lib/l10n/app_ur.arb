@@ -143,5 +143,22 @@
     }
   },
   "noSavedPrayerData": "کوئی محفوظ شدہ نماز کا وقت نہیں ملا۔\nبراہ کرم اپنا انٹرنیٹ کنکشن چیک کریں۔",
-  "version": "ورژن"
+  "version": "ورژن",
+  "continueReading": "پڑھنا جاری رکھیں",
+  "surah": "سورۃ",
+  "searchDua": "دعا تلاش کریں...",
+  "ok": "ٹھیک ہے",
+  "hijriMuharram": "محرم",
+  "hijriSafar": "صفر",
+  "hijriRabiAlAwwal": "ربیع الاول",
+  "hijriRabiAlThani": "ربیع الثانی",
+  "hijriJumadaAlAwwal": "جمادی الاول",
+  "hijriJumadaAlThani": "جمادی الثانی",
+  "hijriRajab": "رجب",
+  "hijriShaban": "شعبان",
+  "hijriRamadan": "رمضان",
+  "hijriShawwal": "شوال",
+  "hijriDhulQadah": "ذوالقعدہ",
+  "hijriDhulHijjah": "ذوالحجہ"
+
 }

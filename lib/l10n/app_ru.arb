@@ -143,5 +143,21 @@
     }
   },
   "noSavedPrayerData": "Сохранённое время намаза не найдено.\nПожалуйста, проверьте подключение к интернету.",
-  "version": "Версия"
+  "version": "Версия",
+  "continueReading": "Продолжить чтение",
+  "surah": "Сура",
+  "searchDua": "Найти дуа...",
+  "ok": "ОК",
+  "hijriMuharram": "Мухаррам",
+  "hijriSafar": "Сафар",
+  "hijriRabiAlAwwal": "Раби аль-авваль",
+  "hijriRabiAlThani": "Раби ас-сани",
+  "hijriJumadaAlAwwal": "Джумада аль-уля",
+  "hijriJumadaAlThani": "Джумада ас-сания",
+  "hijriRajab": "Раджаб",
+  "hijriShaban": "Шаабан",
+  "hijriRamadan": "Рамадан",
+  "hijriShawwal": "Шавваль",
+  "hijriDhulQadah": "Зуль-када",
+  "hijriDhulHijjah": "Зуль-хиджа"
 }

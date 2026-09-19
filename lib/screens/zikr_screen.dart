@@ -272,7 +272,7 @@ class _ZikrScreenState extends State<ZikrScreen> {
 
               Navigator.pop(context);
             },
-            child: const Text("OK"),
+            child: Text(t.ok),
           ),
 
 

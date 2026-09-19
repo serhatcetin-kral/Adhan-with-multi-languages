@@ -320,6 +320,54 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get version => 'Versão';
+
+  @override
+  String get continueReading => 'Continuar a ler';
+
+  @override
+  String get surah => 'Sura';
+
+  @override
+  String get searchDua => 'Pesquisar uma súplica...';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get hijriMuharram => 'Muharram';
+
+  @override
+  String get hijriSafar => 'Safar';
+
+  @override
+  String get hijriRabiAlAwwal => 'Rabi al-Awwal';
+
+  @override
+  String get hijriRabiAlThani => 'Rabi al-Thani';
+
+  @override
+  String get hijriJumadaAlAwwal => 'Jumada al-Awwal';
+
+  @override
+  String get hijriJumadaAlThani => 'Jumada al-Thani';
+
+  @override
+  String get hijriRajab => 'Rajab';
+
+  @override
+  String get hijriShaban => 'Sha\'ban';
+
+  @override
+  String get hijriRamadan => 'Ramadão';
+
+  @override
+  String get hijriShawwal => 'Shawwal';
+
+  @override
+  String get hijriDhulQadah => 'Dhul-Qi\'dah';
+
+  @override
+  String get hijriDhulHijjah => 'Dhul-Hijjah';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -638,6 +686,54 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get version => 'Versão';
+
+  @override
+  String get continueReading => 'Continuar lendo';
+
+  @override
+  String get surah => 'Sura';
+
+  @override
+  String get searchDua => 'Buscar uma súplica...';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get hijriMuharram => 'Muharram';
+
+  @override
+  String get hijriSafar => 'Safar';
+
+  @override
+  String get hijriRabiAlAwwal => 'Rabi al-Awwal';
+
+  @override
+  String get hijriRabiAlThani => 'Rabi al-Thani';
+
+  @override
+  String get hijriJumadaAlAwwal => 'Jumada al-Awwal';
+
+  @override
+  String get hijriJumadaAlThani => 'Jumada al-Thani';
+
+  @override
+  String get hijriRajab => 'Rajab';
+
+  @override
+  String get hijriShaban => 'Sha\'ban';
+
+  @override
+  String get hijriRamadan => 'Ramadã';
+
+  @override
+  String get hijriShawwal => 'Shawwal';
+
+  @override
+  String get hijriDhulQadah => 'Dhul-Qi\'dah';
+
+  @override
+  String get hijriDhulHijjah => 'Dhul-Hijjah';
 }
 
 /// The translations for Portuguese, as used in Portugal (`pt_PT`).
@@ -956,4 +1052,52 @@ class AppLocalizationsPtPt extends AppLocalizationsPt {
 
   @override
   String get version => 'Versão';
+
+  @override
+  String get continueReading => 'Continuar a ler';
+
+  @override
+  String get surah => 'Sura';
+
+  @override
+  String get searchDua => 'Pesquisar uma súplica...';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get hijriMuharram => 'Muharram';
+
+  @override
+  String get hijriSafar => 'Safar';
+
+  @override
+  String get hijriRabiAlAwwal => 'Rabi al-Awwal';
+
+  @override
+  String get hijriRabiAlThani => 'Rabi al-Thani';
+
+  @override
+  String get hijriJumadaAlAwwal => 'Jumada al-Awwal';
+
+  @override
+  String get hijriJumadaAlThani => 'Jumada al-Thani';
+
+  @override
+  String get hijriRajab => 'Rajab';
+
+  @override
+  String get hijriShaban => 'Sha\'ban';
+
+  @override
+  String get hijriRamadan => 'Ramadão';
+
+  @override
+  String get hijriShawwal => 'Shawwal';
+
+  @override
+  String get hijriDhulQadah => 'Dhul-Qi\'dah';
+
+  @override
+  String get hijriDhulHijjah => 'Dhul-Hijjah';
 }

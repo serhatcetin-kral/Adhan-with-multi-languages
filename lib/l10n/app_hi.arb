@@ -143,5 +143,21 @@
     }
   },
   "noSavedPrayerData": "कोई सहेजा हुआ नमाज़ का समय नहीं मिला।\nकृपया अपना इंटरनेट कनेक्शन जांचें।",
-  "version": "संस्करण"
+  "version": "संस्करण",
+  "continueReading": "पढ़ना जारी रखें",
+  "surah": "सूरह",
+  "searchDua": "दुआ खोजें...",
+  "ok": "ठीक है",
+  "hijriMuharram": "मुहर्रम",
+  "hijriSafar": "सफ़र",
+  "hijriRabiAlAwwal": "रबी अल-अव्वल",
+  "hijriRabiAlThani": "रबी अल-थानी",
+  "hijriJumadaAlAwwal": "जुमादा अल-अव्वल",
+  "hijriJumadaAlThani": "जुमादा अल-थानी",
+  "hijriRajab": "रजब",
+  "hijriShaban": "शाबान",
+  "hijriRamadan": "रमज़ान",
+  "hijriShawwal": "शव्वाल",
+  "hijriDhulQadah": "ज़ुल-क़ादा",
+  "hijriDhulHijjah": "ज़ुल-हिज्जा"
 }

@@ -139,6 +139,22 @@
     }
   },
   "noSavedPrayerData": "لم يتم العثور على مواقيت صلاة محفوظة.\nيرجى التحقق من اتصالك بالإنترنت.",
-  "version": "الإصدار"
+  "version": "الإصدار",
+  "continueReading": "متابعة القراءة",
+  "surah": "سورة",
+  "searchDua": "ابحث عن دعاء...",
+  "ok": "حسنًا",
+  "hijriMuharram": "محرم",
+  "hijriSafar": "صفر",
+  "hijriRabiAlAwwal": "ربيع الأول",
+  "hijriRabiAlThani": "ربيع الآخر",
+  "hijriJumadaAlAwwal": "جمادى الأولى",
+  "hijriJumadaAlThani": "جمادى الآخرة",
+  "hijriRajab": "رجب",
+  "hijriShaban": "شعبان",
+  "hijriRamadan": "رمضان",
+  "hijriShawwal": "شوال",
+  "hijriDhulQadah": "ذو القعدة",
+  "hijriDhulHijjah": "ذو الحجة"
 
 }

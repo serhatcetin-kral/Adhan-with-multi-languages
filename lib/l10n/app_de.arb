@@ -143,6 +143,22 @@
     }
   },
   "noSavedPrayerData": "Keine gespeicherten Gebetszeiten gefunden.\nBitte überprüfe deine Internetverbindung.",
-  "version": "Version"
+  "version": "Version",
+  "continueReading": "Weiterlesen",
+  "surah": "Sure",
+  "searchDua": "Dua suchen...",
+  "ok": "OK",
+  "hijriMuharram": "Muharram",
+  "hijriSafar": "Safar",
+  "hijriRabiAlAwwal": "Rabi al-Awwal",
+  "hijriRabiAlThani": "Rabi al-Thani",
+  "hijriJumadaAlAwwal": "Dschumada al-Ula",
+  "hijriJumadaAlThani": "Dschumada ath-Thaniya",
+  "hijriRajab": "Radschab",
+  "hijriShaban": "Scha'ban",
+  "hijriRamadan": "Ramadan",
+  "hijriShawwal": "Schawwal",
+  "hijriDhulQadah": "Dhu al-Qa'da",
+  "hijriDhulHijjah": "Dhu al-Hiddscha"
 
 }

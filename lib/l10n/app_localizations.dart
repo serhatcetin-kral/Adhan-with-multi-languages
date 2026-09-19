@@ -736,6 +736,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Version'**
   String get version;
+
+  /// No description provided for @continueReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Reading'**
+  String get continueReading;
+
+  /// No description provided for @surah.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah'**
+  String get surah;
+
+  /// No description provided for @searchDua.
+  ///
+  /// In en, this message translates to:
+  /// **'Search dua...'**
+  String get searchDua;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
+
+  /// No description provided for @hijriMuharram.
+  ///
+  /// In en, this message translates to:
+  /// **'Muharram'**
+  String get hijriMuharram;
+
+  /// No description provided for @hijriSafar.
+  ///
+  /// In en, this message translates to:
+  /// **'Safar'**
+  String get hijriSafar;
+
+  /// No description provided for @hijriRabiAlAwwal.
+  ///
+  /// In en, this message translates to:
+  /// **'Rabi al-Awwal'**
+  String get hijriRabiAlAwwal;
+
+  /// No description provided for @hijriRabiAlThani.
+  ///
+  /// In en, this message translates to:
+  /// **'Rabi al-Thani'**
+  String get hijriRabiAlThani;
+
+  /// No description provided for @hijriJumadaAlAwwal.
+  ///
+  /// In en, this message translates to:
+  /// **'Jumada al-Awwal'**
+  String get hijriJumadaAlAwwal;
+
+  /// No description provided for @hijriJumadaAlThani.
+  ///
+  /// In en, this message translates to:
+  /// **'Jumada al-Thani'**
+  String get hijriJumadaAlThani;
+
+  /// No description provided for @hijriRajab.
+  ///
+  /// In en, this message translates to:
+  /// **'Rajab'**
+  String get hijriRajab;
+
+  /// No description provided for @hijriShaban.
+  ///
+  /// In en, this message translates to:
+  /// **'Sha\'ban'**
+  String get hijriShaban;
+
+  /// No description provided for @hijriRamadan.
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan'**
+  String get hijriRamadan;
+
+  /// No description provided for @hijriShawwal.
+  ///
+  /// In en, this message translates to:
+  /// **'Shawwal'**
+  String get hijriShawwal;
+
+  /// No description provided for @hijriDhulQadah.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhul-Qa\'dah'**
+  String get hijriDhulQadah;
+
+  /// No description provided for @hijriDhulHijjah.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhul-Hijjah'**
+  String get hijriDhulHijjah;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -320,4 +320,52 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get version => 'Version';
+
+  @override
+  String get continueReading => 'Continuer la lecture';
+
+  @override
+  String get surah => 'Sourate';
+
+  @override
+  String get searchDua => 'Rechercher une invocation...';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get hijriMuharram => 'Mouharram';
+
+  @override
+  String get hijriSafar => 'Safar';
+
+  @override
+  String get hijriRabiAlAwwal => 'Rabi al-Awwal';
+
+  @override
+  String get hijriRabiAlThani => 'Rabi al-Thani';
+
+  @override
+  String get hijriJumadaAlAwwal => 'Joumada al-Oula';
+
+  @override
+  String get hijriJumadaAlThani => 'Joumada ath-Thania';
+
+  @override
+  String get hijriRajab => 'Rajab';
+
+  @override
+  String get hijriShaban => 'Chaabane';
+
+  @override
+  String get hijriRamadan => 'Ramadan';
+
+  @override
+  String get hijriShawwal => 'Chawwal';
+
+  @override
+  String get hijriDhulQadah => 'Dhou al-Qi\'da';
+
+  @override
+  String get hijriDhulHijjah => 'Dhou al-Hijja';
 }

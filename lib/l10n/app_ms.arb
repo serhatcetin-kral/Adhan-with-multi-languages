@@ -143,5 +143,21 @@
     }
   },
   "noSavedPrayerData": "Tiada waktu solat yang disimpan ditemui.\nSila semak sambungan internet anda.",
-  "version": "Versi"
+  "version": "Versi",
+  "continueReading": "Teruskan Membaca",
+  "surah": "Surah",
+  "searchDua": "Cari doa...",
+  "ok": "OK",
+  "hijriMuharram": "Muharam",
+  "hijriSafar": "Safar",
+  "hijriRabiAlAwwal": "Rabiulawal",
+  "hijriRabiAlThani": "Rabiulakhir",
+  "hijriJumadaAlAwwal": "Jamadilawal",
+  "hijriJumadaAlThani": "Jamadilakhir",
+  "hijriRajab": "Rejab",
+  "hijriShaban": "Syaaban",
+  "hijriRamadan": "Ramadan",
+  "hijriShawwal": "Syawal",
+  "hijriDhulQadah": "Zulkaedah",
+  "hijriDhulHijjah": "Zulhijah"
 }

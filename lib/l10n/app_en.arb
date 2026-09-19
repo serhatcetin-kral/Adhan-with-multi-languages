@@ -148,7 +148,23 @@
     }
   },
   "noSavedPrayerData": "No saved data found.\nPlease check your internet connection.",
-  "version": "Version"
+  "version": "Version",
+  "continueReading": "Continue Reading",
+  "surah": "Surah",
+  "searchDua": "Search dua...",
+  "ok": "OK",
+  "hijriMuharram": "Muharram",
+  "hijriSafar": "Safar",
+  "hijriRabiAlAwwal": "Rabi al-Awwal",
+  "hijriRabiAlThani": "Rabi al-Thani",
+  "hijriJumadaAlAwwal": "Jumada al-Awwal",
+  "hijriJumadaAlThani": "Jumada al-Thani",
+  "hijriRajab": "Rajab",
+  "hijriShaban": "Sha'ban",
+  "hijriRamadan": "Ramadan",
+  "hijriShawwal": "Shawwal",
+  "hijriDhulQadah": "Dhul-Qa'dah",
+  "hijriDhulHijjah": "Dhul-Hijjah"
 
 
 }

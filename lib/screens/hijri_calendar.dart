@@ -19,57 +19,88 @@ class _CalendarScreenState extends State<CalendarScreen> {
   @override
   Widget build(BuildContext context) {
     final locale = Localizations.localeOf(context).toString();
-    final lang = Localizations.localeOf(context).languageCode;
     final loc = AppLocalizations.of(context)!;
-
-    final hijri = HijriCalendar.fromDate(_selectedDay);
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
+
       appBar: AppBar(
         title: Text(loc.calendarTitle),
         backgroundColor: Colors.green,
         foregroundColor: Colors.white,
       ),
+
       body: SingleChildScrollView(
         child: Column(
           children: [
             const SizedBox(height: 12),
 
-            // TOP CARD
+            // =========================
+            // TOP HIJRI DATE CARD
+            // =========================
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: _buildTopCard(locale, lang),
+              child: _buildTopCard(
+                locale,
+                loc,
+              ),
             ),
 
             const SizedBox(height: 12),
 
+            // =========================
             // CALENDAR
+            // =========================
             Padding(
               padding: const EdgeInsets.all(12),
               child: TableCalendar(
                 locale: locale,
+
                 firstDay: DateTime(2020),
                 lastDay: DateTime(2035),
+
                 focusedDay: _focusedDay,
-                selectedDayPredicate: (day) => isSameDay(day, _selectedDay),
-                onDaySelected: (selectedDay, focusedDay) {
+
+                selectedDayPredicate: (day) {
+                  return isSameDay(
+                    day,
+                    _selectedDay,
+                  );
+                },
+
+                onDaySelected: (
+                    selectedDay,
+                    focusedDay,
+                    ) {
                   setState(() {
                     _selectedDay = selectedDay;
                     _focusedDay = focusedDay;
                   });
                 },
+
                 headerStyle: const HeaderStyle(
                   titleCentered: true,
                   formatButtonVisible: false,
                 ),
-                calendarBuilders: CalendarBuilders(
-                  defaultBuilder: (context, day, _) {
-                    final h = HijriCalendar.fromDate(day);
 
-                    final isFriday = day.weekday == DateTime.friday;
-                    final isRamadan = h.hMonth == 9;
-                    final isHolyNight = (h.hMonth == 9 && h.hDay == 27);
+                calendarBuilders: CalendarBuilders(
+                  defaultBuilder: (
+                      context,
+                      day,
+                      focusedDay,
+                      ) {
+                    final hijri =
+                    HijriCalendar.fromDate(day);
+
+                    final isFriday =
+                        day.weekday == DateTime.friday;
+
+                    final isRamadan =
+                        hijri.hMonth == 9;
+
+                    final isHolyNight =
+                        hijri.hMonth == 9 &&
+                            hijri.hDay == 27;
 
                     return Container(
                       margin: const EdgeInsets.all(3),
@@ -79,26 +110,40 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             : isFriday
                             ? Colors.blue.shade50
                             : null,
-                        borderRadius: BorderRadius.circular(12),
+
+                        borderRadius:
+                        BorderRadius.circular(12),
+
                         border: isHolyNight
-                            ? Border.all(color: Colors.red, width: 2)
+                            ? Border.all(
+                          color: Colors.red,
+                          width: 2,
+                        )
                             : null,
                       ),
+
                       child: Stack(
                         children: [
                           Center(
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment:
+                              MainAxisAlignment.center,
                               children: [
+                                // Gregorian day
                                 Text(
                                   "${day.day}",
                                   style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: isFriday ? Colors.blue : Colors.black,
+                                    fontWeight:
+                                    FontWeight.bold,
+                                    color: isFriday
+                                        ? Colors.blue
+                                        : Colors.black,
                                   ),
                                 ),
+
+                                // Hijri day
                                 Text(
-                                  "${h.hDay}",
+                                  "${hijri.hDay}",
                                   style: const TextStyle(
                                     fontSize: 11,
                                     color: Colors.green,
@@ -107,6 +152,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
                               ],
                             ),
                           ),
+
+                          // Laylat al-Qadr marker
                           if (isHolyNight)
                             const Positioned(
                               top: 2,
@@ -127,8 +174,13 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
             const SizedBox(height: 10),
 
-            // IMPORTANT DAYS
-            _buildUpcomingEvents(loc),
+            // =========================
+            // IMPORTANT ISLAMIC DAYS
+            // =========================
+            _buildUpcomingEvents(
+              loc,
+              locale,
+            ),
 
             const SizedBox(height: 20),
           ],
@@ -137,49 +189,88 @@ class _CalendarScreenState extends State<CalendarScreen> {
     );
   }
 
-  Widget _buildTopCard(String locale, String lang) {
-    final hijri = HijriCalendar.fromDate(_selectedDay);
+  // =========================================================
+  // TOP HIJRI DATE CARD
+  // =========================================================
+
+  Widget _buildTopCard(
+      String locale,
+      AppLocalizations loc,
+      ) {
+    final hijri =
+    HijriCalendar.fromDate(_selectedDay);
 
     return Container(
       padding: const EdgeInsets.all(16),
+
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFF2E7D32), Color(0xFF43A047)],
+          colors: [
+            Color(0xFF2E7D32),
+            Color(0xFF43A047),
+          ],
         ),
         borderRadius: BorderRadius.circular(18),
       ),
+
       child: Column(
         children: [
+          // Hijri date
           Text(
-            "${hijri.hDay} ${_monthName(hijri.hMonth, lang)} ${hijri.hYear}",
+            "${hijri.hDay} "
+                "${_monthName(hijri.hMonth, loc)} "
+                "${hijri.hYear}",
+            textAlign: TextAlign.center,
             style: const TextStyle(
               color: Colors.white,
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
+
           const SizedBox(height: 6),
+
+          // Gregorian date
           Text(
-            DateFormat.yMMMMEEEEd(locale).format(_selectedDay),
-            style: const TextStyle(color: Colors.white70),
+            DateFormat
+                .yMMMMEEEEd(locale)
+                .format(_selectedDay),
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white70,
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildUpcomingEvents(AppLocalizations loc) {
-    final events = _getUpcomingEvents(loc);
+  // =========================================================
+  // IMPORTANT ISLAMIC DAYS
+  // =========================================================
+
+  Widget _buildUpcomingEvents(
+      AppLocalizations loc,
+      String locale,
+      ) {
+    final events =
+    _getUpcomingEvents(loc);
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
+      margin:
+      const EdgeInsets.symmetric(horizontal: 16),
+
       padding: const EdgeInsets.all(16),
+
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(18),
       ),
+
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment:
+        CrossAxisAlignment.start,
+
         children: [
           Text(
             loc.importantIslamicDays,
@@ -188,141 +279,170 @@ class _CalendarScreenState extends State<CalendarScreen> {
               fontWeight: FontWeight.bold,
             ),
           ),
+
           const SizedBox(height: 10),
-          ...events.map((e) => _eventRow(e)),
+
+          ...events.map(
+                (event) => _eventRow(
+              event,
+              locale,
+            ),
+          ),
         ],
       ),
     );
   }
 
-  Widget _eventRow(_EventItem e) {
+  // =========================================================
+  // EVENT ROW
+  // =========================================================
+
+  Widget _eventRow(
+      _EventItem event,
+      String locale,
+      ) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
+      padding:
+      const EdgeInsets.symmetric(vertical: 6),
+
       child: Row(
         children: [
           Container(
             width: 10,
             height: 10,
+
             decoration: BoxDecoration(
-              color: e.color,
+              color: event.color,
               shape: BoxShape.circle,
             ),
           ),
+
           const SizedBox(width: 10),
+
           Expanded(
             child: Text(
-              "${e.title} — ${DateFormat.MMMd().format(e.date)}",
-              style: const TextStyle(fontSize: 14),
+              "${event.title} — "
+                  "${DateFormat.MMMd(locale).format(event.date)}",
+              style: const TextStyle(
+                fontSize: 14,
+              ),
             ),
           ),
-
-
         ],
       ),
     );
   }
 
-  List<_EventItem> _getUpcomingEvents(AppLocalizations loc) {
+  // =========================================================
+  // FIND UPCOMING ISLAMIC EVENTS
+  // =========================================================
+
+  List<_EventItem> _getUpcomingEvents(
+      AppLocalizations loc,
+      ) {
     final now = DateTime.now();
     final events = <_EventItem>[];
 
+    // Search the next 365 days
     for (int i = 0; i < 365; i++) {
-      final date = now.add(Duration(days: i));
-      final h = HijriCalendar.fromDate(date);
+      final date =
+      now.add(Duration(days: i));
 
-      if (h.hMonth == 9 && h.hDay == 27) {
-        events.add(_EventItem(loc.laylatAlQadr, date, Colors.red));
+      final hijri =
+      HijriCalendar.fromDate(date);
+
+      // Laylat al-Qadr
+      if (hijri.hMonth == 9 &&
+          hijri.hDay == 27) {
+        events.add(
+          _EventItem(
+            loc.laylatAlQadr,
+            date,
+            Colors.red,
+          ),
+        );
       }
 
-      if (h.hMonth == 10 && h.hDay == 1) {
-        events.add(_EventItem(loc.eidAlFitr, date, Colors.orange));
+      // Eid al-Fitr
+      if (hijri.hMonth == 10 &&
+          hijri.hDay == 1) {
+        events.add(
+          _EventItem(
+            loc.eidAlFitr,
+            date,
+            Colors.orange,
+          ),
+        );
       }
 
-      if (h.hMonth == 12 && h.hDay == 10) {
-        events.add(_EventItem(loc.eidAlAdha, date, Colors.amber));
+      // Eid al-Adha
+      if (hijri.hMonth == 12 &&
+          hijri.hDay == 10) {
+        events.add(
+          _EventItem(
+            loc.eidAlAdha,
+            date,
+            Colors.amber,
+          ),
+        );
       }
 
-      if (h.hMonth == 9 && h.hDay == 1) {
-        events.add(_EventItem(loc.startOfRamadan, date, Colors.green));
+      // Start of Ramadan
+      if (hijri.hMonth == 9 &&
+          hijri.hDay == 1) {
+        events.add(
+          _EventItem(
+            loc.startOfRamadan,
+            date,
+            Colors.green,
+          ),
+        );
       }
     }
 
+    // Maximum 5 events
     return events.take(5).toList();
   }
 
-  String _monthName(int m, String lang) {
-    if (lang == 'tr') {
-      return [
-        "Muharrem",
-        "Safer",
-        "Rebiülevvel",
-        "Rebiülahir",
-        "Cemaziyelevvel",
-        "Cemaziyelahir",
-        "Recep",
-        "Şaban",
-        "Ramazan",
-        "Şevval",
-        "Zilkade",
-        "Zilhicce"
-      ][m - 1];
-    }
+  // =========================================================
+  // LOCALIZED HIJRI MONTH NAME
+  // =========================================================
 
-    if (lang == 'ar') {
-      return [
-        "محرم",
-        "صفر",
-        "ربيع الأول",
-        "ربيع الآخر",
-        "جمادى الأولى",
-        "جمادى الآخرة",
-        "رجب",
-        "شعبان",
-        "رمضان",
-        "شوال",
-        "ذو القعدة",
-        "ذو الحجة"
-      ][m - 1];
-    }
+  String _monthName(
+      int month,
+      AppLocalizations loc,
+      ) {
+    final months = [
+      loc.hijriMuharram,
+      loc.hijriSafar,
+      loc.hijriRabiAlAwwal,
+      loc.hijriRabiAlThani,
+      loc.hijriJumadaAlAwwal,
+      loc.hijriJumadaAlThani,
+      loc.hijriRajab,
+      loc.hijriShaban,
+      loc.hijriRamadan,
+      loc.hijriShawwal,
+      loc.hijriDhulQadah,
+      loc.hijriDhulHijjah,
+    ];
 
-    if (lang == 'fr') {
-      return [
-        "Muharram",
-        "Safar",
-        "Rabi al-Awwal",
-        "Rabi al-Thani",
-        "Joumada al-Oula",
-        "Joumada ath-Thania",
-        "Rajab",
-        "Chaabane",
-        "Ramadan",
-        "Chawwal",
-        "Dhou al-Qi'da",
-        "Dhou al-Hijja"
-      ][m - 1];
-    }
-
-    return [
-      "Muharram",
-      "Safar",
-      "Rabi I",
-      "Rabi II",
-      "Jumada I",
-      "Jumada II",
-      "Rajab",
-      "Sha'ban",
-      "Ramadan",
-      "Shawwal",
-      "Dhul-Qa'dah",
-      "Dhul-Hijjah"
-    ][m - 1];
+    return months[month - 1];
   }
 }
+
+// ===========================================================
+// EVENT MODEL
+// ===========================================================
 
 class _EventItem {
   final String title;
   final DateTime date;
   final Color color;
 
-  _EventItem(this.title, this.date, this.color);
+  _EventItem(
+      this.title,
+      this.date,
+      this.color,
+      );
 }

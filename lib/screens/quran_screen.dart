@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../services/quran_service.dart';
 import 'quran_reader_screen.dart';
-
+import '../l10n/app_localizations.dart';
 class QuranScreen extends StatefulWidget {
   const QuranScreen({super.key});
 
@@ -50,7 +50,7 @@ class _QuranTestScreenState extends State<QuranScreen> {
     return s['title'] ?? '';
   }
 
-  Widget buildContinueReadingCard() {
+  Widget buildContinueReadingCard(AppLocalizations loc) {
     if (lastSurah == null) return const SizedBox();
 
     return GestureDetector(
@@ -86,9 +86,9 @@ class _QuranTestScreenState extends State<QuranScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Continue Reading",
-                    style: TextStyle(
+                  Text(
+                    loc.continueReading,
+                    style: const TextStyle(
                       color: Colors.white70,
                       fontSize: 13,
                     ),
@@ -98,7 +98,7 @@ class _QuranTestScreenState extends State<QuranScreen> {
                   Text(
                     lastTitle?.isNotEmpty == true
                         ? lastTitle!
-                        : "Surah $lastSurah",
+                        : "${loc.surah} $lastSurah",
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 17,
@@ -208,17 +208,20 @@ class _QuranTestScreenState extends State<QuranScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context)!;
     final lang = Localizations.localeOf(context).languageCode;
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Quran")),
+      appBar: AppBar(
+        title: Text(loc.quran),
+      ),
       body: surahs.isEmpty
           ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
         itemCount: surahs.length + 1,
         itemBuilder: (context, index) {
           if (index == 0) {
-            return buildContinueReadingCard();
+            return buildContinueReadingCard(loc);
           }
 
           final s = surahs[index - 1] ?? {};

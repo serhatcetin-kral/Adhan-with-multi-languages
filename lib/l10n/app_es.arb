@@ -143,5 +143,21 @@
     }
   },
   "noSavedPrayerData": "No se encontraron horarios de oración guardados.\nComprueba tu conexión a Internet.",
-  "version": "Versión"
+  "version": "Versión",
+  "continueReading": "Continuar leyendo",
+  "surah": "Sura",
+  "searchDua": "Buscar una súplica...",
+  "ok": "Aceptar",
+  "hijriMuharram": "Muharram",
+  "hijriSafar": "Safar",
+  "hijriRabiAlAwwal": "Rabi al-Awwal",
+  "hijriRabiAlThani": "Rabi al-Thani",
+  "hijriJumadaAlAwwal": "Yumada al-Awwal",
+  "hijriJumadaAlThani": "Yumada al-Thani",
+  "hijriRajab": "Rayab",
+  "hijriShaban": "Sha'ban",
+  "hijriRamadan": "Ramadán",
+  "hijriShawwal": "Shawwal",
+  "hijriDhulQadah": "Dhu al-Qi'dah",
+  "hijriDhulHijjah": "Dhu al-Hiyyah"
 }

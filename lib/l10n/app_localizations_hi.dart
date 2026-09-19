@@ -320,4 +320,52 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get version => 'संस्करण';
+
+  @override
+  String get continueReading => 'पढ़ना जारी रखें';
+
+  @override
+  String get surah => 'सूरह';
+
+  @override
+  String get searchDua => 'दुआ खोजें...';
+
+  @override
+  String get ok => 'ठीक है';
+
+  @override
+  String get hijriMuharram => 'मुहर्रम';
+
+  @override
+  String get hijriSafar => 'सफ़र';
+
+  @override
+  String get hijriRabiAlAwwal => 'रबी अल-अव्वल';
+
+  @override
+  String get hijriRabiAlThani => 'रबी अल-थानी';
+
+  @override
+  String get hijriJumadaAlAwwal => 'जुमादा अल-अव्वल';
+
+  @override
+  String get hijriJumadaAlThani => 'जुमादा अल-थानी';
+
+  @override
+  String get hijriRajab => 'रजब';
+
+  @override
+  String get hijriShaban => 'शाबान';
+
+  @override
+  String get hijriRamadan => 'रमज़ान';
+
+  @override
+  String get hijriShawwal => 'शव्वाल';
+
+  @override
+  String get hijriDhulQadah => 'ज़ुल-क़ादा';
+
+  @override
+  String get hijriDhulHijjah => 'ज़ुल-हिज्जा';
 }

@@ -320,4 +320,52 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get version => '版本';
+
+  @override
+  String get continueReading => '继续阅读';
+
+  @override
+  String get surah => '苏拉';
+
+  @override
+  String get searchDua => '搜索祈祷词...';
+
+  @override
+  String get ok => '确定';
+
+  @override
+  String get hijriMuharram => '穆哈兰姆月';
+
+  @override
+  String get hijriSafar => '色法尔月';
+
+  @override
+  String get hijriRabiAlAwwal => '赖比尔·敖外鲁月';
+
+  @override
+  String get hijriRabiAlThani => '赖比尔·阿色尼月';
+
+  @override
+  String get hijriJumadaAlAwwal => '主马达·敖外鲁月';
+
+  @override
+  String get hijriJumadaAlThani => '主马达·阿色尼月';
+
+  @override
+  String get hijriRajab => '赖哲卜月';
+
+  @override
+  String get hijriShaban => '舍尔邦月';
+
+  @override
+  String get hijriRamadan => '莱麦丹月';
+
+  @override
+  String get hijriShawwal => '闪瓦鲁月';
+
+  @override
+  String get hijriDhulQadah => '都尔喀尔德月';
+
+  @override
+  String get hijriDhulHijjah => '都尔黑哲月';
 }

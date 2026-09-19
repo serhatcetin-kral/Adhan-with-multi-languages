@@ -320,4 +320,52 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get version => 'Sürüm';
+
+  @override
+  String get continueReading => 'Okumaya Devam Et';
+
+  @override
+  String get surah => 'Sure';
+
+  @override
+  String get searchDua => 'Dua ara...';
+
+  @override
+  String get ok => 'Tamam';
+
+  @override
+  String get hijriMuharram => 'Muharrem';
+
+  @override
+  String get hijriSafar => 'Safer';
+
+  @override
+  String get hijriRabiAlAwwal => 'Rebiülevvel';
+
+  @override
+  String get hijriRabiAlThani => 'Rebiülahir';
+
+  @override
+  String get hijriJumadaAlAwwal => 'Cemaziyelevvel';
+
+  @override
+  String get hijriJumadaAlThani => 'Cemaziyelahir';
+
+  @override
+  String get hijriRajab => 'Recep';
+
+  @override
+  String get hijriShaban => 'Şaban';
+
+  @override
+  String get hijriRamadan => 'Ramazan';
+
+  @override
+  String get hijriShawwal => 'Şevval';
+
+  @override
+  String get hijriDhulQadah => 'Zilkade';
+
+  @override
+  String get hijriDhulHijjah => 'Zilhicce';
 }

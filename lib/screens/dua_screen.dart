@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import '../l10n/app_localizations.dart';
 class DuaScreen extends StatefulWidget {
   const DuaScreen({super.key});
 
@@ -63,11 +63,12 @@ class _DuaScreenState extends State<DuaScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context)!;
     final isRTL = Directionality.of(context) == TextDirection.rtl;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Duas"),
+        title: Text(loc.dua),
       ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -80,7 +81,7 @@ class _DuaScreenState extends State<DuaScreen> {
             child: TextField(
               onChanged: filterDuas,
               decoration: InputDecoration(
-                hintText: "Search dua...",
+                hintText: loc.searchDua,
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(14),
