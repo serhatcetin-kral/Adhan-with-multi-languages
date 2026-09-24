@@ -1,0 +1,16 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by Serhat Cetin on 9/24/26.
+  
+*/
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Esta aplicación usa tu ubicación para proporcionar horarios de oración precisos y determinar la dirección de la Qibla.";
+
+"NSLocationAlwaysUsageDescription" = "Esta aplicación usa tu ubicación para proporcionar horarios de oración precisos y determinar la dirección de la Qibla.";
+
+"NSLocationWhenInUseUsageDescription" = "Esta aplicación usa tu ubicación para proporcionar horarios de oración precisos y determinar la dirección de la Qibla.";
+
+"NSMicrophoneUsageDescription" = "Esta aplicación puede usar el micrófono para funciones relacionadas con el audio.";
+
+"NSUserNotificationsUsageDescription" = "Esta aplicación envía notificaciones de los horarios de oración y recordatorios del Adhan.";

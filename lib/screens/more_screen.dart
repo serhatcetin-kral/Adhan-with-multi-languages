@@ -161,6 +161,16 @@ class MoreScreen extends StatelessWidget {
                     '/mosque',
                   ),
                 ),
+                // // ❤️ SUPPORT
+                // _buildItem(
+                //   context,
+                //   'assets/more/support.png',
+                //   loc.support,
+                //       () => Navigator.pushNamed(
+                //     context,
+                //     '/support',
+                //   ),
+                // ),
 
               ],
             ),),

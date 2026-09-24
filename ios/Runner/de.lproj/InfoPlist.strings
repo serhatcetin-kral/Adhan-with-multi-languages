@@ -1,0 +1,16 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by Serhat Cetin on 9/24/26.
+  
+*/
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Diese App verwendet deinen Standort, um genaue Gebetszeiten bereitzustellen und die Qibla-Richtung zu bestimmen.";
+
+"NSLocationAlwaysUsageDescription" = "Diese App verwendet deinen Standort, um genaue Gebetszeiten bereitzustellen und die Qibla-Richtung zu bestimmen.";
+
+"NSLocationWhenInUseUsageDescription" = "Diese App verwendet deinen Standort, um genaue Gebetszeiten bereitzustellen und die Qibla-Richtung zu bestimmen.";
+
+"NSMicrophoneUsageDescription" = "Diese App kann das Mikrofon für audiobezogene Funktionen verwenden.";
+
+"NSUserNotificationsUsageDescription" = "Diese App sendet Benachrichtigungen zu Gebetszeiten und Adhan-Erinnerungen.";

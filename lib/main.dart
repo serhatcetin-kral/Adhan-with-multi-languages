@@ -14,7 +14,7 @@ import 'services/notification_service.dart';
 // 🔽 SCREENS
 import 'screens/splash_screen.dart';
 import 'screens/mosque_map_screen.dart';
-import 'screens/support_screen.dart';
+//import 'screens/support_screen.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'package:upgrader/upgrader.dart';
@@ -143,6 +143,7 @@ class _MyAppState extends State<MyApp> {
         '/quran-test': (_) => const QuranScreen(),
         '/settings': (_) => const SettingsScreen(),
         '/mosque': (_) => const MosqueMapScreen(),
+       // '/support': (_) => const SupportScreen(),
       },
 
       home: UpgradeAlert(

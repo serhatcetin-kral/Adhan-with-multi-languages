@@ -1,0 +1,16 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by Serhat Cetin on 9/24/26.
+  
+*/
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "يستخدم هذا التطبيق موقعك لتوفير أوقات صلاة دقيقة وتحديد اتجاه القبلة.";
+
+"NSLocationAlwaysUsageDescription" = "يستخدم هذا التطبيق موقعك لتوفير أوقات صلاة دقيقة وتحديد اتجاه القبلة.";
+
+"NSLocationWhenInUseUsageDescription" = "يستخدم هذا التطبيق موقعك لتوفير أوقات صلاة دقيقة وتحديد اتجاه القبلة.";
+
+"NSMicrophoneUsageDescription" = "قد يستخدم هذا التطبيق الميكروفون للميزات المتعلقة بالصوت.";
+
+"NSUserNotificationsUsageDescription" = "يرسل هذا التطبيق إشعارات بأوقات الصلاة وتذكيرات الأذان.";

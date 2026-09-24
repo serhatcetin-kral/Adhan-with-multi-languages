@@ -1,0 +1,16 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by Serhat Cetin on 9/24/26.
+  
+*/
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "यह ऐप सटीक नमाज़ के समय प्रदान करने और क़िबला की दिशा निर्धारित करने के लिए आपके स्थान का उपयोग करता है।";
+
+"NSLocationAlwaysUsageDescription" = "यह ऐप सटीक नमाज़ के समय प्रदान करने और क़िबला की दिशा निर्धारित करने के लिए आपके स्थान का उपयोग करता है।";
+
+"NSLocationWhenInUseUsageDescription" = "यह ऐप सटीक नमाज़ के समय प्रदान करने और क़िबला की दिशा निर्धारित करने के लिए आपके स्थान का उपयोग करता है।";
+
+"NSMicrophoneUsageDescription" = "यह ऐप ऑडियो से संबंधित सुविधाओं के लिए माइक्रोफ़ोन का उपयोग कर सकता है।";
+
+"NSUserNotificationsUsageDescription" = "यह ऐप नमाज़ के समय की सूचनाएँ और अज़ान रिमाइंडर भेजता है।";

@@ -1,0 +1,16 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by Serhat Cetin on 9/24/26.
+  
+*/
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "এই অ্যাপ সঠিক নামাজের সময় প্রদান এবং কিবলার দিক নির্ধারণ করতে আপনার অবস্থান ব্যবহার করে।";
+
+"NSLocationAlwaysUsageDescription" = "এই অ্যাপ সঠিক নামাজের সময় প্রদান এবং কিবলার দিক নির্ধারণ করতে আপনার অবস্থান ব্যবহার করে।";
+
+"NSLocationWhenInUseUsageDescription" = "এই অ্যাপ সঠিক নামাজের সময় প্রদান এবং কিবলার দিক নির্ধারণ করতে আপনার অবস্থান ব্যবহার করে।";
+
+"NSMicrophoneUsageDescription" = "এই অ্যাপ অডিও-সম্পর্কিত ফিচারের জন্য মাইক্রোফোন ব্যবহার করতে পারে।";
+
+"NSUserNotificationsUsageDescription" = "এই অ্যাপ নামাজের সময়ের নোটিফিকেশন এবং আজানের রিমাইন্ডার পাঠায়।";

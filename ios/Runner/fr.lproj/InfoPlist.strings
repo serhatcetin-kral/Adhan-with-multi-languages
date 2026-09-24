@@ -1,0 +1,16 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by Serhat Cetin on 9/24/26.
+  
+*/
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Cette app utilise votre position pour fournir des horaires de prière précis et déterminer la direction de la Qibla.";
+
+"NSLocationAlwaysUsageDescription" = "Cette app utilise votre position pour fournir des horaires de prière précis et déterminer la direction de la Qibla.";
+
+"NSLocationWhenInUseUsageDescription" = "Cette app utilise votre position pour fournir des horaires de prière précis et déterminer la direction de la Qibla.";
+
+"NSMicrophoneUsageDescription" = "Cette app peut utiliser le microphone pour les fonctionnalités liées à l’audio.";
+
+"NSUserNotificationsUsageDescription" = "Cette app envoie des notifications pour les horaires de prière et des rappels de l’Adhan.";

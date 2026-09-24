@@ -1,0 +1,16 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by Serhat Cetin on 9/24/26.
+  
+*/
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "此应用使用您的位置来提供准确的礼拜时间并确定朝拜方向。";
+
+"NSLocationAlwaysUsageDescription" = "此应用使用您的位置来提供准确的礼拜时间并确定朝拜方向。";
+
+"NSLocationWhenInUseUsageDescription" = "此应用使用您的位置来提供准确的礼拜时间并确定朝拜方向。";
+
+"NSMicrophoneUsageDescription" = "此应用可能会使用麦克风提供与音频相关的功能。";
+
+"NSUserNotificationsUsageDescription" = "此应用会发送礼拜时间通知和宣礼提醒。";

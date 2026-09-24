@@ -31,6 +31,8 @@ dependencies:
   # Android in-app update system
   in_app_update: ^4.2.3
 
+#  # Apple / Google in-app purchases
+#  in_app_purchase: ^3.2.0
   # Store version/update support
   upgrader: ^13.7.0
 

@@ -1,0 +1,16 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by Serhat Cetin on 9/24/26.
+  
+*/
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "یہ ایپ نماز کے درست اوقات فراہم کرنے اور قبلہ کی سمت کا تعین کرنے کے لیے آپ کے مقام کا استعمال کرتی ہے۔";
+
+"NSLocationAlwaysUsageDescription" = "یہ ایپ نماز کے درست اوقات فراہم کرنے اور قبلہ کی سمت کا تعین کرنے کے لیے آپ کے مقام کا استعمال کرتی ہے۔";
+
+"NSLocationWhenInUseUsageDescription" = "یہ ایپ نماز کے درست اوقات فراہم کرنے اور قبلہ کی سمت کا تعین کرنے کے لیے آپ کے مقام کا استعمال کرتی ہے۔";
+
+"NSMicrophoneUsageDescription" = "یہ ایپ آڈیو سے متعلق خصوصیات کے لیے مائیکروفون استعمال کر سکتی ہے۔";
+
+"NSUserNotificationsUsageDescription" = "یہ ایپ نماز کے اوقات کی اطلاعات اور اذان کی یاد دہانیاں بھیجتی ہے۔";

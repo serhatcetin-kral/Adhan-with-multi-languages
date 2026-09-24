@@ -1,0 +1,16 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by Serhat Cetin on 9/24/26.
+  
+*/
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Приложение использует ваше местоположение для определения точного времени намаза и направления Киблы.";
+
+"NSLocationAlwaysUsageDescription" = "Приложение использует ваше местоположение для определения точного времени намаза и направления Киблы.";
+
+"NSLocationWhenInUseUsageDescription" = "Приложение использует ваше местоположение для определения точного времени намаза и направления Киблы.";
+
+"NSMicrophoneUsageDescription" = "Приложение может использовать микрофон для функций, связанных со звуком.";
+
+"NSUserNotificationsUsageDescription" = "Приложение отправляет уведомления о времени намаза и напоминания об азане.";

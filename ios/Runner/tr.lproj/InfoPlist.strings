@@ -1,0 +1,16 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by Serhat Cetin on 9/24/26.
+  
+*/
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Bu uygulama doğru namaz vakitlerini sağlamak ve Kıble yönünü belirlemek için konumunuzu kullanır.";
+
+"NSLocationAlwaysUsageDescription" = "Bu uygulama doğru namaz vakitlerini sağlamak ve Kıble yönünü belirlemek için konumunuzu kullanır.";
+
+"NSLocationWhenInUseUsageDescription" = "Bu uygulama doğru namaz vakitlerini sağlamak ve Kıble yönünü belirlemek için konumunuzu kullanır.";
+
+"NSMicrophoneUsageDescription" = "Bu uygulama sesle ilgili özellikler için mikrofonu kullanabilir.";
+
+"NSUserNotificationsUsageDescription" = "Bu uygulama namaz vakti bildirimleri ve ezan hatırlatmaları gönderir.";
