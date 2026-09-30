@@ -124,7 +124,14 @@ class _PrayerScreenState extends State<PrayerScreen> {
           prayerTimes = _mapResultToPrayerTimes(result, prefs);
         });
         calculateNextPrayer();
-        await scheduleAllPrayers();
+
+// Notification errors must never make the app think
+// the Internet connection failed.
+        try {
+          await scheduleAllPrayers();
+        } catch (e) {
+          debugPrint('⚠️ Notification scheduling error: $e');
+        }
       }
     } catch (e) {
       print("Error fetching prayers: $e");
